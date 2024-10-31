@@ -1,0 +1,1056 @@
+VERSION 5.00
+Object = "{34A378CB-112C-461B-94E8-02D25370A1CE}#8.1#0"; "xrControl.ocx"
+Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Begin VB.Form frmCP_Price_Protection 
+   BorderStyle     =   0  'None
+   Caption         =   "Price Protection"
+   ClientHeight    =   8895
+   ClientLeft      =   0
+   ClientTop       =   0
+   ClientWidth     =   11745
+   ClipControls    =   0   'False
+   ControlBox      =   0   'False
+   BeginProperty Font 
+      Name            =   "MS Sans Serif"
+      Size            =   13.5
+      Charset         =   0
+      Weight          =   400
+      Underline       =   0   'False
+      Italic          =   0   'False
+      Strikethrough   =   0   'False
+   EndProperty
+   KeyPreview      =   -1  'True
+   LinkTopic       =   "Form1"
+   LockControls    =   -1  'True
+   MaxButton       =   0   'False
+   MDIChild        =   -1  'True
+   MinButton       =   0   'False
+   ScaleHeight     =   132.96
+   ScaleMode       =   0  'User
+   ScaleWidth      =   100.902
+   ShowInTaskbar   =   0   'False
+   Tag             =   "wt0;fb0"
+   Begin VB.PictureBox Picture1 
+      BackColor       =   &H00E0E0E0&
+      Height          =   690
+      Left            =   1590
+      ScaleHeight     =   630
+      ScaleWidth      =   9975
+      TabIndex        =   26
+      TabStop         =   0   'False
+      Tag             =   "wt0;fb0"
+      Top             =   3735
+      Width           =   10035
+      Begin VB.TextBox txtDetail 
+         Alignment       =   1  'Right Justify
+         BeginProperty Font 
+            Name            =   "Microsoft Sans Serif"
+            Size            =   12.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   480
+         Index           =   1
+         Left            =   8175
+         TabIndex        =   18
+         TabStop         =   0   'False
+         Top             =   75
+         Width           =   1755
+      End
+      Begin VB.TextBox txtDetail 
+         BeginProperty Font 
+            Name            =   "Microsoft Sans Serif"
+            Size            =   14.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   480
+         Index           =   0
+         Left            =   90
+         TabIndex        =   16
+         Top             =   75
+         Width           =   6225
+      End
+      Begin VB.Label Label1 
+         Alignment       =   1  'Right Justify
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "&Amount (F9)"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   195
+         Index           =   8
+         Left            =   7110
+         TabIndex        =   17
+         Top             =   225
+         Width           =   1035
+      End
+   End
+   Begin xrControl.xrFrame xrFrame2 
+      Height          =   4335
+      Left            =   1575
+      Tag             =   "wt0;fb0"
+      Top             =   4440
+      Width           =   10065
+      _ExtentX        =   17754
+      _ExtentY        =   7646
+      BackColor       =   14737632
+      ClipControls    =   0   'False
+      Begin MSFlexGridLib.MSFlexGrid MSFlexGrid1 
+         Height          =   4110
+         Left            =   3690
+         TabIndex        =   19
+         TabStop         =   0   'False
+         Top             =   90
+         Width           =   6240
+         _ExtentX        =   11007
+         _ExtentY        =   7250
+         _Version        =   393216
+         Appearance      =   0
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+      End
+      Begin MSComctlLib.ListView ListView1 
+         Height          =   4140
+         Left            =   90
+         TabIndex        =   27
+         Top             =   75
+         Width           =   3600
+         _ExtentX        =   6350
+         _ExtentY        =   7303
+         View            =   2
+         LabelEdit       =   1
+         LabelWrap       =   -1  'True
+         HideSelection   =   0   'False
+         Checkboxes      =   -1  'True
+         _Version        =   393217
+         ForeColor       =   -2147483640
+         BackColor       =   -2147483643
+         BorderStyle     =   1
+         Appearance      =   1
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         NumItems        =   0
+      End
+   End
+   Begin xrControl.xrButton cmdButton 
+      CausesValidation=   0   'False
+      Height          =   600
+      Index           =   3
+      Left            =   90
+      TabIndex        =   22
+      Top             =   1785
+      Width           =   1245
+      _ExtentX        =   2196
+      _ExtentY        =   1058
+      Caption         =   "&Cancel"
+      AccessKey       =   "C"
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Picture         =   "frmCP_Price_Protection.frx":0000
+   End
+   Begin xrControl.xrButton cmdButton 
+      Height          =   600
+      Index           =   0
+      Left            =   90
+      TabIndex        =   20
+      Top             =   525
+      Width           =   1245
+      _ExtentX        =   2196
+      _ExtentY        =   1058
+      Caption         =   "&Save"
+      AccessKey       =   "S"
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Picture         =   "frmCP_Price_Protection.frx":077A
+   End
+   Begin xrControl.xrButton cmdButton 
+      Height          =   600
+      Index           =   5
+      Left            =   90
+      TabIndex        =   25
+      Top             =   1785
+      Width           =   1245
+      _ExtentX        =   2196
+      _ExtentY        =   1058
+      Caption         =   "&Close"
+      AccessKey       =   "C"
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Picture         =   "frmCP_Price_Protection.frx":0EF4
+   End
+   Begin xrControl.xrButton cmdButton 
+      Height          =   600
+      Index           =   1
+      Left            =   90
+      TabIndex        =   21
+      Top             =   1155
+      Width           =   1245
+      _ExtentX        =   2196
+      _ExtentY        =   1058
+      Caption         =   "Searc&h"
+      AccessKey       =   "h"
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Picture         =   "frmCP_Price_Protection.frx":166E
+   End
+   Begin xrControl.xrButton cmdButton 
+      Height          =   600
+      Index           =   4
+      Left            =   90
+      TabIndex        =   23
+      Top             =   525
+      Width           =   1245
+      _ExtentX        =   2196
+      _ExtentY        =   1058
+      Caption         =   "&New"
+      AccessKey       =   "N"
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Picture         =   "frmCP_Price_Protection.frx":1DE8
+   End
+   Begin xrControl.xrFrame xrFrame1 
+      Height          =   3195
+      Left            =   1575
+      Tag             =   "wt0;fb0"
+      Top             =   525
+      Width           =   10065
+      _ExtentX        =   17754
+      _ExtentY        =   5636
+      BorderStyle     =   1
+      Begin VB.TextBox txtField 
+         Appearance      =   0  'Flat
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   285
+         Index           =   7
+         Left            =   7830
+         TabIndex        =   15
+         Top             =   1680
+         Width           =   1995
+      End
+      Begin VB.TextBox txtField 
+         Appearance      =   0  'Flat
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   285
+         Index           =   6
+         Left            =   7830
+         TabIndex        =   13
+         Top             =   1365
+         Width           =   1995
+      End
+      Begin VB.TextBox txtField 
+         Appearance      =   0  'Flat
+         Enabled         =   0   'False
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   600
+         Index           =   3
+         Left            =   1365
+         Locked          =   -1  'True
+         MultiLine       =   -1  'True
+         TabIndex        =   7
+         TabStop         =   0   'False
+         Top             =   1365
+         Width           =   4950
+      End
+      Begin VB.TextBox txtField 
+         Appearance      =   0  'Flat
+         Enabled         =   0   'False
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   285
+         Index           =   0
+         Left            =   1365
+         TabIndex        =   1
+         Top             =   255
+         Width           =   2310
+      End
+      Begin VB.TextBox txtField 
+         Appearance      =   0  'Flat
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   285
+         Index           =   2
+         Left            =   1365
+         TabIndex        =   5
+         Top             =   1050
+         Width           =   4950
+      End
+      Begin VB.TextBox txtField 
+         Appearance      =   0  'Flat
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   915
+         Index           =   4
+         Left            =   1365
+         MultiLine       =   -1  'True
+         TabIndex        =   9
+         Top             =   1995
+         Width           =   4950
+      End
+      Begin VB.TextBox txtField 
+         Appearance      =   0  'Flat
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   285
+         Index           =   1
+         Left            =   1365
+         MaxLength       =   50
+         TabIndex        =   3
+         Top             =   735
+         Width           =   2310
+      End
+      Begin VB.TextBox txtField 
+         Appearance      =   0  'Flat
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   285
+         Index           =   5
+         Left            =   7830
+         TabIndex        =   11
+         Top             =   1050
+         Width           =   1995
+      End
+      Begin VB.Label Label1 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Reference No."
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   195
+         Index           =   10
+         Left            =   6570
+         TabIndex        =   14
+         Top             =   1725
+         Width           =   1050
+      End
+      Begin VB.Label Label1 
+         Alignment       =   1  'Right Justify
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Address"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   195
+         Index           =   11
+         Left            =   645
+         TabIndex        =   6
+         Top             =   1410
+         Width           =   570
+      End
+      Begin VB.Label Label1 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Date Thru"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   195
+         Index           =   14
+         Left            =   6570
+         TabIndex        =   12
+         Top             =   1410
+         Width           =   720
+      End
+      Begin VB.Shape Shape1 
+         BackStyle       =   1  'Opaque
+         BorderStyle     =   0  'Transparent
+         Height          =   285
+         Left            =   1455
+         Tag             =   "et0;ht2"
+         Top             =   375
+         Width           =   2325
+      End
+      Begin VB.Label Label1 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Trans. No."
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   195
+         Index           =   9
+         Left            =   150
+         TabIndex        =   0
+         Top             =   300
+         Width           =   915
+      End
+      Begin VB.Label Label1 
+         Alignment       =   1  'Right Justify
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Remarks"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   195
+         Index           =   12
+         Left            =   435
+         TabIndex        =   8
+         Top             =   2355
+         Width           =   630
+      End
+      Begin VB.Label Label1 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Date From"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   195
+         Index           =   2
+         Left            =   6570
+         TabIndex        =   10
+         Top             =   1095
+         Width           =   735
+      End
+      Begin VB.Label Label1 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Transact. Date"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   195
+         Index           =   1
+         Left            =   150
+         TabIndex        =   2
+         Top             =   780
+         Width           =   1065
+      End
+      Begin VB.Label Label1 
+         Alignment       =   1  'Right Justify
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Company"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   195
+         Index           =   3
+         Left            =   555
+         TabIndex        =   4
+         Top             =   1095
+         Width           =   660
+      End
+   End
+   Begin xrControl.xrButton cmdButton 
+      Height          =   600
+      Index           =   6
+      Left            =   90
+      TabIndex        =   24
+      Top             =   1155
+      Width           =   1245
+      _ExtentX        =   2196
+      _ExtentY        =   1058
+      Caption         =   "&Print"
+      AccessKey       =   "P"
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Picture         =   "frmCP_Price_Protection.frx":2562
+   End
+End
+Attribute VB_Name = "frmCP_Price_Protection"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = False
+Attribute VB_PredeclaredId = True
+Attribute VB_Exposed = False
+'Option Explicit
+'Private Const pxeMODULENAME = "frmCP_Price_Protection"
+'Private Const pxeAPPNAME = "CP Price Protection"
+'Private WithEvents oTrans As clsCPPriceProtection
+'Private oSkin As clsFormSkin
+'
+'Dim pbGridFocus As Boolean
+'Dim pnIndex As Integer
+'Dim pnCtr As Integer
+'
+'Dim pbSave As Boolean
+'Dim pnRow As Integer
+'
+'Private Sub cmdButton_Click(Index As Integer)
+'   Dim lnRep As Long
+'   Select Case Index
+'      Case 0 'save
+'         If oTrans.SaveTransaction Then
+'            MsgBox "Transaction saved successfuly.", vbInformation, pxeAPPNAME
+'
+'            lnRep = MsgBox("Do you want to print this transaction?", vbQuestion & vbYesNo, pxeAPPNAME)
+'
+'            If lnRep = vbYes Then
+'               If oTrans.CloseTransaction(oTrans.Master("sTransNox")) Then MsgBox "Printing..."
+'            End If
+'
+'            Call InitForm
+'            Call InitGrid
+'         Else
+'            MsgBox "Unable to save transaction.", vbCritical, pxeAPPNAME
+'         End If
+'      Case 1 'search
+'         Select Case pnIndex
+'            Case 2
+'               Call txtField_KeyDown(pnIndex, vbKeyF3, 0)
+'         End Select
+'      Case 2 'delrow
+'      Case 3 'cancel
+'         If oTrans.InitTransaction Then
+'            Call InitForm
+'            Call InitGrid
+'         End If
+'      Case 4 'new
+'         If oTrans.NewTransaction Then
+'            Call InitForm
+'            Call InitEntry
+'            Call InitGrid
+'         End If
+'      Case 5 'close
+'         Unload Me
+'      Case 6 'print
+'   End Select
+'End Sub
+'
+'Private Sub Form_Activate()
+'   oApp.MenuName = Me.Tag
+'   Me.ZOrder 0
+'End Sub
+'
+'Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
+'   Select Case KeyCode
+'      Case vbKeyReturn, vbKeyUp, vbKeyDown
+'         Select Case KeyCode
+'            Case vbKeyReturn, vbKeyDown
+'               If GetFocus = txtDetail(0).hWnd Then Exit Sub
+'               SetNextFocus
+'            Case vbKeyUp
+'               SetPreviousFocus
+'         End Select
+'      Case vbKeyF9
+'         txtDetail(1).Enabled = True
+'         txtDetail(1).SetFocus
+'      Case vbKeyF10
+'         txtDetail(2).Enabled = True
+'         txtDetail(2).SetFocus
+'      Case vbKeyF11
+'         txtDetail(3).Enabled = True
+'         txtDetail(3).SetFocus
+'      Case vbKeyF12
+'         txtField(13).Enabled = True
+'         txtField(13).SetFocus
+'   End Select
+'End Sub
+'
+'Private Sub Form_Load()
+'   Dim lsOldProc As String
+'
+'   lsOldProc = "Form_Load"
+'   ''On Error GoTo errProc
+'
+'   CenterChildForm mdiMain, Me
+'
+'   Set oSkin = New clsFormSkin
+'   Set oSkin.AppDriver = oApp
+'   Set oSkin.Form = Me
+'   oSkin.ApplySkin xeFormTransEqualLeft
+'
+'   Set oTrans = New clsCPPriceProtection
+'   Set oTrans.AppDriver = oApp
+'   oTrans.Branch = oApp.BranchCode
+'   oTrans.InitTransaction
+'   oTrans.NewTransaction
+'
+'   Call InitForm
+'   Call InitEntry
+'   Call InitGrid
+'
+'endProc:
+'   Exit Sub
+'errProc:
+'   ShowError lsOldProc & "( " & " )", True
+'End Sub
+'
+'Private Sub Form_Unload(Cancel As Integer)
+'   Set oSkin = Nothing
+'End Sub
+'
+'Private Sub InitForm()
+'   txtField(0) = ""
+'   txtField(1) = ""
+'   txtField(2) = ""
+'   txtField(3) = ""
+'   txtField(4) = ""
+'   txtField(5) = ""
+'   txtField(6) = ""
+'   txtField(7) = ""
+'
+'   txtDetail(0) = ""
+'   txtDetail(1) = ""
+'
+''   chkClientTp.Value = 0
+'
+'   With oTrans
+'      cmdButton(0).Visible = .EditMode = xeModeAddNew
+'      cmdButton(1).Visible = .EditMode = xeModeAddNew
+'      'cmdButton(2).Visible = .EditMode = xeModeAddNew
+'      cmdButton(3).Visible = .EditMode = xeModeAddNew
+'      cmdButton(4).Visible = .EditMode = xeModeReady
+'      cmdButton(5).Visible = .EditMode = xeModeReady
+'      cmdButton(6).Visible = .EditMode = xeModeReady
+'
+'      xrFrame1.Enabled = .EditMode = xeModeAddNew
+'      xrFrame2.Enabled = .EditMode = xeModeAddNew
+'      Picture1.Enabled = .EditMode = xeModeAddNew
+'      txtDetail(1).Enabled = False
+'   End With
+'
+'   pnRow = 0
+'End Sub
+'
+'Private Sub InitEntry()
+'   With oTrans
+'      .NewTransaction
+'
+'      txtField(0) = Format(.Master("sTransNox"), "@@@@@@-@@@@@@")
+'      txtField(1) = Format(.Master("dTransact"), "MMMM DD, YYYY")
+'      txtField(2) = .Master("sCompnyNm")
+'      txtField(3) = ""
+'      txtField(4) = .Master("sRemarksx")
+'      txtField(5) = Format(.Master("dPromoFrm"), "MMMM DD, YYYY")
+'      txtField(6) = Format(.Master("dPromoTru"), "MMMM DD, YYYY")
+'      txtField(7) = .Master("sReferNox")
+'
+'      txtDetail(0) = ""
+'      txtDetail(1) = "0.00"
+'
+'      pnRow = 0
+'   End With
+'End Sub
+'
+'Private Sub InitGrid()
+'   Dim lnCtr As Integer
+'
+'   With MSFlexGrid1
+'      .Clear
+'      .Cols = 3
+'      .Rows = 2
+'
+'      .TextMatrix(0, 0) = ""
+'      .TextMatrix(0, 1) = "MODEL"
+'      .TextMatrix(0, 2) = "SERIAL"
+'
+'      .Row = 0
+'      'column alignment
+'      For lnCtr = 0 To .Cols - 1
+'         .Col = lnCtr
+'         .CellFontBold = True
+'         .CellAlignment = flexAlignCenterCenter
+'      Next
+'
+'      .ColWidth(0) = "450"
+'      .ColWidth(1) = "2500"
+'      .ColWidth(2) = "3240"
+'
+'      .ColAlignment(1) = flexAlignLeftCenter
+'      .ColAlignment(2) = flexAlignLeftCenter
+'
+'      .Row = 1
+'      .Col = 0
+'      .ColSel = .Cols - 1
+'   End With
+'End Sub
+'
+'Private Sub ListView1_ItemCheck(ByVal Item As MSComctlLib.ListItem)
+'   Dim lbCheck As Boolean
+'
+'   With ListView1
+'      lbCheck = .ListItems(Item.Index).Checked
+'      oTrans.FilterModel(Item.Index - 1) = lbCheck
+'   End With
+'
+'loadSerial:
+'   loadSerials
+'End Sub
+'
+'Private Sub ListView1_ItemClick(ByVal Item As MSComctlLib.ListItem)
+'   pnRow = Item.Index - 1
+'   txtDetail(1) = Format(oTrans.Detail(pnRow, 2), "#,##0.00")
+'End Sub
+'
+'Private Sub MSFlexGrid1_SelChange()
+'   With MSFlexGrid1
+'      .Col = 0
+'      .ColSel = .Cols - 1
+'   End With
+'End Sub
+'
+'Private Sub oTrans_DetailRetrieved(ByVal Index As Integer)
+'   Select Case Index
+'      Case 2
+'         txtDetail(1) = Format(oTrans.Detail(pnRow, 2), "#,##0.00")
+'      Case Else
+'         Call loadModels
+'         Call loadSerials
+'   End Select
+'End Sub
+'
+'Private Sub oTrans_MasterRetrieved(ByVal Index As Integer)
+'   txtField(Index) = IFNull(oTrans.Master(Index), "")
+'End Sub
+'
+'Private Sub txtDetail_GotFocus(Index As Integer)
+'   With txtDetail(Index)
+'      If Index = 1 Then .Text = Format(.Text, "##0.00")
+'
+'      .SelStart = 0
+'      .SelLength = Len(.Text)
+'   End With
+'
+'   pnIndex = Index
+'End Sub
+'
+'Private Sub txtDetail_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
+'   Dim lnCtr As Integer
+'
+'   With txtDetail(Index)
+'      Select Case Index
+'      Case 0 'model
+'         If KeyCode = vbKeyF3 Or KeyCode = vbKeyReturn Then
+'            If KeyCode = vbKeyF3 Then
+'
+'               If oTrans.SearchDetail(ListView1.ListItems.Count, 1, .Text) Then oTrans.addDetail
+'            Else
+'               If .Text <> "" Then If oTrans.SearchDetail(ListView1.ListItems.Count, 1, .Text) Then oTrans.addDetail
+'            End If
+'
+'            .Text = ""
+'         End If
+'      End Select
+'      KeyCode = 0
+'   End With
+'End Sub
+'
+'Private Sub txtDetail_LostFocus(Index As Integer)
+'   With txtDetail(Index)
+'      .BackColor = oApp.getColor("EB")
+'   End With
+'
+'   If Index = 1 Then txtDetail(1).Enabled = False
+'End Sub
+'
+'Private Sub txtDetail_Validate(Index As Integer, Cancel As Boolean)
+'   Select Case Index
+'      Case 1 'amount
+'         oTrans.Detail(pnRow, 2) = txtDetail(Index)
+'   End Select
+'End Sub
+'
+'Private Sub txtField_GotFocus(Index As Integer)
+'   With txtField(Index)
+'      Select Case Index
+'      Case 1, 5, 6
+'         .Text = Format(.Text, "MM/DD/YYYY")
+'      End Select
+'
+'      .SelStart = 0
+'      .SelLength = Len(.Text)
+'      .BackColor = oApp.getColor("HT1")
+'   End With
+'
+'   pnIndex = Index
+'End Sub
+'
+'Private Sub txtField_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
+'   Dim lsOldProc As String
+'
+'   lsOldProc = "txtField_KeyDown"
+'   ''On Error GoTo errProc
+'
+'   If KeyCode = vbKeyF3 Or KeyCode = vbKeyReturn Then
+'      With txtField(Index)
+'         If KeyCode = vbKeyF3 Then
+'            oTrans.SearchMaster Index, .Text
+'            If .Text <> "" Then SetNextFocus
+'         Else
+'            If .Text <> "" Then oTrans.SearchMaster Index, .Text
+'         End If
+'      End With
+'      KeyCode = 0
+'   End If
+'
+'endProc:
+'   Exit Sub
+'errProc:
+'   ShowError lsOldProc & "( " _
+'                       & "  " & Index _
+'                       & ", " & KeyCode _
+'                       & ", " & Shift _
+'                       & " )", True
+'End Sub
+'
+'Private Sub txtField_LostFocus(Index As Integer)
+'   With txtField(Index)
+'      .BackColor = oApp.getColor("EB")
+'   End With
+'End Sub
+'
+'Private Sub txtField_Validate(Index As Integer, Cancel As Boolean)
+'   With txtField(Index)
+'      Select Case Index
+'      Case 1, 5, 6
+'         If Not IsDate(.Text) Then .Text = oApp.ServerDate
+'         .Text = Format(.Text, "MMMM DD, YYYY")
+'
+'         oTrans.Master(Index) = CDate(.Text)
+'      Case Else
+'         oTrans.Master(Index) = .Text
+'      End Select
+'   End With
+'End Sub
+'
+'Private Sub loadModels()
+'   Dim lsOldProc As String
+'   Dim lnCtr As Integer
+'   Dim lnRow As Integer
+'
+'   lsOldProc = pxeMODULENAME & "." & "loadModels"
+'
+'   With ListView1
+'      .ListItems.Clear
+'
+'      lnRow = oTrans.ItemCount - 1
+'      For lnCtr = 0 To lnRow
+'         If oTrans.Detail(lnCtr, 1) = "" Then Exit For
+'
+'         .ListItems.Add lnCtr + 1, , oTrans.Detail(lnCtr, 1)
+'         .ListItems(lnCtr + 1).Checked = True
+'      Next
+'   End With
+'
+'endProc:
+'   Exit Sub
+'errProc:
+'   ShowError lsOldProc
+'End Sub
+'
+'Private Sub loadSerials()
+'   Dim lsOldProc As String
+'   Dim lors As Recordset
+'   Dim lnCtr As Integer
+'   Dim lnRow As Integer
+'
+'   lsOldProc = pxeMODULENAME & ".loadSerials"
+'
+'   Call InitGrid
+'   With MSFlexGrid1
+'      lnRow = oTrans.SerialCount
+'
+'      .Rows = IIf(lnRow = 0, 2, lnRow + 1)
+'
+'      If .Rows > 17 Then
+'         .ColWidth(2) = "2990"
+'      Else
+'         .ColWidth(2) = "3240"
+'      End If
+'
+'      For lnCtr = 0 To oTrans.SerialCount - 1
+'         .TextMatrix(lnCtr + 1, 0) = lnCtr + 1
+'         .TextMatrix(lnCtr + 1, 1) = Trim(oTrans.Serial(lnCtr, "sModelNme"))
+'         .TextMatrix(lnCtr + 1, 2) = Trim(oTrans.Serial(lnCtr, "sSerialNo"))
+'      Next
+'   End With
+'endProc:
+'   Exit Sub
+'errProc:
+'   ShowError lsOldProc
+'End Sub
+'
+'Private Sub ShowError(ByVal lsProcName As String, Optional bEnd As Boolean = False)
+'   With oApp
+'      .xLogError Err.Number, Err.Description, pxeMODULENAME, lsProcName, Erl
+'      If bEnd Then
+'         .xShowError
+'         End
+'      Else
+'         With Err
+'            .Raise .Number, .Source, .Description
+'         End With
+'      End If
+'   End With
+'End Sub

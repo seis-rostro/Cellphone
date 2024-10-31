@@ -1,0 +1,69 @@
+Line 17: Class xrControl.xrFrame of control xrFrame1 was not a loaded control class.
+Line 180: Class xrControl.xrFrame of control xrFrame2 was not a loaded control class.
+Line 449: Class xrControl.xrButton of control cmdButton was not a loaded control class.
+Line 472: Class xrControl.xrButton of control cmdButton was not a loaded control class.
+Line 495: Class xrControl.xrButton of control cmdButton was not a loaded control class.
+Line 518: Class xrControl.xrButton of control cmdButton was not a loaded control class.
+Line 541: Class xrControl.xrButton of control cmdButton was not a loaded control class.
+Line 564: Class xrControl.xrButton of control cmdButton was not a loaded control class.
+Line 587: Class xrControl.xrButton of control cmdButton was not a loaded control class.
+Line 610: Class xrControl.xrButton of control cmdButton was not a loaded control class.
+Line 633: Class xrControl.xrButton of control cmdButton was not a loaded control class.
+Line 23: The property name _ExtentX in xrFrame1 is invalid.
+Line 24: The property name _ExtentY in xrFrame1 is invalid.
+Line 186: The property name _ExtentX in xrFrame2 is invalid.
+Line 187: The property name _ExtentY in xrFrame2 is invalid.
+Line 456: The property name _ExtentX in cmdButton is invalid.
+Line 457: The property name _ExtentY in cmdButton is invalid.
+Line 458: The property name Caption in cmdButton is invalid.
+Line 459: The property name AccessKey in cmdButton is invalid.
+Line 470: The property name PicturePos in cmdButton is invalid.
+Line 449: Property Picture in cmdButton could not be set.
+Line 479: The property name _ExtentX in cmdButton is invalid.
+Line 480: The property name _ExtentY in cmdButton is invalid.
+Line 481: The property name Caption in cmdButton is invalid.
+Line 482: The property name AccessKey in cmdButton is invalid.
+Line 493: The property name PicturePos in cmdButton is invalid.
+Line 472: Property Picture in cmdButton could not be set.
+Line 502: The property name _ExtentX in cmdButton is invalid.
+Line 503: The property name _ExtentY in cmdButton is invalid.
+Line 504: The property name Caption in cmdButton is invalid.
+Line 505: The property name AccessKey in cmdButton is invalid.
+Line 516: The property name PicturePos in cmdButton is invalid.
+Line 495: Property Picture in cmdButton could not be set.
+Line 525: The property name _ExtentX in cmdButton is invalid.
+Line 526: The property name _ExtentY in cmdButton is invalid.
+Line 527: The property name Caption in cmdButton is invalid.
+Line 528: The property name AccessKey in cmdButton is invalid.
+Line 539: The property name PicturePos in cmdButton is invalid.
+Line 518: Property Picture in cmdButton could not be set.
+Line 548: The property name _ExtentX in cmdButton is invalid.
+Line 549: The property name _ExtentY in cmdButton is invalid.
+Line 550: The property name Caption in cmdButton is invalid.
+Line 551: The property name AccessKey in cmdButton is invalid.
+Line 562: The property name PicturePos in cmdButton is invalid.
+Line 541: Property Picture in cmdButton could not be set.
+Line 571: The property name _ExtentX in cmdButton is invalid.
+Line 572: The property name _ExtentY in cmdButton is invalid.
+Line 573: The property name Caption in cmdButton is invalid.
+Line 574: The property name AccessKey in cmdButton is invalid.
+Line 585: The property name PicturePos in cmdButton is invalid.
+Line 586: Property Picture in cmdButton had an invalid file reference.
+Line 594: The property name _ExtentX in cmdButton is invalid.
+Line 595: The property name _ExtentY in cmdButton is invalid.
+Line 596: The property name Caption in cmdButton is invalid.
+Line 597: The property name AccessKey in cmdButton is invalid.
+Line 608: The property name PicturePos in cmdButton is invalid.
+Line 609: Property Picture in cmdButton had an invalid file reference.
+Line 617: The property name _ExtentX in cmdButton is invalid.
+Line 618: The property name _ExtentY in cmdButton is invalid.
+Line 619: The property name Caption in cmdButton is invalid.
+Line 620: The property name AccessKey in cmdButton is invalid.
+Line 631: The property name PicturePos in cmdButton is invalid.
+Line 632: Property Picture in cmdButton had an invalid file reference.
+Line 640: The property name _ExtentX in cmdButton is invalid.
+Line 641: The property name _ExtentY in cmdButton is invalid.
+Line 642: The property name Caption in cmdButton is invalid.
+Line 643: The property name AccessKey in cmdButton is invalid.
+Line 654: The property name PicturePos in cmdButton is invalid.
+Line 655: Property Picture in cmdButton had an invalid file reference.

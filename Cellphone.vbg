@@ -1,0 +1,8 @@
+VBGROUP 5.0
+StartupProject=CellPhone.vbp
+Project=..\..\My Applications\ggcPriceUpdate\ggcPriceUpdate.vbp
+Project=..\..\My Applications\ggcCPSales\ggcCPSales.vbp
+Project=..\..\My Applications\ggcLRApplication\ggcLRApplication.vbp
+Project=..\..\My Applications\ggcLoanReceivable\ggcLoanReceivable.vbp
+Project=..\..\My Applications\ggcTimekeeper\ggcTimekeeper.vbp
+Project=..\..\My Applications\ggcLeave\ggcLeave.vbp

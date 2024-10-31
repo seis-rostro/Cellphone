@@ -1,0 +1,43 @@
+sField01	String	50
+sField02	String	50
+sField03	String	50
+sField04	String	50
+sField05	String	50
+sField06	String	50
+sField07	String	50
+sField08	String	50
+sField09	String	50
+sField10	String	50
+nField01	Number
+nField02	Number
+nField03	Number
+nField04	Number
+nField05	Number
+nField06	Number
+nField07	Number
+nField08	Number
+nField09	Number
+nField10	Number
+lField01	Currency
+lField02	Currency
+lField03	Currency
+lField04	Currency
+lField05	Currency
+lField06	Currency
+lField07	Currency
+lField08	Currency
+lField09	Currency
+lField10	Currency
+lField11	Currency
+lField12	Currency
+lField13	Currency
+dField01	Date
+dField02	Date
+dField03	Date
+dField04	Date
+dField05	Date
+dField06	Date
+dField07	Date
+dField08	Date
+dField09	Date
+dField10	Date

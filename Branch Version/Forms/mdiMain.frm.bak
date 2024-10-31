@@ -1,0 +1,1689 @@
+VERSION 5.00
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Begin VB.MDIForm mdiMain 
+   BackColor       =   &H8000000C&
+   Caption         =   "Guanzon Telecom Point-Of-Sale & Inventory System Branch Version"
+   ClientHeight    =   7365
+   ClientLeft      =   225
+   ClientTop       =   870
+   ClientWidth     =   12855
+   Icon            =   "mdiMain.frx":0000
+   LinkTopic       =   "MDIForm1"
+   LockControls    =   -1  'True
+   ScrollBars      =   0   'False
+   StartUpPosition =   3  'Windows Default
+   WindowState     =   2  'Maximized
+   Begin VB.Timer tmeLog 
+      Interval        =   1000
+      Left            =   3300
+      Top             =   1335
+   End
+   Begin MSComctlLib.ImageList ImageList1 
+      Left            =   75
+      Top             =   390
+      _ExtentX        =   1005
+      _ExtentY        =   1005
+      BackColor       =   -2147483643
+      ImageWidth      =   16
+      ImageHeight     =   16
+      MaskColor       =   12632256
+      _Version        =   393216
+      BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
+         NumListImages   =   1
+         BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "mdiMain.frx":164A
+            Key             =   ""
+         EndProperty
+      EndProperty
+   End
+   Begin MSComctlLib.Toolbar Toolbar1 
+      Align           =   1  'Align Top
+      Height          =   420
+      Left            =   0
+      TabIndex        =   0
+      Top             =   0
+      Width           =   12855
+      _ExtentX        =   22675
+      _ExtentY        =   741
+      ButtonWidth     =   609
+      ButtonHeight    =   582
+      Appearance      =   1
+      ImageList       =   "ImageList1"
+      _Version        =   393216
+      BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+         NumButtons      =   1
+         BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+            ImageIndex      =   1
+         EndProperty
+      EndProperty
+   End
+   Begin MSComctlLib.StatusBar StatusBar1 
+      Align           =   2  'Align Bottom
+      Height          =   300
+      Left            =   0
+      TabIndex        =   1
+      Top             =   7065
+      Width           =   12855
+      _ExtentX        =   22675
+      _ExtentY        =   529
+      _Version        =   393216
+      BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
+         NumPanels       =   8
+         BeginProperty Panel1 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
+            AutoSize        =   1
+            Object.Width           =   9446
+         EndProperty
+         BeginProperty Panel2 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
+            Object.Width           =   1764
+            MinWidth        =   1764
+            Object.ToolTipText     =   "Edit Mode"
+         EndProperty
+         BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
+            Object.Width           =   617
+            MinWidth        =   617
+            Text            =   "Dl"
+            TextSave        =   "Dl"
+            Object.ToolTipText     =   "Motorcycle Monitoring"
+         EndProperty
+         BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
+            Object.Width           =   617
+            MinWidth        =   617
+            Text            =   "Dl"
+            TextSave        =   "Dl"
+            Object.ToolTipText     =   "Spareparts Monitoring"
+         EndProperty
+         BeginProperty Panel5 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
+            Object.Width           =   617
+            MinWidth        =   617
+            Text            =   "Ck"
+            TextSave        =   "Ck"
+            Object.ToolTipText     =   "Other Monitoring"
+         EndProperty
+         BeginProperty Panel6 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
+            Object.Width           =   4410
+            MinWidth        =   4410
+            Object.ToolTipText     =   "Branch"
+         EndProperty
+         BeginProperty Panel7 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
+            Object.Width           =   2646
+            MinWidth        =   2646
+            Object.ToolTipText     =   "Current User"
+         EndProperty
+         BeginProperty Panel8 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
+            Object.Width           =   1850
+            MinWidth        =   1850
+            Object.ToolTipText     =   "System Date"
+         EndProperty
+      EndProperty
+   End
+   Begin VB.Menu mnuFile 
+      Caption         =   "&File"
+      Begin VB.Menu mnuCPInventory 
+         Caption         =   "CP Inventory"
+      End
+      Begin VB.Menu mnuEloadMatrixInventory 
+         Caption         =   "Eload Matrix Inventory"
+      End
+      Begin VB.Menu mnuCpSerialStatus 
+         Caption         =   "CP Serial Status"
+      End
+      Begin VB.Menu mnuClientMaster 
+         Caption         =   "Client Master"
+      End
+      Begin VB.Menu mnuEloadMatrix 
+         Caption         =   "Eload Matrix"
+      End
+      Begin VB.Menu mnuDummySerial 
+         Caption         =   "Dummy Serial"
+      End
+      Begin VB.Menu mnuPackageModel 
+         Caption         =   "Package/Model"
+      End
+      Begin VB.Menu mnuCustomerAccesories 
+         Caption         =   "Customer Accesories"
+      End
+      Begin VB.Menu mnuTechnician 
+         Caption         =   "Technician"
+      End
+      Begin VB.Menu mnuParameters 
+         Caption         =   "Parameters"
+         Begin VB.Menu mnuPhysicalCondition 
+            Caption         =   "CP Physical Condition"
+            Begin VB.Menu mnuCondition 
+               Caption         =   "Condition"
+            End
+            Begin VB.Menu mnuSymptom 
+               Caption         =   "Symptom"
+            End
+            Begin VB.Menu mnuDefect 
+               Caption         =   "Defect"
+            End
+            Begin VB.Menu mnuLabor 
+               Caption         =   "Labor"
+            End
+         End
+         Begin VB.Menu mnuBranch 
+            Caption         =   "Branch"
+         End
+         Begin VB.Menu mnuBrand 
+            Caption         =   "Brand"
+         End
+         Begin VB.Menu mnuColor 
+            Caption         =   "Color"
+         End
+         Begin VB.Menu mnuTerm 
+            Caption         =   "Term"
+         End
+         Begin VB.Menu mnuAccessories 
+            Caption         =   "Accessories"
+         End
+         Begin VB.Menu mnuSize 
+            Caption         =   "Size"
+         End
+         Begin VB.Menu mnuSep1 
+            Caption         =   "-"
+         End
+         Begin VB.Menu mnuTownCity 
+            Caption         =   "TownCity"
+         End
+         Begin VB.Menu mnuProvince 
+            Caption         =   "Province"
+         End
+      End
+      Begin VB.Menu mnuOthers 
+         Caption         =   "Others"
+         Begin VB.Menu mnuEmployee 
+            Caption         =   "Employee"
+         End
+         Begin VB.Menu mnuSupplier 
+            Caption         =   "Supplier"
+         End
+         Begin VB.Menu mnuServiceCenter 
+            Caption         =   "Service Center"
+         End
+         Begin VB.Menu mnuModel 
+            Caption         =   "Model"
+         End
+         Begin VB.Menu mnuCountry 
+            Caption         =   "Country"
+         End
+         Begin VB.Menu mnuMade 
+            Caption         =   "Made"
+         End
+         Begin VB.Menu mnuCard 
+            Caption         =   "Card"
+         End
+         Begin VB.Menu mnuCategory 
+            Caption         =   "Category"
+         End
+         Begin VB.Menu mnuSalesman 
+            Caption         =   "Salesman"
+         End
+         Begin VB.Menu mnuDealer 
+            Caption         =   "Dealer"
+         End
+         Begin VB.Menu mnuSep2 
+            Caption         =   "-"
+         End
+         Begin VB.Menu mnuSetGiveaways 
+            Caption         =   "Set Giveaways"
+         End
+         Begin VB.Menu mnuSetPackage 
+            Caption         =   "Set Package"
+         End
+         Begin VB.Menu mnuSection 
+            Caption         =   "Section"
+         End
+         Begin VB.Menu mnuLevel 
+            Caption         =   "Level"
+         End
+      End
+      Begin VB.Menu mnuLogOff 
+         Caption         =   "Log Off"
+      End
+      Begin VB.Menu mnuExit 
+         Caption         =   "Exit"
+      End
+   End
+   Begin VB.Menu mnuTransaction 
+      Caption         =   "&Transaction"
+      Begin VB.Menu mnuPurchasing 
+         Caption         =   "Purchasing"
+         Begin VB.Menu mnuPurchaseReceiving 
+            Caption         =   "Purchase Receiving"
+         End
+         Begin VB.Menu mnuPurchaseReturn 
+            Caption         =   "Purchase Return"
+         End
+         Begin VB.Menu mnuPurchaseOrder 
+            Caption         =   "Purchase Order"
+         End
+         Begin VB.Menu mnuSep13 
+            Caption         =   "-"
+         End
+         Begin VB.Menu mnuLoadReceiving 
+            Caption         =   "Load Receiving"
+         End
+      End
+      Begin VB.Menu mnuTransfer 
+         Caption         =   "Transfer"
+         Begin VB.Menu mnuStockTransfer 
+            Caption         =   "Stock Transfer"
+         End
+         Begin VB.Menu mnuUnitTransfer 
+            Caption         =   "Unit Transfer"
+         End
+         Begin VB.Menu mnuLoadTransfer 
+            Caption         =   "Load Transfer"
+         End
+      End
+      Begin VB.Menu mnuJobOrderMnu 
+         Caption         =   "Job Order"
+         Begin VB.Menu mnuJOCellphone 
+            Caption         =   "Cellphone"
+            Begin VB.Menu mnuCPJobOrder 
+               Caption         =   "Job Order"
+            End
+            Begin VB.Menu mnuSep18 
+               Caption         =   "-"
+            End
+            Begin VB.Menu mnuCPJOTransfer 
+               Caption         =   "Job Order Transfer"
+            End
+            Begin VB.Menu mnuJobOrderReceiving 
+               Caption         =   "Job Order Receiving"
+               Begin VB.Menu mnuJOReceivingBranch 
+                  Caption         =   "Branch"
+               End
+               Begin VB.Menu mnuJOReceivingSrvcCntr 
+                  Caption         =   "Service Center"
+               End
+            End
+         End
+         Begin VB.Menu mnuWrtAccessories 
+            Caption         =   "Accessories"
+            Begin VB.Menu mnuAServiceCenter 
+               Caption         =   "Service Center"
+            End
+            Begin VB.Menu mnuAForwarded 
+               Caption         =   "Forwarded"
+            End
+         End
+      End
+      Begin VB.Menu mnuChargeInvoice 
+         Caption         =   "Charge Invoice"
+      End
+      Begin VB.Menu mnuPos 
+         Caption         =   "POS"
+      End
+      Begin VB.Menu mnuPosting 
+         Caption         =   "Posting"
+         Begin VB.Menu mnuReceiveTransfer 
+            Caption         =   "Receive Transfer"
+         End
+         Begin VB.Menu mnuPostLoadTransfer 
+            Caption         =   "Load Transfer"
+         End
+         Begin VB.Menu mnuSep7 
+            Caption         =   "-"
+         End
+         Begin VB.Menu mnuBranchReceived 
+            Caption         =   "Branch Received"
+         End
+         Begin VB.Menu mnuSep5 
+            Caption         =   "-"
+         End
+         Begin VB.Menu mnuInvAdjPosting 
+            Caption         =   "Inventory Adjustment"
+         End
+         Begin VB.Menu mnuLoadAdjPos 
+            Caption         =   "Load Adjustment "
+         End
+      End
+      Begin VB.Menu mnuSep3 
+         Caption         =   "-"
+      End
+      Begin VB.Menu mnuBackLoad 
+         Caption         =   "BackLoad from Branch"
+      End
+      Begin VB.Menu mnuB2BTransfer 
+         Caption         =   "Branch to Branch Transfer"
+      End
+      Begin VB.Menu mnuSep10 
+         Caption         =   "-"
+      End
+      Begin VB.Menu mnuBranchOrder 
+         Caption         =   "Branch Order"
+         Enabled         =   0   'False
+      End
+      Begin VB.Menu mnuCustomerOrder 
+         Caption         =   "Customer Order"
+         Enabled         =   0   'False
+      End
+      Begin VB.Menu mnuBOIssuance 
+         Caption         =   "Branch Order Issuance"
+         Enabled         =   0   'False
+      End
+      Begin VB.Menu mnuPostBranchOrder 
+         Caption         =   "Post Branch Order"
+         Enabled         =   0   'False
+      End
+      Begin VB.Menu mnuCancellingBranchOrder 
+         Caption         =   "Cancelling Branch Order"
+         Enabled         =   0   'False
+      End
+      Begin VB.Menu mnuSep19 
+         Caption         =   "-"
+      End
+      Begin VB.Menu mnuInvClass 
+         Caption         =   "Inventory Classification"
+      End
+      Begin VB.Menu mnuInvClassifyUnit 
+         Caption         =   "Inventory Classification Unit"
+      End
+      Begin VB.Menu mnuSep100 
+         Caption         =   "-"
+      End
+      Begin VB.Menu mnuCPStockOrder 
+         Caption         =   "Stock Order w/ ROQ"
+      End
+      Begin VB.Menu mnuCPUnitStockOrder 
+         Caption         =   "CP Unit Stock Order w/ ROQ"
+      End
+      Begin VB.Menu mnuSep20 
+         Caption         =   "-"
+      End
+      Begin VB.Menu mnuInvTypeTransfer 
+         Caption         =   "Inventory Type Transfer"
+      End
+   End
+   Begin VB.Menu mnuPetMgr 
+      Caption         =   "&PET Manager"
+      Begin VB.Menu mnuPApplications 
+         Caption         =   "Applications"
+         Begin VB.Menu mnuPALoan 
+            Caption         =   "Loan"
+         End
+         Begin VB.Menu mnuPAAdvances 
+            Caption         =   "Advances"
+         End
+         Begin VB.Menu mnuPASep01 
+            Caption         =   "-"
+         End
+         Begin VB.Menu mnuPALeave 
+            Caption         =   "Leave"
+         End
+         Begin VB.Menu mnuPABusinessTrip 
+            Caption         =   "Business Trip"
+         End
+         Begin VB.Menu mnuPAOBTripWLog 
+            Caption         =   "Business Trip W/ Log"
+         End
+         Begin VB.Menu mnuPAOvertime 
+            Caption         =   "Overtime"
+         End
+         Begin VB.Menu mnuPAUndertime 
+            Caption         =   "Undertime"
+         End
+      End
+      Begin VB.Menu mnuPSep01 
+         Caption         =   "-"
+      End
+      Begin VB.Menu mnuPRequest 
+         Caption         =   "Request"
+         Begin VB.Menu mnuPRMovement 
+            Caption         =   "Employee Movement"
+         End
+         Begin VB.Menu mnuPRHiring 
+            Caption         =   "Employee Hiring"
+         End
+         Begin VB.Menu mnuPRTermination 
+            Caption         =   "Employee Termination"
+         End
+         Begin VB.Menu mnuPRSep01 
+            Caption         =   "-"
+         End
+         Begin VB.Menu mnuPRSuspension 
+            Caption         =   "Suspension"
+         End
+         Begin VB.Menu mnuPRSep02 
+            Caption         =   "-"
+         End
+         Begin VB.Menu mnuPRShiftMovement 
+            Caption         =   "Schedule Shifting"
+         End
+         Begin VB.Menu mnuPRDayoffShifting 
+            Caption         =   "Day-off Shifting"
+         End
+      End
+      Begin VB.Menu mnuPSep02 
+         Caption         =   "-"
+      End
+      Begin VB.Menu mnuPApprovals 
+         Caption         =   "Approvals"
+         Begin VB.Menu mnuPVLeave 
+            Caption         =   "Leave"
+         End
+         Begin VB.Menu mnuPVAdvances 
+            Caption         =   "Advances"
+         End
+         Begin VB.Menu mnuPVOvertime 
+            Caption         =   "Overtime"
+         End
+         Begin VB.Menu mnuPVUndertime 
+            Caption         =   "Undertime"
+         End
+         Begin VB.Menu mnuPVBusinessTrip 
+            Caption         =   "Business Trip"
+         End
+         Begin VB.Menu mnuPVOBTripWLog 
+            Caption         =   "Business Trip W/ Log"
+         End
+         Begin VB.Menu mnuPVShiftMovement 
+            Caption         =   "Schedule Shifting"
+         End
+         Begin VB.Menu mnuPVDayoffShifting 
+            Caption         =   "Day-off Shifting"
+         End
+         Begin VB.Menu mnuPVManualLog 
+            Caption         =   "Manual Log"
+         End
+         Begin VB.Menu mnuPVForgot2Swipe 
+            Caption         =   "Forgot to Log In/Out"
+         End
+      End
+      Begin VB.Menu mnuPSep03 
+         Caption         =   "-"
+      End
+      Begin VB.Menu mnuPAttendance 
+         Caption         =   "Attendance"
+         Begin VB.Menu mnuPTProcessLog 
+            Caption         =   "Process Log"
+         End
+         Begin VB.Menu mnuPTSep01 
+            Caption         =   "-"
+         End
+         Begin VB.Menu mnuPTForgot 
+            Caption         =   "Forgot To Log In/Out"
+         End
+         Begin VB.Menu mnuPTManualLog 
+            Caption         =   "Manual Log"
+         End
+      End
+      Begin VB.Menu mnuPSep04 
+         Caption         =   "-"
+      End
+      Begin VB.Menu mnuPUExport 
+         Caption         =   "Export Attendance"
+      End
+   End
+   Begin VB.Menu mnuReports 
+      Caption         =   "&Reports"
+      Begin VB.Menu mnuStandardReports 
+         Caption         =   "Standard Reports"
+      End
+      Begin VB.Menu mnuJobOrderReports 
+         Caption         =   "Job Order Reports"
+      End
+      Begin VB.Menu mnuAuditReports 
+         Caption         =   "Audit Reports"
+      End
+      Begin VB.Menu mnuManagerRep 
+         Caption         =   "Manager Reports"
+      End
+   End
+   Begin VB.Menu mnuRegisters 
+      Caption         =   "Re&gisters"
+      Begin VB.Menu mnuPOSReg 
+         Caption         =   "POS"
+      End
+      Begin VB.Menu mnuEloadReg 
+         Caption         =   "Eload"
+      End
+      Begin VB.Menu mnuLoadWalletReg 
+         Caption         =   "Load Wallet"
+      End
+      Begin VB.Menu mnuRegPurchasing 
+         Caption         =   "Purchasing"
+         Begin VB.Menu mnuRegPurchaseReceiving 
+            Caption         =   "Purchase Receiving"
+         End
+         Begin VB.Menu mnuRegPurchaseReturn 
+            Caption         =   "Purchase Return"
+         End
+         Begin VB.Menu mnuRegPurchaseOrder 
+            Caption         =   "Purchase Order"
+         End
+         Begin VB.Menu mnuSep14 
+            Caption         =   "-"
+         End
+         Begin VB.Menu mnuLoadReceivingReg 
+            Caption         =   "Load Receiving"
+         End
+      End
+      Begin VB.Menu mnuSep15 
+         Caption         =   "-"
+      End
+      Begin VB.Menu mnuJobOrder 
+         Caption         =   "Job Order"
+         Begin VB.Menu mnuJobOrderReg 
+            Caption         =   "Job Order"
+         End
+         Begin VB.Menu mnuJobOrderTransferReg 
+            Caption         =   "Job Order Transfer"
+         End
+      End
+      Begin VB.Menu mnuTransferReg 
+         Caption         =   "Transfer"
+         Begin VB.Menu mnuRegStockIssue 
+            Caption         =   "Stock Transfer"
+         End
+         Begin VB.Menu mnuLoadTransferReg 
+            Caption         =   "Load Transfer"
+         End
+      End
+      Begin VB.Menu mnuSep17 
+         Caption         =   "-"
+      End
+      Begin VB.Menu mnuRegWarranty 
+         Caption         =   "Warranty"
+         Begin VB.Menu mnuRegServiceCenter 
+            Caption         =   "Service Center"
+         End
+         Begin VB.Menu mnuWAccessoriesReg 
+            Caption         =   "Accessories"
+         End
+      End
+      Begin VB.Menu mnuSep6 
+         Caption         =   "-"
+      End
+      Begin VB.Menu mnuB2BTransferReg 
+         Caption         =   "Branch to Branch Transfer"
+      End
+      Begin VB.Menu mnuSep8 
+         Caption         =   "-"
+      End
+      Begin VB.Menu mnuRegInvAdjustment 
+         Caption         =   "Inventory Adjustment"
+      End
+      Begin VB.Menu mnuLoadAdjustmentReg 
+         Caption         =   "Load Adjustment"
+      End
+      Begin VB.Menu mnuSep12 
+         Caption         =   "-"
+      End
+      Begin VB.Menu mnuSalesByDate 
+         Caption         =   "Sales By Date"
+      End
+      Begin VB.Menu mnuEloadPosting 
+         Caption         =   "ELoad By Date"
+      End
+      Begin VB.Menu mnuRPetMgr 
+         Caption         =   "PET Manager"
+         Begin VB.Menu mnuRPApplications 
+            Caption         =   "Applications"
+            Begin VB.Menu mnuRPALoan 
+               Caption         =   "Loan"
+            End
+            Begin VB.Menu mnuRPAAdvances 
+               Caption         =   "Advances"
+            End
+            Begin VB.Menu mnuRPASep01 
+               Caption         =   "-"
+            End
+            Begin VB.Menu mnuRPALeave 
+               Caption         =   "Leave"
+            End
+            Begin VB.Menu mnuRPABusinessTrip 
+               Caption         =   "Business Trip"
+            End
+            Begin VB.Menu mnuRPAOBTripWLog 
+               Caption         =   "Business Trip W/ Log"
+            End
+            Begin VB.Menu mnuRPAOvertime 
+               Caption         =   "Overtime"
+            End
+            Begin VB.Menu mnuRPAUndertime 
+               Caption         =   "Undertime"
+            End
+         End
+         Begin VB.Menu mnuRPSep01 
+            Caption         =   "-"
+         End
+         Begin VB.Menu mnuRPRequest 
+            Caption         =   "Request"
+            Begin VB.Menu mnuRPRMovement 
+               Caption         =   "Employee Movement"
+            End
+            Begin VB.Menu mnuRPRHiring 
+               Caption         =   "Employee Hiring"
+            End
+            Begin VB.Menu mnuRPRTermination 
+               Caption         =   "Employee Termination"
+            End
+            Begin VB.Menu mnuRPRSep01 
+               Caption         =   "-"
+            End
+            Begin VB.Menu mnuRPRSuspension 
+               Caption         =   "Suspension"
+            End
+            Begin VB.Menu mnuRPRSep02 
+               Caption         =   "-"
+            End
+            Begin VB.Menu mnuRPRShiftMovement 
+               Caption         =   "Schedule Shifting"
+            End
+            Begin VB.Menu mnuRPRDayoffShifting 
+               Caption         =   "Day-off Shifting"
+            End
+         End
+         Begin VB.Menu mnuRPAttendance 
+            Caption         =   "Attendance"
+            Begin VB.Menu mnuRPTManualLog 
+               Caption         =   "Manual Log"
+            End
+            Begin VB.Menu mnuRPTForgot 
+               Caption         =   "Forgot To Log In/Out"
+            End
+         End
+      End
+   End
+   Begin VB.Menu mnuUtilities 
+      Caption         =   "&Utilities"
+      Begin VB.Menu mnuPrintBarcode 
+         Caption         =   "Print Barcode"
+      End
+      Begin VB.Menu mnuCPInventoryBranch 
+         Caption         =   "CP Inventory"
+      End
+      Begin VB.Menu mnuCPSerial 
+         Caption         =   "CP Serial"
+         Visible         =   0   'False
+      End
+      Begin VB.Menu mnuSep41 
+         Caption         =   "-"
+      End
+      Begin VB.Menu mnuCPSellPriceEntry 
+         Caption         =   "CP Selling Price Entry"
+      End
+      Begin VB.Menu mnuSep4 
+         Caption         =   "-"
+      End
+      Begin VB.Menu mnuInventoryAdjustment 
+         Caption         =   "Inventory Adjustment"
+      End
+      Begin VB.Menu mnuLoadAdjustment 
+         Caption         =   "Load Adjustment"
+      End
+      Begin VB.Menu mnuSep9 
+         Caption         =   "-"
+      End
+      Begin VB.Menu mnuCPSRP 
+         Caption         =   "CP SRP"
+      End
+      Begin VB.Menu mnuSep11 
+         Caption         =   "-"
+      End
+      Begin VB.Menu mnuExport 
+         Caption         =   "Export"
+      End
+      Begin VB.Menu mnuRequestExport 
+         Caption         =   "Request Export"
+      End
+      Begin VB.Menu mnuImport 
+         Caption         =   "Import"
+      End
+      Begin VB.Menu mnuSep16 
+         Caption         =   "-"
+      End
+      Begin VB.Menu mnuStockInquiry 
+         Caption         =   "Stock Inquiry"
+      End
+   End
+End
+Attribute VB_Name = "mdiMain"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = False
+Attribute VB_PredeclaredId = True
+Attribute VB_Exposed = False
+Option Explicit
+
+Dim lnGrayText As Long
+
+Private Sub MDIForm_Click()
+'   Dim lsSQL As String
+'   Dim loControl As Control
+'
+'   For Each loControl In mdiMain
+'      If TypeName(loControl) = "Menu" Then
+'         lsSQL = "INSERT INTO xxxMenuObject " & _
+'                     "( sMenuIDxx" & _
+'                     ", sMenuName" & _
+'                     ", sProdctID" & _
+'                     ", sMenuDesc" & _
+'                     ", sRemarksx" & _
+'                     ", nUserRght" & _
+'                     ", nAddRight" & _
+'                     ", nUpdRight" & _
+'                     ", nDelRight" & _
+'                     ", nCanRight" & _
+'                  " ) VALUES ( " & _
+'                     strParm(GetNextCode("xxxMenuObject", "sMenuIDxx", True, oApp.Connection, True, oApp.BranchCode)) & _
+'                     ", " & strParm(loControl.Name) & _
+'                     ", " & strParm(oApp.ProductID) & _
+'                     ", " & strParm(loControl.Caption) & _
+'                     ", " & strParm("") & _
+'                     ", " & 255 & _
+'                     ", " & 231 & _
+'                     ", " & 240 & _
+'                     ", " & 192 & _
+'                     ", " & 224 & " )"
+'
+'         oApp.Execute lsSQL, "xxxMenuObject", oApp.BranchCode
+'      End If
+'   Next
+'
+'   MsgBox "Tapos Na Po!!!"
+End Sub
+
+Private Sub MDIForm_Load()
+   lnGrayText = GetSysColor(17)
+   setGrayText oApp.getColor("ET0")
+   
+   mdiMain.mnuCPSerial.Visible = oApp.UserLevel = xeEngineer
+   mdiMain.mnuManagerRep.Visible = oApp.IsMainOffice = True Or oApp.IsWarehouse = True
+End Sub
+
+Private Sub MDIForm_Unload(Cancel As Integer)
+   Dim oForm As Object
+'   If UnloadMode = 0 Or UnloadMode = 1 Then oApp.LogOutUser
+
+   For Each oForm In Forms
+      Unload oForm
+   Next
+
+   setGrayText lnGrayText
+   Set oApp = Nothing
+End Sub
+
+Private Sub mnuAForwarded_Click()
+   frmCP_AccessJobOrderPosting.Tag = "mnuAForwarded"
+   frmCP_AccessJobOrderPosting.Show
+End Sub
+
+Private Sub mnuAServiceCenter_Click()
+   frmCP_AccessJobOrder.Tag = "mnuAServiceCenter"
+   frmCP_AccessJobOrder.Show
+End Sub
+
+Private Sub mnuAuditReports_Click()
+   Dim loReports As clsCPAuditRep
+   Dim loRepViewer As frmRepViewer
+
+   Set loReports = New clsCPAuditRep
+   With loReports
+      Set .AppDriver = oApp
+      If .ShowReport Then
+         Set loRepViewer = New frmRepViewer
+         Set loRepViewer.ReportSource = .Source
+
+         loRepViewer.Show
+         .CloseReport
+      End If
+   End With
+End Sub
+
+Private Sub mnuCondition_Click()
+   frmCP_Condition.Tag = "mnuCondition"
+   frmCP_Condition.Show
+End Sub
+
+Private Sub mnuCPJobOrder_Click()
+   frmCP_JobOrder.Tag = "mnuCPJobOrder"
+   frmCP_JobOrder.Show
+
+'   frmCP_JobEstimate.Tag = "mnuCPJobOrder"
+'   frmCP_JobEstimate.Show
+
+'   frmCP_Branch_JobOrder.Tag = "mnuCPJobOrder"
+'   frmCP_Branch_JobOrder.Show
+End Sub
+
+Private Sub mnuCPJOTransfer_Click()
+   frmCP_JO_Branch_Transfer.Tag = "mnuCPJOTransfer"
+   frmCP_JO_Branch_Transfer.Show
+End Sub
+
+Private Sub mnuCPSellPriceEntry_Click()
+'   frmCP_SellPrice_Entry.Tag = "mnuCPSellPriceEntry"
+'   frmCP_SellPrice_Entry.Show
+End Sub
+
+Private Sub mnuCPSRP_Click()
+'   frmCP_SRP.Tag = "mnuCPSRP"
+'   frmCP_SRP.Show
+End Sub
+
+Private Sub mnuCPStockOrder_Click()
+   frmCPInvStockRequest.Tag = "mnuCPStockOrder"
+   frmCPInvStockRequest.IsCPUnit = False
+   frmCPInvStockRequest.Show
+End Sub
+
+Private Sub mnuCPUnitStockOrder_Click()
+   frmCPInvStockRequest.Tag = "mnuCPUnitStockOrder"
+   frmCPInvStockRequest.IsCPUnit = True
+   frmCPInvStockRequest.Show
+End Sub
+
+Private Sub mnuCustomerAccesories_Click()
+   frmCustomerAccessories.Tag = "mnuCustomerAccesories"
+   frmCustomerAccessories.Show
+End Sub
+
+Private Sub mnuDealer_Click()
+   frmCP_Dealer.Tag = "mnuDealer"
+   frmCP_Dealer.Show
+End Sub
+
+Private Sub mnuDefect_Click()
+   frmCP_Defect.Tag = "mnuDefect"
+   frmCP_Defect.Show
+End Sub
+
+Private Sub mnuEloadPosting_Click()
+   frmELoadTagging.Tag = "mnuEloadPosting"
+   frmELoadTagging.Show
+End Sub
+
+Private Sub mnuEloadReg_Click()
+   frmEloadReg.Tag = "mnuEloadReg"
+   frmEloadReg.Show
+End Sub
+
+Private Sub mnuEmployee_Click()
+   frmEmployee.Tag = "mnuEmployee"
+   frmEmployee.Show
+End Sub
+
+Private Sub mnuExport_Click()
+   Dim lo As clsExport
+
+   Set lo = New clsExport
+   Set lo.AppDriver = oApp
+   If lo.Export = False Then
+      MsgBox "Unable to Export Records!!!", vbCritical, "Warning"
+   End If
+   Set lo = Nothing
+End Sub
+
+Private Sub mnuImport_Click()
+   Dim lo As clsImport
+
+   Set lo = New clsImport
+   Set lo.AppDriver = oApp
+   If lo.Import = False Then
+      MsgBox "Unable to Export Records!!!", vbCritical, "Warning"
+   End If
+   Set lo = Nothing
+End Sub
+
+Private Sub mnuInvClass_Click()
+   Dim loCPClassify As clsCPABCClassify
+
+   Set loCPClassify = New clsCPABCClassify
+   Set loCPClassify.AppDriver = oApp
+   If Not loCPClassify.InitTransaction Then Exit Sub
+   If Not loCPClassify.ClassifyABC Then Exit Sub
+   MsgBox "Inventory was Classified Successfully!", vbInformation, "Notice"
+End Sub
+
+Private Sub mnuInvClassifyUnit_Click()
+   Dim loCPClassifyUnit As clsCPUnitClassify
+
+   Set loCPClassifyUnit = New clsCPUnitClassify
+   Set loCPClassifyUnit.AppDriver = oApp
+   If Not loCPClassifyUnit.InitTransaction Then Exit Sub
+   If Not loCPClassifyUnit.ClassifyABC Then Exit Sub
+   MsgBox "Cellphone Units was Classified Successfully!", vbInformation, "Notice"
+End Sub
+
+Private Sub mnuInvTypeTransfer_Click()
+   frmCPInvTypeTrans.Tag = "mnuInvTypeTransfer"
+   frmCPInvTypeTrans.Show
+End Sub
+
+Private Sub mnuJobOrderReg_Click()
+   frmCP_JobOrderReg.Tag = "mnuJobOrderReg"
+   frmCP_JobOrderReg.Show
+End Sub
+
+Private Sub mnuJobOrderReports_Click()
+   Dim loReports As clsJobOrderRep
+   Dim loRepViewer As frmRepViewer
+
+   Set loReports = New clsJobOrderRep
+   With loReports
+      Set .AppDriver = oApp
+      If .ShowReport Then
+         Set loRepViewer = New frmRepViewer
+         Set loRepViewer.ReportSource = .Source
+
+         loRepViewer.Show
+         .CloseReport
+      End If
+   End With
+End Sub
+
+Private Sub mnuJobOrderTransferReg_Click()
+   frmCP_JO_Branch_Transfer_Reg.Tag = "mnuJobOrderTransferReg"
+   frmCP_JO_Branch_Transfer_Reg.Show
+End Sub
+
+Private Sub mnuJOReceivingBranch_Click()
+   frmPostCPJODelivery.Tag = "mnuJOReceivingBranch"
+   frmPostCPJODelivery.Show
+End Sub
+
+Private Sub mnuJOReceivingSrvcCntr_Click()
+   frmPostCPJOForwarded.Tag = "mnuJOReceivingSrvcCntr"
+   frmPostCPJOForwarded.Show
+End Sub
+
+Private Sub mnuLabor_Click()
+   frmCP_Labor.Tag = "mnuLabor"
+   frmCP_Labor.Show
+End Sub
+
+Private Sub mnuLoadAdjPos_Click()
+   frmCPLoadAdjReg.Tag = "mnuLoadAdjPos"
+   frmCPLoadAdjReg.Show
+End Sub
+
+Private Sub mnuLoadAdjustment_Click()
+   frmCPLoadAdj.Tag = "mnuLoadAdjustment"
+   frmCPLoadAdj.Show
+End Sub
+
+Private Sub mnuLoadAdjustmentReg_Click()
+   frmCPLoadAdjPosted.Tag = "mnuLoadAdjustmentReg"
+   frmCPLoadAdjPosted.Show
+End Sub
+
+Private Sub mnuLoadReceiving_Click()
+   frmCP_Load_Receiving.Tag = "mnuLoadReceiving"
+   frmCP_Load_Receiving.Show
+End Sub
+
+Private Sub mnuLoadReceivingReg_Click()
+   frmCP_Load_Receiving_Reg.Tag = "mnuLoadReceivingReg"
+   frmCP_Load_Receiving_Reg.Show
+End Sub
+
+Private Sub mnuLoadTransfer_Click()
+   frmCP_Load_Transfer.Tag = "mnuLoadTransfer"
+   frmCP_Load_Transfer.Show
+End Sub
+
+Private Sub mnuLoadTransferReg_Click()
+   frmCP_Load_Transfer_Reg.Tag = "mnuLoadTransferReg"
+   frmCP_Load_Transfer_Reg.Show
+End Sub
+
+Private Sub mnuLoadWalletReg_Click()
+   frmLoad_WalletReg.Tag = "mnuLoadWalletReg"
+   frmLoad_WalletReg.Show
+End Sub
+
+Private Sub mnuManagerRep_Click()
+   Dim loReports As clsManagerRep
+   Dim loRepViewer As frmRepViewer
+
+   Set loReports = New clsManagerRep
+   With loReports
+      Set .AppDriver = oApp
+      If .ShowReport Then
+         Set loRepViewer = New frmRepViewer
+         Set loRepViewer.ReportSource = .Source
+
+         loRepViewer.Show
+         .CloseReport
+      End If
+   End With
+End Sub
+
+Private Sub mnuPAAdvances_Click()
+   frmEmployeeAdvances.Tag = "frmEmployeeAdvances"
+   frmEmployeeAdvances.Show
+End Sub
+
+Private Sub mnuPABusinessTrip_Click()
+   frmOBApplication.Tag = "mnuPABusinessTrip"
+   frmOBApplication.Show
+End Sub
+
+Private Sub mnuPackageModel_Click()
+   frmPackageModel.Tag = "mnuPackageModel"
+   frmPackageModel.Show
+End Sub
+
+Private Sub mnuPALeave_Click()
+   frmLeaveApplication.Tag = "mnuPALeave"
+   frmLeaveApplication.Show
+End Sub
+
+Private Sub mnuPALoan_Click()
+   frmEmployeeLoans.Tag = "mnuPALoan"
+   frmEmployeeLoans.Show
+End Sub
+
+Private Sub mnuPAOBTripWLog_Click()
+   frmOBWithLogApp.Tag = "mnuPAOBTripWLog"
+   frmOBWithLogApp.Show
+End Sub
+
+Private Sub mnuPAOvertime_Click()
+   frmOTApplication.Tag = "mnuPAOvertime"
+   frmOTApplication.Show
+End Sub
+
+Private Sub mnuPOSReg_Click()
+   frmCP_POSReg.Tag = "mnuPOSReg"
+   frmCP_POSReg.Show
+End Sub
+
+Private Sub mnuPostLoadTransfer_Click()
+   frmPostLoadTransfer.Tag = "mnuPostLoadTransfer"
+   frmPostLoadTransfer.Show
+End Sub
+
+Private Sub mnuPRDayoffShifting_Click()
+   frmDayOffShftApplication.Tag = "mnuPRDayoffShifting"
+   frmDayOffShftApplication.Show
+End Sub
+
+Private Sub mnuPRMovement_Click()
+   frmEmployeeMovement.Tag = "mnuPRMovement"
+   frmEmployeeMovement.Show
+End Sub
+
+Private Sub mnuPRShiftMovement_Click()
+   frmShiftSchedApplication.Tag = "mnuPRShiftMovement"
+   frmShiftSchedApplication.Show
+End Sub
+
+Private Sub mnuPRSuspension_Click()
+   frmSuspensionApplication.Tag = "mnuPRSuspension"
+   frmSuspensionApplication.Show
+End Sub
+
+Private Sub mnuPTForgot_Click()
+   frmForgot2Swipe.Tag = "mnuPTForgot"
+   frmForgot2Swipe.Show
+End Sub
+
+Private Sub mnuPTManualLog_Click()
+   frmLogManual.Tag = "mnuPTManualLog"
+   frmLogManual.ByBranch = True
+   frmLogManual.Show
+End Sub
+
+Private Sub mnuPTProcessLog_Click()
+   frmLogProcess.Tag = "mnuPTProcessLog"
+   frmLogProcess.Show
+End Sub
+
+Private Sub mnuPUExport_Click()
+   Dim loCls As clsLogCapture
+   Set loCls = New clsLogCapture
+   Set loCls.AppDriver = oApp
+   
+   If loCls.Export Then
+      MsgBox "Timesheet exported successfully!"
+   Else
+      MsgBox "Unable to export timesheet!"
+   End If
+End Sub
+
+Private Sub mnuPVAdvances_Click()
+   frmEmployeeAdvancesApprvl.Tag = "mnuPVAdvances"
+   frmEmployeeAdvancesApprvl.Show
+End Sub
+
+Private Sub mnuPVBusinessTrip_Click()
+   frmOBApproval.Tag = "mnuPVBusinessTrip"
+   frmOBApproval.Show
+End Sub
+
+Private Sub mnuPVDayoffShifting_Click()
+   frmDayOffShftApproval.Tag = "mnuPVDayoffShifting"
+   frmDayOffShftApproval.Show
+End Sub
+
+Private Sub mnuPVForgot2Swipe_Click()
+   frmForgot2SwipeApprvl.Tag = "mnuPVForgot2Swipe"
+   frmForgot2SwipeApprvl.Show
+End Sub
+
+Private Sub mnuPVLeave_Click()
+   frmLeaveApproval.Tag = "mnuPVLeave"
+   frmLeaveApproval.Show
+End Sub
+
+Private Sub mnuPVManualLog_Click()
+   frmLogManualApprvl.Tag = "mnuPVManualLog"
+   frmLogManualApprvl.Show
+End Sub
+
+Private Sub mnuPVOBTripWLog_Click()
+   frmOBWithLogApprvl.Tag = "mnuPVOBTripWLog"
+   frmOBWithLogApprvl.Show
+End Sub
+
+Private Sub mnuPVOvertime_Click()
+   frmOTApproval.Tag = "mnuPVOvertime"
+   frmOTApproval.Show
+End Sub
+
+Private Sub mnuPVShiftMovement_Click()
+   frmShiftSchedApproval.Tag = "mnuPVShiftMovement"
+   frmShiftSchedApproval.Show
+End Sub
+
+Private Sub mnuRegPurchaseReturn_Click()
+   frmCP_PO_Return_Reg.Tag = "mnuRegPurchaseReturn"
+   frmCP_PO_Return_Reg.Show
+End Sub
+
+Private Sub mnuAccessories_Click()
+   frmAccessories.Tag = "mnuAccessories"
+   frmAccessories.Show
+End Sub
+
+Private Sub mnuB2BTransfer_Click()
+   frmCP_Branch2Branch.Tag = "mnuB2BTransfer"
+   frmCP_Branch2Branch.Show
+End Sub
+
+Private Sub mnuB2BTransferReg_Click()
+   frmCP_Branch2BranchReg.Tag = "mnuB2BTransferReg"
+   frmCP_Branch2BranchReg.Show
+End Sub
+
+Private Sub mnuBackLoad_Click()
+   frmCP_BackLoad.Tag = "mnuBackLoad"
+   frmCP_BackLoad.Show
+End Sub
+
+Private Sub mnuBranch_Click()
+   frmBranch.Tag = "mnuBranch"
+   frmBranch.Show
+End Sub
+
+Private Sub mnuBranchOrder_Click()
+   frmCP_BranchOrder.Tag = "mnuBranchOrder"
+   frmCP_BranchOrder.Show
+End Sub
+
+Private Sub mnuBranchReceived_Click()
+   frmCP_BranchReceived.Tag = "mnuBranchReceived"
+   frmCP_BranchReceived.Show
+End Sub
+
+Private Sub mnuBrand_Click()
+   frmBrand.Tag = "mnuBrand"
+   frmBrand.Show
+End Sub
+
+Private Sub mnuCard_Click()
+   frmCreditCard.Tag = "mnuCard"
+   frmCreditCard.Show
+End Sub
+
+Private Sub mnuCategory_Click()
+   frmCategory.Tag = "mnuCategory"
+   frmCategory.Show
+End Sub
+
+Private Sub mnuChargeInvoice_Click()
+   frmCP_Charge_Invoice.Tag = "mnuChargeInvoice"
+   frmCP_Charge_Invoice.Show
+End Sub
+
+Private Sub mnuClientMaster_Click()
+   frmClientInfo.Tag = "mnuClientMaster"
+   frmClientInfo.Show
+End Sub
+
+Private Sub mnuColor_Click()
+   frmColor.Tag = "mnuColor"
+   frmColor.Show
+End Sub
+
+Private Sub mnuCountry_Click()
+   frmCountry.Tag = "mnuMade"
+   frmCountry.Show
+End Sub
+
+Private Sub mnuCPInventory_Click()
+   frmCP_Inventory.Tag = "mnuCPInventory"
+   frmCP_Inventory.Show
+End Sub
+
+Private Sub mnuCPInventoryBranch_Click()
+   frmCP_Inventory_Branch.Tag = "mnuCPInventoryBranch"
+   frmCP_Inventory_Branch.Show
+End Sub
+
+Private Sub mnuCPSerial_Click()
+   frmCP_Serial.Tag = "mnuCPSerial"
+   frmCP_Serial.Show
+End Sub
+
+Private Sub mnuCpSerialStatus_Click()
+   frmCP_Serial_Status.Tag = "mnuCpSerialStatus"
+   frmCP_Serial_Status.Show
+End Sub
+
+Private Sub mnuCustomerOrder_Click()
+   frmCP_CustomerOrder.Tag = "mnuCustomerOrder"
+   frmCP_CustomerOrder.Show
+End Sub
+
+Private Sub mnuDummySerial_Click()
+   frmDASerial.Tag = "mnuDummySerial"
+   frmDASerial.Show
+End Sub
+
+Private Sub mnuEloadMatrix_Click()
+   frmEload_Matrix.Tag = "mnuEloadMatrix"
+   frmEload_Matrix.Show
+End Sub
+
+Private Sub mnuEloadMatrixInventory_Click()
+   frmCP_Load_Matrix.Tag = "mnuEloadMatrixInventory"
+   frmCP_Load_Matrix.Show
+End Sub
+
+Private Sub mnuExit_Click()
+   Unload Me
+End Sub
+
+Private Sub mnuInvAdjPosting_Click()
+   frmCPInvAdjReg.Tag = "mnuInvAdjPosting"
+   frmCPInvAdjReg.Show
+End Sub
+
+Private Sub mnuInventoryAdjustment_Click()
+   frmCPInvAdj.Tag = "mnuInventoryAdjustment"
+   frmCPInvAdj.Show
+End Sub
+
+Private Sub mnuLevel_Click()
+   frmBin.Tag = "mnuLevel"
+   frmBin.Show
+End Sub
+
+Private Sub mnuMade_Click()
+   frmMade.Tag = "mnuMade"
+   frmMade.Show
+End Sub
+
+Private Sub mnuModel_Click()
+   frmCP_Model.Tag = "mnuModel"
+   frmCP_Model.Show
+End Sub
+
+Private Sub mnuPOS_Click()
+   frmCP_POSOld.Tag = "mnuPOS"
+   frmCP_POSOld.Show
+End Sub
+
+Private Sub mnuPrintBarcode_Click()
+   frmBarrCode.Tag = "mnuPrintBarcode"
+   frmBarrCode.Show
+End Sub
+
+Private Sub mnuProvince_Click()
+   frmProvince.Tag = "mnuProvince"
+   frmProvince.Show
+End Sub
+
+Private Sub mnuPurchaseOrder_Click()
+   frmCP_Purchasing.Tag = "mnuPurchaseOrder"
+   frmCP_Purchasing.Show
+End Sub
+
+Private Sub mnuPurchaseReceiving_Click()
+   frmCP_PO_Receiving.Tag = "mnuPurchaseReceiving"
+   frmCP_PO_Receiving.Show
+End Sub
+
+Private Sub mnuPurchaseReturn_Click()
+   frmCP_PO_Return.Tag = "mnuPurchaseReturn"
+   frmCP_PO_Return.Show
+End Sub
+
+Private Sub mnuReceiveTransfer_Click()
+   frmPostCPDelivery.Tag = "mnuReceiveTransfer"
+   frmPostCPDelivery.Show
+End Sub
+
+Private Sub mnuRegInvAdjustment_Click()
+   frmCPInvAdjPosted.Tag = "mnuRegInvAdjustment"
+   frmCPInvAdjPosted.Show
+End Sub
+
+Private Sub mnuRegPurchaseOrder_Click()
+   frmCP_Purchasing_Reg.Tag = "mnuRegPurchaseOrder"
+   frmCP_Purchasing_Reg.Show
+End Sub
+
+Private Sub mnuRegPurchaseReceiving_Click()
+   frmCP_PO_Receiving_Reg.Tag = "mnuRegPurchaseReceiving"
+   frmCP_PO_Receiving_Reg.Show
+End Sub
+
+Private Sub mnuRegServiceCenter_Click()
+   frmCP_JobOrderReg.Tag = "mnuRegServiceCenter"
+   frmCP_JobOrderReg.Show
+End Sub
+
+Private Sub mnuRegStockIssue_Click()
+   frmCP_Branch_Transfer_Reg.Tag = "mnuRegStockIssue"
+   frmCP_Branch_Transfer_Reg.Show
+End Sub
+
+Private Sub mnuRequestExport_Click()
+   Dim lo As clsExportRequest
+
+   Set lo = New clsExportRequest
+   Set lo.AppDriver = oApp
+   If lo.ExportRequest = False Then
+      MsgBox "Unable to Request Export!!!", vbCritical, "Warning"
+   End If
+   Set lo = Nothing
+End Sub
+
+Private Sub mnuRPAAdvances_Click()
+   frmEmployeeAdvancesReg.Tag = "mnuRPAAdvances"
+   frmEmployeeAdvancesReg.Show
+End Sub
+
+Private Sub mnuRPABusinessTrip_Click()
+   frmOBReg.Tag = "mnuRPABusinessTrip"
+   frmOBReg.Show
+End Sub
+
+Private Sub mnuRPALeave_Click()
+   frmLeaveReg.Tag = "mnuRPALeave"
+   frmLeaveReg.Show
+End Sub
+
+Private Sub mnuRPALoan_Click()
+   frmEmployeeLoansReg.Tag = "mnuRPALoan"
+   frmEmployeeLoansReg.Show
+End Sub
+
+Private Sub mnuRPAOBTripWLog_Click()
+   frmOBWithLogReg.Tag = "mnuRPAOBTripWLog"
+   frmOBWithLogReg.Show
+End Sub
+
+Private Sub mnuRPAOvertime_Click()
+   frmOTReg.Tag = "mnuRPAOvertime"
+   frmOTReg.Show
+End Sub
+
+Private Sub mnuRPRDayoffShifting_Click()
+   frmDayOffShftReg.Tag = "mnuRPRDayoffShifting"
+   frmDayOffShftReg.Show
+End Sub
+
+Private Sub mnuRPRMovement_Click()
+   frmEmployeeMovementReg.Tag = "mnuRPRMovement"
+   frmEmployeeMovementReg.Show
+End Sub
+
+Private Sub mnuRPRShiftMovement_Click()
+   frmShiftSchedReg.Tag = ""
+   frmShiftSchedReg.Show
+End Sub
+
+Private Sub mnuRPTForgot_Click()
+   frmForgot2SwipeReg.Tag = "mnuRPTForgot"
+   frmForgot2SwipeReg.Show
+End Sub
+
+Private Sub mnuRPTManualLog_Click()
+   frmLogManualReg.Tag = "mnuRPTManualLog"
+   frmLogManualReg.Show
+End Sub
+
+Private Sub mnuSalesByDate_Click()
+   frmSalesTagging.Tag = "mnuSalesByDate"
+   frmSalesTagging.Show
+End Sub
+
+Private Sub mnuSalesman_Click()
+   frmSalesman.Tag = "mnuSalesman"
+   frmSalesman.Show
+End Sub
+
+Private Sub mnuSection_Click()
+   frmSection.Tag = "mnuSection"
+   frmSection.Show
+End Sub
+
+Private Sub mnuServiceCenter_Click()
+   frmCP_Service_Center.Tag = "mnuServiceCenter"
+   frmCP_Service_Center.Show
+End Sub
+
+Private Sub mnuSetGiveaways_Click()
+   frmSalesGiveaways.Tag = "mnuSetGiveaways"
+   frmSalesGiveaways.Show
+End Sub
+
+Private Sub mnuSetPackage_Click()
+   frmSalesPackage.Tag = "mnuSetPackage"
+   frmSalesPackage.Show
+End Sub
+
+Private Sub mnuSize_Click()
+   frmSize.Tag = "mnuSize"
+   frmSize.Show
+End Sub
+
+Private Sub mnuStandardReports_Click()
+   Dim loReports As clsCPBranchRep
+   Dim loRepViewer As frmRepViewer
+
+   Set loReports = New clsCPBranchRep
+   With loReports
+      Set .AppDriver = oApp
+      If .ShowReport Then
+         Set loRepViewer = New frmRepViewer
+         Set loRepViewer.ReportSource = .Source
+
+         loRepViewer.Show
+         .CloseReport
+      End If
+   End With
+End Sub
+
+Private Sub mnuStockInquiry_Click()
+   frmCP_Inquiry.Tag = "mnuStockInquiry"
+   frmCP_Inquiry.Show
+End Sub
+
+Private Sub mnuStockTransfer_Click()
+   frmCPDeliveryOthers.Tag = "mnuStockTransfer"
+   frmCPDeliveryOthers.Show
+End Sub
+
+Private Sub mnuSupplier_Click()
+   frmCP_Supplier.Tag = "mnuSupplier"
+   frmCP_Supplier.Show
+End Sub
+
+Private Sub mnuSymptom_Click()
+   frmCP_Symptom.Tag = "mnuSymptom"
+   frmCP_Symptom.Show
+End Sub
+
+Private Sub mnuTechnician_Click()
+   frmTechnician.Tag = "mnuTechnician"
+   frmTechnician.Show
+End Sub
+
+Private Sub mnuTerm_Click()
+   frmTerm.Tag = "mnuTerm"
+   frmTerm.Show
+End Sub
+
+Private Sub mnuTownCity_Click()
+   frmTownCity.Tag = "mnuTownCity"
+   frmTownCity.Show
+End Sub
+
+Private Sub mnuUnitTransfer_Click()
+   frmCPDelivery.Tag = "mnuUnitTransfer"
+   frmCPDelivery.Show
+End Sub
+
+Private Sub mnuWAccessoriesReg_Click()
+   frmCP_AccessJobOrderReg.Tag = "mnuWAccessoriesReg"
+   frmCP_AccessJobOrderReg.Show
+End Sub
+
+Private Function getLastPeriod(ByVal fsEmployID As String) As Date
+   Dim lsSQL As String
+   Dim loRS As Recordset
+   
+   lsSQL = "SELECT" & _
+                  " a.dCovergTo" & _
+          " FROM Payroll_Period a" & _
+              " LEFT JOIN Payroll_Summary b ON a.sPayPerID = b.sPayPerID" & _
+          " WHERE b.sEmployID = " & strParm(fsEmployID) & _
+          " ORDER BY a.dCovergTo DESC LIMIT 1"
+   Set loRS = oApp.Connection.Execute(lsSQL, , adCmdText)
+   
+   If loRS.EOF Then
+      getLastPeriod = Format(oApp.ServerDate, "yyyy-mm-dd")
+   Else
+      getLastPeriod = loRS("dCovergTo") + 1
+   End If
+   
+End Function
+
+Private Sub quickTransfer(ByVal fsTable As String, ByVal fsFilter As String, ByVal fsBranchCD As String)
+   Dim loRS As Recordset
+   Dim lsSQL As String
+   
+   Set loRS = GetRecordSet(oApp.Connection, fsTable, fsFilter)
+   Do Until loRS.EOF
+      lsSQL = ADO2SQL(loRS, fsTable)
+      lsSQL = Replace(lsSQL, "INSERT INTO", "REPLACE INTO")
+      
+      Call send2Log( _
+         oApp.Connection, _
+         oApp.BranchCode, _
+         oApp.BranchCode, _
+         lsSQL, _
+         fsTable, _
+         fsBranchCD, _
+         oApp.UserID, _
+         oApp.ServerDate, _
+         True)
+      
+      loRS.MoveNext
+   Loop
+End Sub
+
+Private Sub tmeLog_Timer()
+   Dim lsSQL As String
+   Dim loRS As Recordset
+   Dim loCls As clsEmployeeMovement
+   Dim ldDateFrom As Date
+   
+   DoEvents
+   lsSQL = "SELECT" & _
+                  "  sTransNox" & _
+                  ", sEmployID" & _
+                  ", sBranchCD" & _
+                  ", xBranchCD" & _
+                  ", dEffectve" & _
+          " FROM Employee_Movement" & _
+          " WHERE cTranStat = " & strParm(xeStateClosed) & _
+            " AND dEffectve < " & dateParm(oApp.ServerDate) & _
+          " ORDER BY dEffectve DESC"
+      
+   If InStr("C001»C0A1»C0CW»C0W1", oApp.BranchCode) > 0 Or oApp.UserLevel = xeAudit Then
+      Exit Sub
+   End If
+   
+   Set loRS = oApp.Connection.Execute(lsSQL, , adCmdText)
+   DoEvents
+   
+   If loRS.EOF Then Exit Sub
+   
+   Set loCls = New clsEmployeeMovement
+   Set loCls.AppDriver = oApp
+   loCls.HasParent = True
+   loCls.InitTransaction
+   
+   DoEvents
+   Do Until loRS.EOF
+      DoEvents
+      If LCase(oApp.ProductID) = "petmgr" Then
+         'Its from the main office so send updates to all branches...
+         If loCls.OpenTransaction(loRS("sTransNox")) Then
+            loCls.PostTransaction (loRS("sTransNox"))
+         End If
+      Else
+         'if monitor is not from main office then just post the movement
+         lsSQL = "UPDATE Employee_Movement" & _
+                " SET cTranStat = " & strParm(xeStatePosted) & _
+                " WHERE sTransNox = " & strParm(loRS("sTransNox"))
+         oApp.Connection.Execute lsSQL, , adCmdText
+      End If
+               
+       'From this Branch employee is assigned to other branch
+       If IFNull(loCls.Master("sBranchCD")) <> "" _
+      And loCls.Master("sBranchCD") <> oApp.BranchCode _
+      And IFNull(loCls.Master("xBranchCD"), "") = oApp.BranchCode _
+      And InStr(1, "M001»M0W1", loRS("sBranchCD")) = 0 Then
+          
+          DoEvents
+          ldDateFrom = getLastPeriod(loCls.Master("sEmployID"))
+          Call quickTransfer("Employee_Log", _
+                             "sEmployID = " & strParm(loCls.Master("sEmployID")) & _
+                        " AND dTransact BETWEEN " & dateParm(ldDateFrom) & " AND " & dateParm(loCls.Master("dEffectve")), _
+                             loCls.Master("sBranchCD"))
+          DoEvents
+          
+          Call quickTransfer("Employee_Timesheet", _
+                             "sEmployID = " & strParm(loCls.Master("sEmployID")) & _
+                        " AND dTransact BETWEEN " & dateParm(ldDateFrom) & " AND " & dateParm(loCls.Master("dEffectve")), _
+                             loCls.Master("sBranchCD"))
+          DoEvents
+          
+          Call quickTransfer("Employee_Leave", _
+                             "sEmployID = " & strParm(loCls.Master("sEmployID")) & _
+                        " AND dApproved BETWEEN " & dateParm(ldDateFrom) & " AND " & dateParm(loCls.Master("dEffectve")), _
+                             loCls.Master("sBranchCD"))
+          DoEvents
+          
+          Call quickTransfer("Employee_Business_Trip", _
+                             "sEmployID = " & strParm(loCls.Master("sEmployID")) & _
+                        " AND dApproved BETWEEN " & dateParm(ldDateFrom) & " AND " & dateParm(loCls.Master("dEffectve")), _
+                             loCls.Master("sBranchCD"))
+      End If
+      
+      loRS.MoveNext
+      DoEvents
+   Loop
+End Sub
+
+

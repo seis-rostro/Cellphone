@@ -1,0 +1,43 @@
+Line 16: Class xrGridEditor.GridEditor of control GridEditor1 was not a loaded control class.
+Line 68: Class xrControl.xrButton of control cmdButton was not a loaded control class.
+Line 90: Class xrControl.xrButton of control cmdButton was not a loaded control class.
+Line 23: The property name _ExtentX in GridEditor1 is invalid.
+Line 24: The property name _ExtentY in GridEditor1 is invalid.
+Line 25: The property name AllowBigSelection in GridEditor1 is invalid.
+Line 26: The property name AutoAdd in GridEditor1 is invalid.
+Line 27: The property name AutoNumber in GridEditor1 is invalid.
+Line 29: The property name BACKCOLORBKG in GridEditor1 is invalid.
+Line 30: The property name BACKCOLORFIXED in GridEditor1 is invalid.
+Line 31: The property name BACKCOLORSEL in GridEditor1 is invalid.
+Line 33: The property name COLS in GridEditor1 is invalid.
+Line 35: The property name FIXEDCOLS in GridEditor1 is invalid.
+Line 36: The property name FIXEDROWS in GridEditor1 is invalid.
+Line 37: The property name FOCUSRECT in GridEditor1 is invalid.
+Line 39: The property name FORECOLORFIXED in GridEditor1 is invalid.
+Line 40: The property name FORECOLORSEL in GridEditor1 is invalid.
+Line 41: The property name FORMATSTRING in GridEditor1 is invalid.
+Line 42: The property name Object.HEIGHT in GridEditor1 is invalid.
+Line 43: The property name GRIDCOLOR in GridEditor1 is invalid.
+Line 44: The property name GRIDCOLORFIXED in GridEditor1 is invalid.
+Line 53: The property name GRIDFONT in GridEditor1 is invalid.
+Line 54: The property name GRIDLINES in GridEditor1 is invalid.
+Line 55: The property name GRIDLINESFIXED in GridEditor1 is invalid.
+Line 56: The property name GRIDLINEWIDTH in GridEditor1 is invalid.
+Line 59: The property name REDRAW in GridEditor1 is invalid.
+Line 61: The property name ROWS in GridEditor1 is invalid.
+Line 62: The property name SCROLLBARS in GridEditor1 is invalid.
+Line 63: The property name SCROLLTRACK in GridEditor1 is invalid.
+Line 64: The property name SELECTIONMODE in GridEditor1 is invalid.
+Line 65: The property name Object.TOOLTIPTEXT in GridEditor1 is invalid.
+Line 66: The property name WORDWRAP in GridEditor1 is invalid.
+Line 16: Property MouseIcon in GridEditor1 could not be set.
+Line 75: The property name _ExtentX in cmdButton is invalid.
+Line 76: The property name _ExtentY in cmdButton is invalid.
+Line 77: The property name Caption in cmdButton is invalid.
+Line 78: The property name AccessKey in cmdButton is invalid.
+Line 68: Property Picture in cmdButton could not be set.
+Line 97: The property name _ExtentX in cmdButton is invalid.
+Line 98: The property name _ExtentY in cmdButton is invalid.
+Line 99: The property name Caption in cmdButton is invalid.
+Line 100: The property name AccessKey in cmdButton is invalid.
+Line 90: Property Picture in cmdButton could not be set.

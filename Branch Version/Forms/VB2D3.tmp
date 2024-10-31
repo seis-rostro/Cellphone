@@ -1,0 +1,537 @@
+VERSION 5.00
+Object = "{34A378CB-112C-461B-94E8-02D25370A1CE}#8.1#0"; "xrControl.ocx"
+Begin VB.Form frmCP_Supplier 
+   BorderStyle     =   0  'None
+   Caption         =   "CP Supplier Maintenance"
+   ClientHeight    =   7395
+   ClientLeft      =   0
+   ClientTop       =   0
+   ClientWidth     =   7665
+   KeyPreview      =   -1  'True
+   LinkTopic       =   "Form1"
+   LockControls    =   -1  'True
+   MDIChild        =   -1  'True
+   ScaleHeight     =   7395
+   ScaleWidth      =   7665
+   ShowInTaskbar   =   0   'False
+   Begin xrControl.xrFrame xrFrame1 
+      Height          =   5820
+      Left            =   90
+      Tag             =   "wt0;fb0"
+      Top             =   555
+      Width           =   7500
+      _ExtentX        =   13229
+      _ExtentY        =   10266
+      BackColor       =   12632256
+      BorderStyle     =   1
+      Begin VB.TextBox txtOthers 
+         Appearance      =   0  'Flat
+         Height          =   315
+         Index           =   4
+         Left            =   1485
+         MaxLength       =   128
+         TabIndex        =   20
+         Top             =   3945
+         Width           =   5880
+      End
+      Begin VB.TextBox txtOthers 
+         Appearance      =   0  'Flat
+         Height          =   315
+         Index           =   1
+         Left            =   1485
+         MaxLength       =   15
+         TabIndex        =   18
+         Top             =   3615
+         Width           =   5880
+      End
+      Begin VB.TextBox txtOthers 
+         Appearance      =   0  'Flat
+         Height          =   315
+         Index           =   5
+         Left            =   5325
+         MaxLength       =   25
+         TabIndex        =   30
+         Top             =   4275
+         Width           =   2040
+      End
+      Begin VB.TextBox txtOthers 
+         Appearance      =   0  'Flat
+         Height          =   315
+         Index           =   6
+         Left            =   5325
+         TabIndex        =   32
+         Top             =   4605
+         Width           =   2040
+      End
+      Begin VB.TextBox txtField 
+         Appearance      =   0  'Flat
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   315
+         Index           =   0
+         Left            =   1485
+         TabIndex        =   1
+         Top             =   195
+         Width           =   1950
+      End
+      Begin VB.TextBox txtOthers 
+         Appearance      =   0  'Flat
+         Height          =   315
+         Index           =   0
+         Left            =   1485
+         MaxLength       =   30
+         TabIndex        =   16
+         Top             =   3285
+         Width           =   5880
+      End
+      Begin VB.TextBox txtOthers 
+         Appearance      =   0  'Flat
+         Height          =   315
+         Index           =   2
+         Left            =   1485
+         MaxLength       =   30
+         TabIndex        =   22
+         Top             =   4275
+         Width           =   2295
+      End
+      Begin VB.TextBox txtOthers 
+         Appearance      =   0  'Flat
+         Height          =   315
+         Index           =   3
+         Left            =   1485
+         MaxLength       =   30
+         TabIndex        =   24
+         Top             =   4605
+         Width           =   2295
+      End
+      Begin VB.TextBox txtOthers 
+         Appearance      =   0  'Flat
+         Height          =   315
+         Index           =   7
+         Left            =   5325
+         TabIndex        =   34
+         Top             =   4935
+         Width           =   2040
+      End
+      Begin VB.TextBox txtOthers 
+         Appearance      =   0  'Flat
+         Height          =   315
+         Index           =   8
+         Left            =   5325
+         TabIndex        =   36
+         Top             =   5265
+         Width           =   2040
+      End
+      Begin VB.TextBox txtField 
+         Appearance      =   0  'Flat
+         Height          =   315
+         Index           =   1
+         Left            =   1485
+         MaxLength       =   50
+         TabIndex        =   3
+         Top             =   765
+         Width           =   5880
+      End
+      Begin VB.TextBox txtField 
+         Appearance      =   0  'Flat
+         Height          =   645
+         Index           =   5
+         Left            =   1485
+         MultiLine       =   -1  'True
+         TabIndex        =   12
+         Top             =   2295
+         Width           =   5880
+      End
+      Begin VB.TextBox txtField 
+         Appearance      =   0  'Flat
+         Height          =   315
+         Index           =   7
+         Left            =   1485
+         MaxLength       =   30
+         TabIndex        =   26
+         Top             =   4935
+         Width           =   2295
+      End
+      Begin VB.TextBox txtField 
+         Appearance      =   0  'Flat
+         Height          =   315
+         Index           =   6
+         Left            =   1485
+         TabIndex        =   14
+         Top             =   2955
+         Width           =   5880
+      End
+      Begin VB.TextBox txtOthers 
+         Appearance      =   0  'Flat
+         Height          =   315
+         Index           =   9
+         Left            =   1485
+         TabIndex        =   28
+         Top             =   5265
+         Width           =   2295
+      End
+      Begin xrControl.xrFrame xrFrame2 
+         Height          =   1185
+         Left            =   1485
+         Tag             =   "wt0;fb0"
+         Top             =   1095
+         Width           =   5880
+         _ExtentX        =   10372
+         _ExtentY        =   2090
+         BackColor       =   12632256
+         Begin VB.TextBox txtField 
+            Appearance      =   0  'Flat
+            Height          =   315
+            Index           =   2
+            Left            =   1200
+            MaxLength       =   30
+            TabIndex        =   6
+            Top             =   90
+            Width           =   4560
+         End
+         Begin VB.TextBox txtField 
+            Appearance      =   0  'Flat
+            Height          =   315
+            Index           =   3
+            Left            =   1200
+            MaxLength       =   30
+            TabIndex        =   8
+            Top             =   420
+            Width           =   4560
+         End
+         Begin VB.TextBox txtField 
+            Appearance      =   0  'Flat
+            Height          =   315
+            Index           =   4
+            Left            =   1200
+            MaxLength       =   30
+            TabIndex        =   10
+            Top             =   750
+            Width           =   4560
+         End
+         Begin VB.Label Label1 
+            AutoSize        =   -1  'True
+            BackStyle       =   0  'Transparent
+            Caption         =   "Last Name"
+            Height          =   195
+            Index           =   13
+            Left            =   120
+            TabIndex        =   5
+            Top             =   150
+            Width           =   765
+         End
+         Begin VB.Label Label1 
+            AutoSize        =   -1  'True
+            BackStyle       =   0  'Transparent
+            Caption         =   "First Name"
+            Height          =   195
+            Index           =   14
+            Left            =   120
+            TabIndex        =   7
+            Top             =   480
+            Width           =   750
+         End
+         Begin VB.Label Label1 
+            AutoSize        =   -1  'True
+            BackStyle       =   0  'Transparent
+            Caption         =   "Middle Name"
+            Height          =   195
+            Index           =   15
+            Left            =   120
+            TabIndex        =   9
+            Top             =   810
+            Width           =   930
+         End
+      End
+      Begin VB.Label Label1 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Remarks"
+         Height          =   195
+         Index           =   3
+         Left            =   90
+         TabIndex        =   19
+         Top             =   4005
+         Width           =   630
+      End
+      Begin VB.Label Label1 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Position"
+         Height          =   195
+         Index           =   2
+         Left            =   90
+         TabIndex        =   17
+         Top             =   3675
+         Width           =   555
+      End
+      Begin VB.Label Label1 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Contact Person"
+         Height          =   195
+         Index           =   1
+         Left            =   90
+         TabIndex        =   15
+         Top             =   3345
+         Width           =   1095
+      End
+      Begin VB.Label Label1 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Term"
+         Height          =   195
+         Index           =   4
+         Left            =   4005
+         TabIndex        =   29
+         Top             =   4335
+         Width           =   360
+      End
+      Begin VB.Label Label1 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Supplier ID"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   195
+         Index           =   0
+         Left            =   90
+         TabIndex        =   0
+         Top             =   255
+         Width           =   960
+      End
+      Begin VB.Label Label1 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Tel. No."
+         Height          =   195
+         Index           =   5
+         Left            =   90
+         TabIndex        =   21
+         Top             =   4335
+         Width           =   570
+      End
+      Begin VB.Label Label1 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Fax No."
+         Height          =   195
+         Index           =   6
+         Left            =   90
+         TabIndex        =   23
+         Top             =   4665
+         Width           =   555
+      End
+      Begin VB.Label Label1 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Account Balance"
+         Height          =   195
+         Index           =   7
+         Left            =   4005
+         TabIndex        =   35
+         Top             =   5310
+         Width           =   1230
+      End
+      Begin VB.Label Label1 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Client Since"
+         Height          =   195
+         Index           =   8
+         Left            =   90
+         TabIndex        =   27
+         Top             =   5325
+         Width           =   840
+      End
+      Begin VB.Shape Shape1 
+         BackStyle       =   1  'Opaque
+         BorderStyle     =   0  'Transparent
+         FillColor       =   &H00FFFFFF&
+         Height          =   315
+         Left            =   1575
+         Tag             =   "et0;ht2"
+         Top             =   300
+         Width           =   1950
+      End
+      Begin VB.Label Label1 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Company Name"
+         Height          =   195
+         Index           =   10
+         Left            =   90
+         TabIndex        =   2
+         Top             =   825
+         Width           =   1125
+      End
+      Begin VB.Label Label1 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Company Address"
+         Height          =   195
+         Index           =   11
+         Left            =   90
+         TabIndex        =   11
+         Top             =   2355
+         Width           =   1275
+      End
+      Begin VB.Label Label1 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Company Owner"
+         Height          =   195
+         Index           =   12
+         Left            =   90
+         TabIndex        =   4
+         Top             =   1155
+         Width           =   1170
+      End
+      Begin VB.Label Label1 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "e-Mail Address"
+         Height          =   195
+         Index           =   16
+         Left            =   90
+         TabIndex        =   25
+         Top             =   4995
+         Width           =   1035
+      End
+      Begin VB.Label Label1 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Town/City"
+         Height          =   195
+         Index           =   9
+         Left            =   90
+         TabIndex        =   13
+         Top             =   3000
+         Width           =   735
+      End
+      Begin VB.Label Label1 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Discount"
+         Height          =   195
+         Index           =   18
+         Left            =   4005
+         TabIndex        =   31
+         Top             =   4680
+         Width           =   630
+      End
+      Begin VB.Label Label1 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Credit Limit"
+         Height          =   195
+         Index           =   19
+         Left            =   4005
+         TabIndex        =   33
+         Top             =   5010
+         Width           =   840
+      End
+   End
+   Begin xrControl.xrButton cmdButton 
+      Height          =   705
+      Index           =   0
+      Left            =   6825
+      TabIndex        =   44
+      Top             =   6615
+      Width           =   750
+      _ExtentX        =   1323
+      _ExtentY        =   1244
+      Caption         =   "&Cancel"
+      AccessKey       =   "C"
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Picture         =   "frmCP_Supplier.frx":0000
+      PicturePos      =   1
+   End
+   Begin xrControl.xrButton cmdButton 
+      Height          =   705
+      Index           =   1
+      Left            =   6045
+      TabIndex        =   43
+      Top             =   6615
+      Width           =   750
+      _ExtentX        =   1323
+      _ExtentY        =   1244
+      Caption         =   "&Browse"
+      AccessKey       =   "B"
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Picture         =   "frmCP_Supplier.frx":077A
+      PicturePos      =   1
+   End
+   Begin xrControl.xrButton cmdButton 
+      Height          =   705
+      Index           =   2
+      Left            =   3705
+      TabIndex        =   38
+      Top             =   6615
+      Width           =   750
+      _ExtentX        =   1323
+      _ExtentY        =   1244
+      Caption         =   "&Save"
+      AccessKey       =   "S"
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Picture         =   "frmCP_Supplier.frx":0EF4
+      PicturePos      =   1
+   End
+   Begin xrControl.xrButton cmdButton 
+      Height          =   705
+      Index           =   4
+      Left            =   2925
+      TabIndex        =   37
+      Top             =   6615
+      Width           =   750
+      _ExtentX        =   1323
+      _ExtentY        =   1244
+      Caption         =   "&New"
+      AccessKey       =   "N"
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty

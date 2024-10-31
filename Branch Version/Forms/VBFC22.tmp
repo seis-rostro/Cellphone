@@ -1,0 +1,437 @@
+VERSION 5.00
+Object = "{34A378CB-112C-461B-94E8-02D25370A1CE}#8.1#0"; "xrControl.ocx"
+Object = "{0B46E70A-7573-4847-A71B-876F1A303D14}#1.0#0"; "xrGridControl.ocx"
+Begin VB.Form frmCP_Purchasing 
+   BorderStyle     =   0  'None
+   Caption         =   "Purchasing"
+   ClientHeight    =   6960
+   ClientLeft      =   0
+   ClientTop       =   0
+   ClientWidth     =   11415
+   KeyPreview      =   -1  'True
+   LinkTopic       =   "Form1"
+   LockControls    =   -1  'True
+   MDIChild        =   -1  'True
+   ScaleHeight     =   6960
+   ScaleWidth      =   11415
+   ShowInTaskbar   =   0   'False
+   Begin xrControl.xrFrame xrFrame1 
+      Height          =   2160
+      Left            =   1575
+      Tag             =   "wt0;fb0"
+      Top             =   525
+      Width           =   9735
+      _ExtentX        =   17171
+      _ExtentY        =   3810
+      BackColor       =   12632256
+      BorderStyle     =   1
+      Begin VB.TextBox txtField 
+         Appearance      =   0  'Flat
+         Enabled         =   0   'False
+         Height          =   315
+         Index           =   7
+         Left            =   8115
+         MaxLength       =   8
+         TabIndex        =   15
+         Text            =   "Text1"
+         Top             =   1665
+         Width           =   1485
+      End
+      Begin VB.TextBox txtField 
+         Appearance      =   0  'Flat
+         Height          =   315
+         Index           =   6
+         Left            =   8115
+         TabIndex        =   11
+         Text            =   "Text1"
+         Top             =   1005
+         Width           =   1485
+      End
+      Begin VB.TextBox txtField 
+         Appearance      =   0  'Flat
+         Height          =   315
+         Index           =   5
+         Left            =   8115
+         TabIndex        =   13
+         Text            =   "Text1"
+         Top             =   1335
+         Width           =   1485
+      End
+      Begin VB.TextBox txtField 
+         Appearance      =   0  'Flat
+         Height          =   315
+         Index           =   4
+         Left            =   1320
+         TabIndex        =   7
+         Text            =   "Text1"
+         Top             =   1665
+         Width           =   5535
+      End
+      Begin VB.TextBox txtField 
+         Appearance      =   0  'Flat
+         Enabled         =   0   'False
+         Height          =   645
+         Index           =   3
+         Left            =   1320
+         MultiLine       =   -1  'True
+         TabIndex        =   5
+         Text            =   "frmCP_Purchasing.frx":0000
+         Top             =   1005
+         Width           =   5535
+      End
+      Begin VB.TextBox txtField 
+         Appearance      =   0  'Flat
+         Height          =   315
+         Index           =   2
+         Left            =   1320
+         TabIndex        =   3
+         Text            =   "Text1"
+         Top             =   675
+         Width           =   5535
+      End
+      Begin VB.TextBox txtField 
+         Appearance      =   0  'Flat
+         Height          =   315
+         Index           =   1
+         Left            =   8115
+         TabIndex        =   9
+         Text            =   "Text1"
+         Top             =   675
+         Width           =   1485
+      End
+      Begin VB.TextBox txtField 
+         Appearance      =   0  'Flat
+         Enabled         =   0   'False
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   315
+         Index           =   0
+         Left            =   1320
+         TabIndex        =   1
+         Text            =   "Text1"
+         Top             =   150
+         Width           =   2265
+      End
+      Begin VB.Label lblField 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Approved"
+         Height          =   195
+         Index           =   8
+         Left            =   6960
+         TabIndex        =   14
+         Top             =   1725
+         Width           =   690
+      End
+      Begin VB.Label lblField 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Date Delivery"
+         Height          =   195
+         Index           =   6
+         Left            =   6960
+         TabIndex        =   10
+         Top             =   1065
+         Width           =   960
+      End
+      Begin VB.Label lblField 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Term"
+         Height          =   195
+         Index           =   4
+         Left            =   6960
+         TabIndex        =   12
+         Top             =   1395
+         Width           =   360
+      End
+      Begin VB.Label lblField 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Remarks"
+         Height          =   195
+         Index           =   5
+         Left            =   90
+         TabIndex        =   6
+         Top             =   1725
+         Width           =   630
+      End
+      Begin VB.Label lblField 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Address"
+         Height          =   195
+         Index           =   3
+         Left            =   90
+         TabIndex        =   4
+         Top             =   1065
+         Width           =   570
+      End
+      Begin VB.Label lblField 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Company Name"
+         Height          =   195
+         Index           =   2
+         Left            =   90
+         TabIndex        =   2
+         Top             =   735
+         Width           =   1125
+      End
+      Begin VB.Label lblField 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Transact. Date"
+         Height          =   195
+         Index           =   1
+         Left            =   6960
+         TabIndex        =   8
+         Top             =   735
+         Width           =   1065
+      End
+      Begin VB.Label lblField 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Transact. No."
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   195
+         Index           =   0
+         Left            =   90
+         TabIndex        =   0
+         Top             =   210
+         Width           =   1185
+      End
+      Begin VB.Shape Shape1 
+         BackStyle       =   1  'Opaque
+         BorderStyle     =   0  'Transparent
+         Height          =   315
+         Left            =   1410
+         Tag             =   "et0;ht2"
+         Top             =   255
+         Width           =   2265
+      End
+   End
+   Begin xrControl.xrButton cmdButton 
+      Height          =   600
+      Index           =   5
+      Left            =   90
+      TabIndex        =   22
+      Top             =   1815
+      Width           =   1245
+      _ExtentX        =   2196
+      _ExtentY        =   1058
+      Caption         =   "Print"
+      AccessKey       =   "Print"
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Picture         =   "frmCP_Purchasing.frx":0006
+   End
+   Begin xrControl.xrButton cmdButton 
+      Height          =   600
+      Index           =   2
+      Left            =   90
+      TabIndex        =   19
+      Top             =   1815
+      Width           =   1245
+      _ExtentX        =   2196
+      _ExtentY        =   1058
+      Caption         =   "&Delete"
+      AccessKey       =   "D"
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Picture         =   "frmCP_Purchasing.frx":0780
+   End
+   Begin xrControl.xrButton cmdButton 
+      Height          =   630
+      Index           =   0
+      Left            =   90
+      TabIndex        =   17
+      Top             =   525
+      Width           =   1275
+      _ExtentX        =   2249
+      _ExtentY        =   1111
+      Caption         =   "&Save"
+      AccessKey       =   "S"
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Picture         =   "frmCP_Purchasing.frx":0EFA
+   End
+   Begin xrControl.xrButton cmdButton 
+      Height          =   600
+      Index           =   1
+      Left            =   90
+      TabIndex        =   18
+      Top             =   1185
+      Width           =   1260
+      _ExtentX        =   2223
+      _ExtentY        =   1058
+      Caption         =   "Searc&h"
+      AccessKey       =   "h"
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Picture         =   "frmCP_Purchasing.frx":1674
+   End
+   Begin xrControl.xrButton cmdButton 
+      Height          =   600
+      Index           =   3
+      Left            =   90
+      TabIndex        =   20
+      Top             =   2445
+      Width           =   1245
+      _ExtentX        =   2196
+      _ExtentY        =   1058
+      Caption         =   "&Cancel"
+      AccessKey       =   "C"
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Picture         =   "frmCP_Purchasing.frx":1DEE
+   End
+   Begin xrControl.xrButton cmdButton 
+      Height          =   600
+      Index           =   4
+      Left            =   90
+      TabIndex        =   21
+      Top             =   1185
+      Width           =   1245
+      _ExtentX        =   2196
+      _ExtentY        =   1058
+      Caption         =   "&New"
+      AccessKey       =   "N"
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Picture         =   "frmCP_Purchasing.frx":2568
+   End
+   Begin xrControl.xrButton cmdButton 
+      Height          =   600
+      Index           =   6
+      Left            =   90
+      TabIndex        =   23
+      Top             =   2445
+      Width           =   1245
+      _ExtentX        =   2196
+      _ExtentY        =   1058
+      Caption         =   "&Close"
+      AccessKey       =   "C"
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Picture         =   "frmCP_Purchasing.frx":2CE2
+   End
+   Begin xrGridEditor.GridEditor GridEditor1 
+      Height          =   4095
+      Left            =   1590
+      TabIndex        =   16
+      Tag             =   "et0;eb0;et0;bc2"
+      Top             =   2730
+      Width           =   9705
+      _ExtentX        =   17119
+      _ExtentY        =   7223
+      AllowBigSelection=   -1  'True
+      AutoAdd         =   -1  'True
+      AutoNumber      =   -1  'True
+      BACKCOLOR       =   -2147483643
+      BACKCOLORBKG    =   8421504
+      BACKCOLORFIXED  =   -2147483633
+      BACKCOLORSEL    =   -2147483635
+      BORDERSTYLE     =   1
+      COLS            =   2
+      FILLSTYLE       =   0
+      FIXEDCOLS       =   1
+      FIXEDROWS       =   1
+      FOCUSRECT       =   1
+      EDITORBACKCOLOR =   -2147483643
+      EDITORFORECOLOR =   -2147483640
+      FORECOLOR       =   -2147483640
+      FORECOLORFIXED  =   -2147483630
+      FORECOLORSEL    =   -2147483634
+      FORMATSTRING    =   ""
+      Object.HEIGHT          =   4095
+      GRIDCOLOR       =   12632256
+      GRIDCOLORFIXED  =   0
+      BeginProperty GRIDFONT {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      GRIDLINES       =   1
+      GRIDLINESFIXED  =   2
+      GRIDLINEWIDTH   =   1
+      MOUSEICON       =   "frmCP_Purchasing.frx":345C
+      MOUSEPOINTER    =   0
+      REDRAW          =   -1  'True
+      RIGHTTOLEFT     =   0   'False
+      ROWS            =   2
+      SCROLLBARS      =   3
+      SCROLLTRACK     =   0   'False
+      SELECTIONMODE   =   0
+      Object.TOOLTIPTEXT     =   ""
+      WORDWRAP        =   0   'False
+   End
+End
