@@ -10,7 +10,6 @@ Begin VB.Form frmCP_POSOld
    ClientWidth     =   15360
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
-   LockControls    =   -1  'True
    MaxButton       =   0   'False
    MinButton       =   0   'False
    Picture         =   "frmCP_POSOld.frx":0000
@@ -18,6 +17,27 @@ Begin VB.Form frmCP_POSOld
    ScaleMode       =   3  'Pixel
    ScaleWidth      =   1024
    ShowInTaskbar   =   0   'False
+   Begin VB.TextBox txtField 
+      Alignment       =   1  'Right Justify
+      Enabled         =   0   'False
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   12
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   420
+      Index           =   8
+      Left            =   12795
+      Locked          =   -1  'True
+      TabIndex        =   40
+      Text            =   "0.00"
+      Top             =   10815
+      Width           =   2310
+   End
    Begin VB.TextBox txtField 
       Enabled         =   0   'False
       BeginProperty Font 
@@ -32,7 +52,7 @@ Begin VB.Form frmCP_POSOld
       Height          =   420
       Index           =   7
       Left            =   3690
-      TabIndex        =   38
+      TabIndex        =   37
       TabStop         =   0   'False
       Top             =   10515
       Width           =   5295
@@ -52,9 +72,9 @@ Begin VB.Form frmCP_POSOld
       Height          =   420
       Index           =   6
       Left            =   13710
-      TabIndex        =   16
+      TabIndex        =   15
       Text            =   "0.00"
-      Top             =   9570
+      Top             =   9540
       Width           =   1395
    End
    Begin VB.TextBox txtField 
@@ -74,7 +94,7 @@ Begin VB.Form frmCP_POSOld
       Left            =   11085
       TabIndex        =   14
       Text            =   "00.00%"
-      Top             =   9570
+      Top             =   9540
       Width           =   990
    End
    Begin VB.PictureBox Picture2 
@@ -82,7 +102,7 @@ Begin VB.Form frmCP_POSOld
       Left            =   135
       ScaleHeight     =   2055
       ScaleWidth      =   2025
-      TabIndex        =   25
+      TabIndex        =   24
       TabStop         =   0   'False
       Top             =   9255
       Width           =   2085
@@ -100,7 +120,7 @@ Begin VB.Form frmCP_POSOld
          EndProperty
          Height          =   1185
          Left            =   180
-         TabIndex        =   26
+         TabIndex        =   25
          Top             =   330
          Width           =   1710
       End
@@ -146,7 +166,7 @@ Begin VB.Form frmCP_POSOld
       TabIndex        =   1
       TabStop         =   0   'False
       Text            =   "0000-000000"
-      Top             =   1530
+      Top             =   1545
       Width           =   1875
    End
    Begin VB.TextBox txtField 
@@ -166,7 +186,7 @@ Begin VB.Form frmCP_POSOld
       TabIndex        =   3
       TabStop         =   0   'False
       Text            =   "0"
-      Top             =   2265
+      Top             =   2280
       Width           =   1875
    End
    Begin VB.TextBox txtField 
@@ -195,7 +215,7 @@ Begin VB.Form frmCP_POSOld
       Left            =   2550
       ScaleHeight     =   915
       ScaleWidth      =   12450
-      TabIndex        =   19
+      TabIndex        =   18
       TabStop         =   0   'False
       Top             =   1290
       Width           =   12450
@@ -241,7 +261,7 @@ Begin VB.Form frmCP_POSOld
    End
    Begin MSFlexGridLib.MSFlexGrid GridEditor1 
       Height          =   6270
-      Left            =   2460
+      Left            =   2475
       TabIndex        =   6
       TabStop         =   0   'False
       Tag             =   "et0;eb0;et0;bc2"
@@ -267,6 +287,52 @@ Begin VB.Form frmCP_POSOld
       EndProperty
    End
    Begin VB.Label lblField 
+      Alignment       =   1  'Right Justify
+      AutoSize        =   -1  'True
+      BackColor       =   &H001778E7&
+      BackStyle       =   0  'Transparent
+      Caption         =   "Trade In (F12)   Amount:"
+      BeginProperty Font 
+         Name            =   "Microsoft Sans Serif"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H8000000E&
+      Height          =   240
+      Index           =   8
+      Left            =   10230
+      TabIndex        =   41
+      Top             =   10905
+      Width           =   2460
+   End
+   Begin VB.Label lblField 
+      Alignment       =   1  'Right Justify
+      AutoSize        =   -1  'True
+      BackColor       =   &H001778E7&
+      BackStyle       =   0  'Transparent
+      Caption         =   "Disc. Amount:"
+      BeginProperty Font 
+         Name            =   "Microsoft Sans Serif"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H8000000E&
+      Height          =   240
+      Index           =   6
+      Left            =   12225
+      TabIndex        =   39
+      Top             =   9630
+      Width           =   1410
+   End
+   Begin VB.Label lblField 
       BackColor       =   &H001778E7&
       BackStyle       =   0  'Transparent
       Caption         =   "C.Name:"
@@ -283,7 +349,7 @@ Begin VB.Form frmCP_POSOld
       Height          =   315
       Index           =   4
       Left            =   2580
-      TabIndex        =   39
+      TabIndex        =   38
       Top             =   10605
       Width           =   1110
    End
@@ -312,7 +378,7 @@ Begin VB.Form frmCP_POSOld
       Height          =   315
       Index           =   6
       Left            =   270
-      TabIndex        =   37
+      TabIndex        =   36
       Top             =   6225
       Width           =   1800
    End
@@ -332,7 +398,7 @@ Begin VB.Form frmCP_POSOld
       Height          =   330
       Index           =   1
       Left            =   270
-      TabIndex        =   36
+      TabIndex        =   35
       Top             =   3705
       Width           =   1800
    End
@@ -352,7 +418,7 @@ Begin VB.Form frmCP_POSOld
       Height          =   285
       Index           =   2
       Left            =   270
-      TabIndex        =   35
+      TabIndex        =   34
       Top             =   4215
       Width           =   1800
    End
@@ -372,7 +438,7 @@ Begin VB.Form frmCP_POSOld
       Height          =   315
       Index           =   4
       Left            =   270
-      TabIndex        =   34
+      TabIndex        =   33
       Top             =   5250
       Width           =   1800
    End
@@ -392,7 +458,7 @@ Begin VB.Form frmCP_POSOld
       Height          =   315
       Index           =   5
       Left            =   270
-      TabIndex        =   33
+      TabIndex        =   32
       Top             =   5715
       Width           =   1800
    End
@@ -412,7 +478,7 @@ Begin VB.Form frmCP_POSOld
       Height          =   285
       Index           =   7
       Left            =   270
-      TabIndex        =   32
+      TabIndex        =   31
       Top             =   6735
       Width           =   1800
    End
@@ -432,7 +498,7 @@ Begin VB.Form frmCP_POSOld
       Height          =   390
       Index           =   8
       Left            =   270
-      TabIndex        =   31
+      TabIndex        =   30
       Top             =   7215
       Width           =   1800
    End
@@ -452,7 +518,7 @@ Begin VB.Form frmCP_POSOld
       Height          =   375
       Index           =   9
       Left            =   270
-      TabIndex        =   30
+      TabIndex        =   29
       Top             =   7770
       Width           =   1800
    End
@@ -472,7 +538,7 @@ Begin VB.Form frmCP_POSOld
       Height          =   375
       Index           =   10
       Left            =   270
-      TabIndex        =   29
+      TabIndex        =   28
       Top             =   8265
       Width           =   1800
    End
@@ -492,7 +558,7 @@ Begin VB.Form frmCP_POSOld
       Height          =   375
       Index           =   11
       Left            =   270
-      TabIndex        =   28
+      TabIndex        =   27
       Top             =   8775
       Width           =   1800
    End
@@ -512,7 +578,7 @@ Begin VB.Form frmCP_POSOld
       Height          =   285
       Index           =   3
       Left            =   270
-      TabIndex        =   27
+      TabIndex        =   26
       Top             =   4725
       Width           =   1800
    End
@@ -564,33 +630,12 @@ Begin VB.Form frmCP_POSOld
       ForeColor       =   &H000000FF&
       Height          =   645
       Left            =   12105
-      TabIndex        =   18
-      Top             =   10515
+      TabIndex        =   17
+      Top             =   10065
       Width           =   3000
    End
    Begin VB.Label lblField 
-      Alignment       =   1  'Right Justify
-      BackColor       =   &H001778E7&
-      BackStyle       =   0  'Transparent
-      Caption         =   "Disc. Amount:"
-      BeginProperty Font 
-         Name            =   "Microsoft Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H8000000E&
-      Height          =   345
-      Index           =   6
-      Left            =   12165
-      TabIndex        =   15
-      Top             =   9660
-      Width           =   1470
-   End
-   Begin VB.Label lblField 
+      AutoSize        =   -1  'True
       BackColor       =   &H001778E7&
       BackStyle       =   0  'Transparent
       Caption         =   "Discount Rate:"
@@ -604,7 +649,7 @@ Begin VB.Form frmCP_POSOld
          Strikethrough   =   0   'False
       EndProperty
       ForeColor       =   &H8000000E&
-      Height          =   345
+      Height          =   240
       Index           =   5
       Left            =   9510
       TabIndex        =   13
@@ -786,7 +831,7 @@ Begin VB.Form frmCP_POSOld
       Height          =   300
       Index           =   0
       Left            =   270
-      TabIndex        =   20
+      TabIndex        =   19
       Top             =   3180
       Width           =   1800
    End
@@ -805,7 +850,7 @@ Begin VB.Form frmCP_POSOld
       ForeColor       =   &H8000000E&
       Height          =   465
       Left            =   11010
-      TabIndex        =   24
+      TabIndex        =   23
       Top             =   225
       Width           =   4005
    End
@@ -824,7 +869,7 @@ Begin VB.Form frmCP_POSOld
       ForeColor       =   &H8000000E&
       Height          =   405
       Left            =   11040
-      TabIndex        =   23
+      TabIndex        =   22
       Top             =   750
       Width           =   4080
    End
@@ -843,7 +888,7 @@ Begin VB.Form frmCP_POSOld
       ForeColor       =   &H8000000E&
       Height          =   525
       Left            =   8205
-      TabIndex        =   22
+      TabIndex        =   21
       Top             =   405
       Width           =   2760
    End
@@ -940,6 +985,7 @@ Begin VB.Form frmCP_POSOld
       Width           =   1185
    End
    Begin VB.Label lblField 
+      AutoSize        =   -1  'True
       BackColor       =   &H001778E7&
       BackStyle       =   0  'Transparent
       Caption         =   "Total Amount:"
@@ -953,12 +999,12 @@ Begin VB.Form frmCP_POSOld
          Strikethrough   =   0   'False
       EndProperty
       ForeColor       =   &H8000000E&
-      Height          =   555
+      Height          =   435
       Index           =   7
       Left            =   9510
-      TabIndex        =   17
-      Top             =   10605
-      Width           =   2460
+      TabIndex        =   16
+      Top             =   10170
+      Width           =   2415
    End
    Begin VB.Shape Shape6 
       BorderColor     =   &H000080FF&
@@ -1014,7 +1060,7 @@ Begin VB.Form frmCP_POSOld
       Height          =   615
       Index           =   23
       Left            =   1350
-      TabIndex        =   21
+      TabIndex        =   20
       Top             =   375
       Width           =   5940
    End
@@ -1050,12 +1096,11 @@ Private Declare Function SetCapture Lib "USER32" (ByVal hwnd As Long) As Long
 Private Declare Function ReleaseCapture Lib "USER32" () As Long
 
 Private Const pxeMODULENAME = "frmCP_POS"
-Private oFormSerialNewNo As frmSOSerialNo
 
+Private oFormSerialNewNo As frmSOSerialNo
 Private WithEvents oTrans As clsCPSales
 Attribute oTrans.VB_VarHelpID = -1
 Private oReceipt As ggcCPSales.Receipt
-'Private oSkin As clsFormSkin
 
 Dim pnIndex As Integer
 Dim pnCtr As Integer
@@ -1085,11 +1130,6 @@ Private Sub Form_Load()
    Set oReceipt = New ggcCPSales.Receipt
    Set oReceipt.AppDriver = oApp
 
-'   Set oSkin = New clsFormSkin
-'   Set oSkin.AppDriver = oApp
-'   Set oSkin.Form = Me
-'   oSkin.ApplySkin xeFormTransaction
-
    psUserIDxx = ""
    psUserName = ""
    InitGrid
@@ -1099,7 +1139,6 @@ Private Sub Form_Load()
    lblDate.Caption = Format(oApp.ServerDate, "MMMM DD, YYYY")
    lblDays.Caption = Format(oApp.ServerDate, "DDDD")
 
-'   ShowCursor 0
    mdiMain.Hide
 
 endProc:
@@ -1112,14 +1151,7 @@ Private Sub Form_Unload(Cancel As Integer)
    Set oTrans = Nothing
    Set oReceipt = Nothing
    Set oFormSerialNewNo = Nothing
-'   Set oSkin = Nothing
-'   ShowCursor 1
-'   ReleaseCapture
    mdiMain.Show
-End Sub
-
-Private Sub GridEditor1_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
-'   SetCapture Me.hwnd
 End Sub
 
 Private Sub GridEditor1_RowColChange()
@@ -1215,14 +1247,6 @@ Private Sub InitGrid()
    End With
 End Sub
 
-Private Sub Picture1_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
-'   SetCapture Me.hwnd
-End Sub
-
-Private Sub Picture2_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
-'   SetCapture Me.hwnd
-End Sub
-
 Private Sub Timer1_Timer()
    lblTime.Caption = Format(oApp.ServerDate, "HH:MM:SS AM/PM")
 End Sub
@@ -1239,11 +1263,7 @@ Private Sub txtField_GotFocus(Index As Integer)
 
       .SelStart = 0
       .SelLength = Len(.Text)
-
-'      .BackColor = oApp.getColor("HT1")
    End With
-
-'   pbGridFocus = False
    pnIndex = Index
 End Sub
 
@@ -1331,20 +1351,6 @@ Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
                End If
             End With
          End If
-
-'         Select Case oTrans.EditMode
-'         Case xeModeAddNew
-'            ClearFields
-'         Case xeModeReady
-'            oTrans.UpdateTransaction
-'            InitButton xeModeUpdate
-'         Case xeModeUpdate
-'            If oTrans.OpenTransaction(oTrans.Master("sTransNox")) Then
-'               LoadMaster
-'               LoadDetail
-'               Call oTrans.UpdateTransaction
-'            End If
-'         End Select
       Case vbKeyF7
       Case vbKeyF8
          If oTrans.EditMode = xeModeAddNew Then
@@ -1406,6 +1412,10 @@ Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
             initButton xeModeReady
          End If
          GridEditor1.Refresh
+      'mac 2024-11-05
+      Case vbKeyF12 'Encode Trade In Trade Up
+         oTrans.showTITU
+         txtField(8) = Format(oTrans.TITU.TranTotl(), "#,##0.00")
       Case vbKeyEscape
          Unload Me
       End Select
@@ -1425,7 +1435,7 @@ Private Sub clearFields()
          txtField(pnCtr).Text = psUserName
       Case 5
          txtField(pnCtr).Text = "0.00%"
-      Case 6
+      Case 6, 8
          txtField(pnCtr).Text = "0.00"
       Case Else
          txtField(pnCtr).Text = ""
@@ -1471,27 +1481,6 @@ Private Sub txtField_KeyDown(Index As Integer, KeyCode As Integer, Shift As Inte
             lsValue = Trim(Left(.Text, 4))
             lsBarrCode = .Text
             lnQty = 1
-
-'           2019-07-01 10:54 AM
-'           jeff
-'           temporary disable this option for equinox entry
-'           instead update the qty manually
-'            For lnCtr = 1 To Len(lsValue)
-'               If LCase(Left(Right(lsValue, lnCtr), 1)) = "x" Then
-'                  lsQty = Left(lsValue, Len(Trim(lsValue)) - lnCtr)
-'                  If IsNumeric(lsQty) Then
-'                     lnQty = lsQty
-'                     If Right(.Text, 1) = "x" Then
-'                        lnQty = 1
-'                     Else
-'                        lsBarrCode = Right(.Text, Len(.Text) - (Len(lsQty) + 1))
-'                     End If
-'                  Else
-'                     lnQty = 1
-'                     lsBarrCode = .Text
-'                  End If
-'               End If
-'            Next
 
             With GridEditor1
                For lnCtr = 1 To .Rows - 1
@@ -1582,6 +1571,11 @@ Private Function isEntryOk() As Boolean
          GoTo EntryNotOK
       End If
    End With
+   
+   If Not validGCare Then
+      txtField(2).SetFocus
+      GoTo EntryNotOK
+   End If
 
 EntryOK:
    isEntryOk = True
@@ -1711,11 +1705,73 @@ Private Sub GrandTotal()
          lnTotal = lnTotal + CDbl(.TextMatrix(lnCtr, 7))
       Next
    End With
-'   lblTotalAmount.Caption = Format(oTrans.Master("nTranTotl"), "#,##0.00")
+   
    lblTotalAmount.Caption = Format(lnTotal, "#,##0.00")
-   'she 2016-03-30 what if payment is from credit card with card rate?
    oTrans.Master("nTranTotl") = CDbl(lnTotal)
 End Sub
+
+'mac 2024.11.12
+Private Function validGCare() As Boolean
+   Dim lnCtr As Integer
+   Dim lbGCare As Boolean
+      
+   lbGCare = False
+   If CBool(oApp.getConfiguration("TITUGCare+")) Then
+      If oTrans.TITU.TranTotl > 0 Then
+         For lnCtr = 0 To oTrans.ItemCount - 1
+            If IFNull(oTrans.Detail(lnCtr, "sCategID1"), "") = "C001052" Then
+               If InStr(1, oApp.getConfiguration("TITUGCareI"), IFNull(oTrans.Detail(lnCtr, "sCategID2"), ""), vbTextCompare) = 0 Then
+                  MsgBox "Non ABLB GCare Product was selected." & vbCrLf & vbCrLf & _
+                           "Please change to GCarePlus ABLB Only.", vbCritical, "Warning"
+                  GoTo endProc
+               Else
+                  lbGCare = True
+                  Exit For
+               End If
+            End If
+         Next
+         
+         If Not lbGCare Then
+            If MsgBox("TITU must be bundled with GCarePlus." & vbCrLf & vbCrLf & _
+                        "Press OK for system auto suggest or click CANCEL to manually add.", vbInformation + vbOKCancel, "Information") = vbOK Then
+               If Not oTrans.addGCare Then
+                  MsgBox "No GCare Product as added.", vbCritical, "Warning"
+                  GoTo endProc
+               Else
+                  If oTrans.EditMode = xeModeAddNew Then
+                     With GridEditor1
+                        .Rows = oTrans.ItemCount + 1
+                           
+                        For lnCtr = 0 To oTrans.ItemCount - 1
+                           .TextMatrix(lnCtr + 1, 0) = lnCtr + 1
+                           .TextMatrix(lnCtr + 1, 1) = oTrans.Detail(lnCtr, "xReferNox")
+                           .TextMatrix(lnCtr + 1, 2) = oTrans.Detail(lnCtr, "sDescript")
+                           .TextMatrix(lnCtr + 1, 3) = Format(oTrans.Detail(lnCtr, "nQuantity"), "#,##0")
+                           .TextMatrix(lnCtr + 1, 4) = Format(oTrans.Detail(lnCtr, "nUnitPrce"), "#,##0.00")
+                           .TextMatrix(lnCtr + 1, 5) = Format(oTrans.Detail(lnCtr, "nDiscRate"), "##0.00") & "%"
+                           .TextMatrix(lnCtr + 1, 6) = Format(oTrans.Detail(lnCtr, "nDiscAmtx"), "#,##0.00")
+                           .TextMatrix(lnCtr + 1, 7) = Format(CDbl(.TextMatrix(lnCtr + 1, 3)) * CDbl(.TextMatrix(lnCtr + 1, 4)) * _
+                                                         (100 - CDbl(Replace(.TextMatrix(lnCtr + 1, 5), "%", ""))) / 100 - CDbl(.TextMatrix(lnCtr + 1, 6)), "#,##0.00")
+                        Next
+                     End With
+                     
+                     Call GrandTotal
+                  End If
+               End If
+            Else
+               GoTo endProc
+            End If
+         End If
+      End If
+   Else
+      validGCare = True
+      GoTo endProc
+   End If
+   
+   validGCare = True
+endProc:
+   Exit Function
+End Function
 
 Private Function Receipt() As Boolean
    Dim lnCheckAmt As Currency
@@ -1899,9 +1955,6 @@ Function PrintTrans() As Boolean
    lnFinAmt = 0#
    lsFinTrans = ""
    lnTotalDisc = 0#
-'   If IFNull(loModel("sFinTrans"), "") <> "" Then
-'      lnFinAmt = loModel("nFinAmtxx")
-'   End If
    
    With loModel
       .MoveFirst
@@ -1909,9 +1962,7 @@ Function PrintTrans() As Boolean
       Do Until .EOF
          lrs.AddNew
          lrs("nField01").Value = loModel("nQuantity")
-         
-         'she 2015 - 4 - 10
-         'print barrcode if <> serialize
+
          If loModel("cHsSerial") = xeYes Then
             lrs("sField01").Value = IFNull(loModel("sModelCde"), loModel("sModelNme"))
             lrs("sField02").Value = loModel("sBarrCode") & " " & IFNull(loModel("sColorNme")) & ";"
@@ -1935,36 +1986,23 @@ Function PrintTrans() As Boolean
             End If
          End If
          
-         'mac 2022-03-24
          lnSelPrice = loModel("nUnitPrce")
          If CDbl(loModel("nDiscRate")) > 0# Then
             lnSelPrice = loModel("nQuantity") * CDbl(loModel("nUnitPrce")) + CDbl(loModel("nDiscAmtx"))
             lnSelPrice = (lnSelPrice * 100) / (100 - CDbl(loModel("nDiscRate")))
          End If
-         'mac 2022-03-24
 
          If IFNull(loModel("sFinTrans"), "") <> "" Then
             lrs("lField01").Value = CDbl(lnSelPrice) - (loModel("nQuantity") * CDbl(lnSelPrice * CDbl(loModel("nDiscRate") / 100))) - CDbl(loModel("nDiscAmtx"))
-'            lrs("lField02").Value = CDbl(lrs("lField01").Value) * CDbl(loModel("nQuantity"))
             lrs("lField02").Value = CDbl(lrs("lField01").Value) * CDbl(loModel("nQuantity"))
             
-            'she 2022-03-23 to get the total discount amount
             lnTotalDisc = lnTotalDisc + (loModel("nQuantity") * CDbl(lnSelPrice * CDbl(loModel("nDiscRate") / 100))) + CDbl(loModel("nDiscAmtx"))
-'            lrs("lField05").Value = (loModel("nQuantity") * CDbl(loModel("nUnitPrce") * CDbl(loModel("nDiscRate") / 100))) + CDbl(loModel("nDiscAmtx"))
-'            lrs("lField06").Value = CDbl(lrs("lField02").Value - lrs("lField05").Value)
-            
             lnFinAmt = lnFinAmt - lrs("lField05")
-            'lnFinAmt = lnFinAmt - (CDbl(loModel("nUnitPrce")) * (100 - (CDbl(loModel("nDiscRate")))) / 100)
          Else
             lrs("lField01").Value = CDbl(lnSelPrice) - (loModel("nQuantity") * CDbl(lnSelPrice * CDbl(loModel("nDiscRate") / 100))) - CDbl(loModel("nDiscAmtx"))
-'            lrs("lField02").Value = CDbl(lrs("lField01").Value) * loModel("nQuantity")
             lrs("lField02").Value = CDbl(lrs("lField01").Value) * CDbl(loModel("nQuantity"))
-            
-            'she 2022-03-23 to get the total discount amount
-            lnTotalDisc = lnTotalDisc + (loModel("nQuantity") * CDbl(lnSelPrice * CDbl(loModel("nDiscRate") / 100))) + CDbl(loModel("nDiscAmtx"))
 
-'            lrs("lField05").Value = (loModel("nQuantity") * CDbl(loModel("nUnitPrce") * CDbl(loModel("nDiscRate") / 100))) + CDbl(loModel("nDiscAmtx"))
-'            lrs("lField06").Value = CDbl(lrs("lField02").Value - lrs("lField05").Value)
+            lnTotalDisc = lnTotalDisc + (loModel("nQuantity") * CDbl(lnSelPrice * CDbl(loModel("nDiscRate") / 100))) + CDbl(loModel("nDiscAmtx"))
          End If
          
          If loModel("cHsSerial") = xeYes Then

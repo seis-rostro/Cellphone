@@ -4,7 +4,7 @@ Object = "{0B46E70A-7573-4847-A71B-876F1A303D14}#1.0#0"; "xrGridControl.ocx"
 Begin VB.Form frmCP_POSReg 
    BorderStyle     =   0  'None
    Caption         =   "Cellphone Sales"
-   ClientHeight    =   7170
+   ClientHeight    =   7410
    ClientLeft      =   0
    ClientTop       =   0
    ClientWidth     =   11895
@@ -12,11 +12,10 @@ Begin VB.Form frmCP_POSReg
    ControlBox      =   0   'False
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
-   LockControls    =   -1  'True
    MaxButton       =   0   'False
    MDIChild        =   -1  'True
    MinButton       =   0   'False
-   ScaleHeight     =   7170
+   ScaleHeight     =   7410
    ScaleWidth      =   11895
    ShowInTaskbar   =   0   'False
    Begin xrGridEditor.GridEditor GridEditor1 
@@ -74,14 +73,14 @@ Begin VB.Form frmCP_POSReg
       WORDWRAP        =   0   'False
    End
    Begin xrControl.xrFrame xrFrame1 
-      Height          =   5925
+      Height          =   6180
       Index           =   0
       Left            =   105
       Tag             =   "wt0;fb0"
       Top             =   1110
       Width           =   10185
       _ExtentX        =   17965
-      _ExtentY        =   10451
+      _ExtentY        =   10901
       Begin VB.TextBox txtField 
          Appearance      =   0  'Flat
          BackColor       =   &H00FFFFFF&
@@ -264,6 +263,45 @@ Begin VB.Form frmCP_POSReg
          TabIndex        =   5
          Top             =   210
          Width           =   1950
+      End
+      Begin VB.Label Label1 
+         BackStyle       =   0  'Transparent
+         Caption         =   "Trade In"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   285
+         Index           =   6
+         Left            =   6360
+         TabIndex        =   43
+         Top             =   5790
+         Width           =   1185
+      End
+      Begin VB.Label lblTradeIn 
+         Alignment       =   1  'Right Justify
+         BorderStyle     =   1  'Fixed Single
+         Caption         =   "0.00"
+         Enabled         =   0   'False
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   285
+         Left            =   7575
+         TabIndex        =   42
+         Top             =   5760
+         Width           =   2430
       End
       Begin VB.Label Label1 
          BackStyle       =   0  'Transparent
@@ -822,7 +860,7 @@ Private Sub cmdButton_Click(Index As Integer)
             LoadMaster
             LoadDetail
          Else
-            If txtField(0).Text = "" Then ClearFields
+            If txtField(0).Text = "" Then clearFields
          End If
 
          txtField(pnIndex).SetFocus
@@ -947,7 +985,7 @@ Private Sub Form_Load()
    oSkin.ApplySkin xeFormTransEqualRight
 
    InitForm
-   ClearFields
+   clearFields
    initButton xeModeReady
 
 endProc:
@@ -1184,7 +1222,7 @@ Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
       If txtField(0).Text <> "" And oTrans.EditMode = xeModeReady Then
          If DateDiff("d", oApp.ServerDate, oTrans.Master("dModified")) = 0 And oTrans.Master("cTranStat") = xeStateOpen Then
             If oApp.UserLevel >= xeManager Then
-               If oTrans.DeleteTransaction Then ClearFields
+               If oTrans.DeleteTransaction Then clearFields
             End If
          Else
             MsgBox "Unable to Delete Transaction!", vbCritical, "Warning"
@@ -1274,7 +1312,7 @@ errProc:
                        & " )", True
 End Sub
 
-Private Sub ClearFields()
+Private Sub clearFields()
    For pnCtr = 0 To 20
       Select Case pnCtr
       Case 1
@@ -1288,6 +1326,7 @@ Private Sub ClearFields()
       End Select
    Next
 
+   lblTradeIn.Caption = "0.00"
    lblAdvPayment.Caption = "0.00"
 
 '   cmbField(0).ListIndex = oTrans.Master("cTranType")
@@ -2240,7 +2279,7 @@ Private Sub txtField_Validate(Index As Integer, Cancel As Boolean)
          End If
       Case 19, 20
          If Trim(.Text) = "" And Trim(txtField(0).Text) = "" Then
-            ClearFields
+            clearFields
             Exit Sub
          End If
 
@@ -2250,7 +2289,7 @@ Private Sub txtField_Validate(Index As Integer, Cancel As Boolean)
                LoadDetail
             Else
                If Index = 19 Then
-                  ClearFields
+                  clearFields
                   Exit Sub
                Else
                End If
@@ -2298,6 +2337,10 @@ Private Sub LoadMaster()
 
    If CStr(oTrans.Master("nReplAmtx")) > 0 Then
       lblAdvPayment.Caption = Format(oTrans.Master("nReplAmtx"), "#,##0.00")
+   End If
+   
+   If oTrans.TITU.TranTotl > 0 Then
+      lblTradeIn.Caption = Format(oTrans.TITU.TranTotl, "#,##0.00")
    End If
 
    Label2.Caption = Format(TransStat(oTrans.Master("cTranStat")), ">")
