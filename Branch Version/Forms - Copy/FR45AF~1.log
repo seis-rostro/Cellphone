@@ -1,0 +1,17 @@
+Line 15: Class xrControl.xrFrame of control xrFrame1 was not a loaded control class.
+Line 84: Class xrControl.xrButton of control cmdButton was not a loaded control class.
+Line 107: Class xrControl.xrButton of control cmdButton was not a loaded control class.
+Line 22: The property name _ExtentX in xrFrame1 is invalid.
+Line 23: The property name _ExtentY in xrFrame1 is invalid.
+Line 91: The property name _ExtentX in cmdButton is invalid.
+Line 92: The property name _ExtentY in cmdButton is invalid.
+Line 93: The property name Caption in cmdButton is invalid.
+Line 94: The property name AccessKey in cmdButton is invalid.
+Line 105: The property name PicturePos in cmdButton is invalid.
+Line 84: Property Picture in cmdButton could not be set.
+Line 114: The property name _ExtentX in cmdButton is invalid.
+Line 115: The property name _ExtentY in cmdButton is invalid.
+Line 116: The property name Caption in cmdButton is invalid.
+Line 117: The property name AccessKey in cmdButton is invalid.
+Line 128: The property name PicturePos in cmdButton is invalid.
+Line 107: Property Picture in cmdButton could not be set.

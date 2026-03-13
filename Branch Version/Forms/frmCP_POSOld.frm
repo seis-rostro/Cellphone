@@ -35,7 +35,7 @@ Begin VB.Form frmCP_POSOld
       Locked          =   -1  'True
       TabIndex        =   40
       Text            =   "0.00"
-      Top             =   10815
+      Top             =   10800
       Width           =   2310
    End
    Begin VB.TextBox txtField 
@@ -153,7 +153,7 @@ Begin VB.Form frmCP_POSOld
       Enabled         =   0   'False
       BeginProperty Font 
          Name            =   "Microsoft Sans Serif"
-         Size            =   12
+         Size            =   11.25
          Charset         =   0
          Weight          =   700
          Underline       =   0   'False
@@ -1101,6 +1101,7 @@ Private oFormSerialNewNo As frmSOSerialNo
 Private WithEvents oTrans As clsCPSales
 Attribute oTrans.VB_VarHelpID = -1
 Private oReceipt As ggcCPSales.Receipt
+Private p_ormjJSON As New clsJSON
 
 Dim pnIndex As Integer
 Dim pnCtr As Integer
@@ -1123,6 +1124,9 @@ Private Sub Form_Load()
    Set oFormSerialNewNo = New frmSOSerialNo
    Set oTrans = New clsCPSales
    Set oTrans.AppDriver = oApp
+   
+   'mac 2026.02.26 dinagdag ko itong line para yung baseclass na ang bahala sa begin, commit at rollback
+   oTrans.DisplayConfirmation = True
 
    oTrans.InitTransaction
    oTrans.NewTransaction
@@ -1178,7 +1182,7 @@ Private Sub initButton(lnStat As Integer)
       lblButton(3).Caption = "F4-"
       lblButton(4).Caption = "F5-Save"
       lblButton(5).Caption = "F6-Price"
-      lblButton(6).Caption = "F7-"
+      lblButton(6).Caption = "F7-G-Connect"
       lblButton(7).Caption = "F8-Delete"
       lblButton(8).Caption = "F9-Wallet"
       lblButton(9).Caption = "F10-Eload"
@@ -1203,7 +1207,7 @@ Private Sub InitGrid()
       .Font = "MS Sans Serif"
 
       'column title
-      .TextMatrix(0, 1) = "BarrCode"
+      .TextMatrix(0, 1) = "Barcode"
       .TextMatrix(0, 2) = "Description"
       .TextMatrix(0, 3) = "Qty"
       .TextMatrix(0, 4) = "Unit Price"
@@ -1326,32 +1330,62 @@ Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
             End If
          End If
       Case vbKeyF6
-      'she 2022-10-25
-      'temprary disable for mobile fiesta
-      If oApp.BranchCode <> "C0M2" Then
-         MsgBox "Updating of price was disallowed." & vbCrLf & vbCrLf & _
-                  "Please input the price difference as discount rate or amount.", vbInformation, "Notice"
-         Exit Sub
-      End If
-      
-         If oTrans.EditMode = xeModeAddNew Then
-            If oTrans.Detail(GridEditor1.Row - 1, "sStockIDx") = "" Then Exit Sub
-            With frmSOParts
-               .StockID = oTrans.Detail(GridEditor1.Row - 1, "sStockIDx")
-               .Show 1
-
-               If Not .Cancelled Then
-                  With GridEditor1
-                     oTrans.Detail(.Row - 1, "nUnitPrce") = frmSOParts.UnitPrice
-                     .TextMatrix(.Row, 4) = Format(oTrans.Detail(.Row - 1, "nUnitPrce"), "#,##0.00")
-                     .TextMatrix(.Row, 7) = Format(CDbl(.TextMatrix(.Row, 3)) * CDbl(.TextMatrix(.Row, 4)) * _
-                                       (100 - CDbl(Replace(.TextMatrix(.Row, 5), "%", ""))) / 100 - CDbl(.TextMatrix(.Row, 6)), "#,##0.00")
-                     Call GrandTotal
-                  End With
-               End If
-            End With
+         'she 2025 to allow the srp if item is insurance as per instruction by sir rex
+         If oTrans.Detail(GridEditor1.Row - 1, "sCategID1") = "C001052" Or oTrans.Detail(GridEditor1.Row - 1, "sCategID1") = "C0W1026" Or _
+            oApp.BranchCode = "C0M2" Then 'mac 2026.02.26 added allow C0M2 for change price, Mobile Fiesta branch
+            
+            If oTrans.EditMode = xeModeAddNew Then
+               If oTrans.Detail(GridEditor1.Row - 1, "sStockIDx") = "" Then Exit Sub
+               With frmSOParts
+                  .StockID = oTrans.Detail(GridEditor1.Row - 1, "sStockIDx")
+                  .Show 1
+   
+                  If Not .Cancelled Then
+                     With GridEditor1
+                        oTrans.Detail(.Row - 1, "nUnitPrce") = frmSOParts.UnitPrice
+                        .TextMatrix(.Row, 4) = Format(oTrans.Detail(.Row - 1, "nUnitPrce"), "#,##0.00")
+                        .TextMatrix(.Row, 7) = Format(CDbl(.TextMatrix(.Row, 3)) * CDbl(.TextMatrix(.Row, 4)) * _
+                                          (100 - CDbl(Replace(.TextMatrix(.Row, 5), "%", ""))) / 100 - CDbl(.TextMatrix(.Row, 6)), "#,##0.00")
+                        Call GrandTotal
+                     End With
+                  End If
+               End With
+            End If
+         Else
+            lnRep = MsgBox("Updating of price was disallowed." & vbCrLf & _
+                        "Please input the price difference as disc rate or amount.", vbCritical, "Notice")
          End If
-      Case vbKeyF7
+      Case vbKeyF7 'GConnect
+        If oTrans.EditMode = xeModeAddNew Then
+            'clear detail
+            If Trim(.TextMatrix(.Row, 1)) <> "" Then
+               If .Rows = 2 Then
+                  If oTrans.deleteDetail(.Row - 1) Then
+                     oTrans.addDetail
+                     .TextMatrix(1, 0) = "1"
+                     .TextMatrix(1, 1) = oTrans.Detail(0, "xReferNox")
+                     .TextMatrix(1, 2) = oTrans.Detail(0, "sDescript")
+                     .TextMatrix(1, 3) = Format(oTrans.Detail(0, "nQuantity"), "#,##0")
+                     .TextMatrix(1, 4) = Format(oTrans.Detail(0, "nUnitPrce"), "#,##0.00")
+                     .TextMatrix(1, 5) = Format(oTrans.Detail(0, "nDiscRate"), "##0.00") & "%"
+                     .TextMatrix(1, 6) = Format(oTrans.Detail(0, "nDiscAmtx"), "#,##0.00")
+                     .TextMatrix(1, 7) = "0.00"
+                  End If
+               Else
+                  If oTrans.deleteDetail(.Row - 1) Then Call deleteDetail
+               End If
+            lblUnitPrice.Caption = .TextMatrix(.Row, 7)
+            Call GrandTotal
+            End If
+            
+            If oTrans.LoadConnect() Then
+'                MsgBox "G-Connect Information Successfully loaded!", vbInformation, "Notice"
+                If p_ormjJSON.toString(oTrans.ConnectQR) <> "" Then
+                 LoadQRDetail
+                End If
+            End If
+            
+        End If
       Case vbKeyF8
          If oTrans.EditMode = xeModeAddNew Then
             If Trim(.TextMatrix(.Row, 1)) <> "" Then
@@ -1734,7 +1768,7 @@ Private Function validGCare() As Boolean
          If Not lbGCare Then
             If MsgBox("TITU must be bundled with GCarePlus." & vbCrLf & vbCrLf & _
                         "Press OK for system auto suggest or click CANCEL to manually add.", vbInformation + vbOKCancel, "Information") = vbOK Then
-               If Not oTrans.addGCare Then
+               If Not oTrans.AddGCare Then
                   MsgBox "No GCare Product as added.", vbCritical, "Warning"
                   GoTo endProc
                Else
@@ -2248,5 +2282,116 @@ Private Sub ComputeAdjustment(lsTransNox As String)
    lorec.Open lsSQL, oApp.Connection, , , adCmdText
    
    pnTtlAdj = lorec("nCredtAmt")
+End Sub
+
+Private Sub LoadQRDetail()
+Dim lnSerialCount As Long
+Dim lsBarcode As String
+Dim lnCtr As Integer
+Dim lnRow As Integer
+Dim lnQty As Integer
+Dim lbDuplicate As Boolean
+Dim laNoBarcode As Collection
+Dim lsNoBarcode As String
+Dim lsPayForm As String
+Dim lnCheckAmt As Currency
+   Dim lnCashAmtx As Currency
+   Dim lnCardAmtx As Currency
+   Dim lnTotalAmt As Currency
+   Dim lsOldProc As String
+
+Set laNoBarcode = New Collection
+
+    lnSerialCount = oTrans.ConnectQR.Item("sSerialNo").Count
+    Debug.Print "Serial Count: " & lnSerialCount
+
+    If lnSerialCount <= 0 Then Exit Sub
+    Debug.Print ("Serial Count " & lnSerialCount)
+    'adding detail information
+    For lnRow = 1 To lnSerialCount
+        lnQty = 1
+        lbDuplicate = False
+        Debug.Print (lnRow & " Item Serial/Barocde= " & oTrans.ConnectQR.Item("sSerialNo").Item(lnRow))
+        lsBarcode = oTrans.SearchReferNo("xReferNox", oTrans.ConnectQR.Item("sSerialNo").Item(lnRow))
+        
+        If Trim(lsBarcode) <> "" Then
+            With GridEditor1
+               For lnCtr = 1 To .Rows - 1
+                  If Trim(LCase(lsBarcode)) = Trim(LCase(.TextMatrix(lnCtr, 1))) Then
+                     .TextMatrix(lnCtr, 3) = CDbl(.TextMatrix(lnCtr, 3)) + lnQty
+                     .TextMatrix(.Row, 7) = Format(CDbl(.TextMatrix(.Row, 3)) * CDbl(.TextMatrix(.Row, 4)) * _
+                                    (100 - CDbl(Replace(.TextMatrix(.Row, 5), "%", ""))) / 100 - CDbl(.TextMatrix(.Row, 6)), "#,##0.00")
+                     oTrans.Detail(lnCtr - 1, "nQuantity") = CDbl(.TextMatrix(lnCtr, 3))
+                     Call GrandTotal
+                     lbDuplicate = True
+                     Exit For
+                  End If
+               Next
+            End With
+            
+            If Not lbDuplicate Then
+               If Trim(lsBarcode) <> "" Then Call InsertDetail(lnQty, lsBarcode)
+            End If
+         Else
+         laNoBarcode.Add oTrans.ConnectQR.Item("sSerialNo").Item(lnRow)
+         End If
+     Next
+     
+     If laNoBarcode.Count > 0 Then
+        lsNoBarcode = ""
+        For lnCtr = 1 To laNoBarcode.Count
+            lsNoBarcode = lsNoBarcode & ", " & laNoBarcode.Item(lnCtr)
+        Next
+        
+        lsNoBarcode = Mid(lsNoBarcode, 3)
+        
+        MsgBox "Please check inventory for Barcode / Serial No.:" & vbCrLf & vbCrLf & _
+           lsNoBarcode, vbInformation, "Notice"
+           
+    End If
+    
+    
+    Dim lsConnectCompnyNm As String
+    
+     If Not oTrans.ConnectQR Is Nothing Then
+     lsConnectCompnyNm = oTrans.ConnectQR.Item("sCustInfo").Item("lastName") & ", " & oTrans.ConnectQR.Item("sCustInfo").Item("firstName")
+      With oReceipt
+      'initialize receiptclass
+      .Client = oTrans.Client
+      .Sales = oTrans
+      Set .ReceiptForm.Sales = oTrans
+      .ReceiptForm.Client = .Client
+      
+      End With
+        
+      Debug.Print ("QR Value ClientID Found = " + oTrans.Client.Master("sClientID"))
+        If oTrans.Client.Master("sClientID") <> "" Then
+            If Not oTrans.Client.SearchClient(oTrans.Client.Master("sClientID"), True) Then
+                 Call oReceipt.ReceiptForm.getCustomer(lsConnectCompnyNm, False)
+            End If
+        Else
+            If Not oTrans.Client.SearchClient(lsConnectCompnyNm, False) Then
+                Call oReceipt.ReceiptForm.getCustomer(oTrans.Client.Master("sCompnyNm"), False)
+            End If
+        End If
+    End If
+    'set payment information
+     
+     lsPayForm = oTrans.ConnectQR.Item("sPaymInfo").Item("paymentForm")
+     
+     Select Case lsPayForm
+        Case "0"
+'            Debug.Print ("sPaymInfo/ Amount= " & oTrans.ConnectQR.Item("sPaymInfo").Item("sPayAmt"))
+        Case "1"
+'           MsgBox "Payment type is Credit Card. Please obtain the customer's card information.", vbInformation, "Notice"
+        Case "2"
+         
+            If Not oTrans.getFinancer(oTrans.ConnectQR.Item("sPaymInfo").Item("financer"), False) Then
+                MsgBox "Unable to load Financer.", vbExclamation, "Notice"
+            End If
+     End Select
+     
+     
+    
 End Sub
 

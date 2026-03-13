@@ -783,7 +783,7 @@ Private Sub cmdButton_Click(Index As Integer)
    Case 3 'cancel
       If MsgBox("This action will discard the updates made." & vbCrLf & _
                   "Do you want to continue?", vbQuestion & vbYesNo, "Confirm") = vbYes Then
-         ClearFields
+         clearFields
          LoadDetail
          initButton 0
       End If
@@ -839,7 +839,7 @@ Private Sub Form_Load()
    oSkin.ApplySkin xeFormTransEqualLeft
 
    InitForm
-   ClearFields
+   clearFields
    initButton 0
    
    initSQL
@@ -1176,6 +1176,7 @@ Private Function LoadDetail() As Boolean
    Dim lsOldProc As String
    Dim lnCtr As Integer
    Dim lnRow As Integer
+   Dim lsSQL As String
    
 '   lsOldProc = pxeMODULENAME & ".LoadDetail"
    
@@ -1185,7 +1186,13 @@ Private Function LoadDetail() As Boolean
    
    If poRSMaster.State = adStateOpen Then poRSMaster.Close
    Debug.Print psSQLMaster
-   poRSMaster.Open psSQLMaster, oApp.Connection, adOpenStatic, adLockOptimistic, adCmdText
+   
+   'mac 2025-12-02
+   'limit the promo thru to year 2025 only
+   'over the kasi ang naloload sa flexgrid
+   lsSQL = AddCondition(psSQLMaster, "a.dPromoTru >= '2025-01-01'")
+   
+   poRSMaster.Open lsSQL, oApp.Connection, adOpenStatic, adLockOptimistic, adCmdText
    Set poRSMaster.ActiveConnection = Nothing
    
    With MSFlexGrid1
@@ -1336,7 +1343,7 @@ Private Sub InitForm()
 
 End Sub
 
-Private Sub ClearFields()
+Private Sub clearFields()
    Dim loTxt As TextBox
    
    For Each loTxt In txtField

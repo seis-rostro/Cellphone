@@ -610,7 +610,6 @@ Private Sub cmdButton_Click(Index As Integer)
                   MsgBox "Transaction Saved Successfully.", vbInformation, "Notice"
                   If MsgBox("Do you want to print transaction?", _
                      vbQuestion + vbYesNo, "Confirm") = vbYes Then
-      
                      Call PrintTrans
                   End If
                   InitTransaction
@@ -1285,7 +1284,7 @@ End Function
 Private Function PrintTrans() As Boolean
    Dim loreport As frmRepViewer
    Dim lrs As Recordset
-   Dim loRS As Recordset
+   Dim lors As Recordset
    Dim lnCtr As Integer
    Dim lsOldProc As String
    Dim lnTotlWSerial As Double
@@ -1338,10 +1337,10 @@ Private Function PrintTrans() As Boolean
    oReport.FieldMappingType = crAutoFieldMapping
    oReport.Database.SetDataSource lrs
 
-   Set loRS = New ADODB.Recordset
-   If loRS.State = adStateOpen Then loRS.Close
+   Set lors = New ADODB.Recordset
+   If lors.State = adStateOpen Then lors.Close
 
-   loRS.Open "SELECT" _
+   lors.Open "SELECT" _
                & "  a.sAddressx" _
                & ", CONCAT(b.sTownName, ', ' , c.sProvName, ' ' , b.sZippCode) xTownName" _
                & ", a.sBranchNm" _
@@ -1355,8 +1354,8 @@ Private Function PrintTrans() As Boolean
 
    oReport.Sections("PHa").ReportObjects("txtRefNo").SetText "CP" & "-" & Right(oTrans.Master("sTransNox"), 10)
    oReport.Sections("PHa").ReportObjects("txtDate").SetText txtField(1).Text
-   oReport.Sections("PHb").ReportObjects("txtTo").SetText loRS("sBranchNm")
-   oReport.Sections("PHb").ReportObjects("txtToAddress").SetText loRS("sAddressx") & IFNull(loRS("xTownName"), "")
+   oReport.Sections("PHb").ReportObjects("txtTo").SetText lors("sBranchNm")
+   oReport.Sections("PHb").ReportObjects("txtToAddress").SetText lors("sAddressx") & IFNull(lors("xTownName"), "")
    oReport.Sections("PHb").ReportObjects("txtFrom").SetText oApp.ClientName
    oReport.Sections("PHb").ReportObjects("txtFromAddress").SetText oApp.Address & ", " & oApp.TownCity & ", " & oApp.Province & " " & oApp.ZippCode
    oReport.Sections("RFb").ReportObjects("txtRemarks").SetText lsSourceNo & " " & txtField(4).Text
@@ -1364,6 +1363,9 @@ Private Function PrintTrans() As Boolean
    oReport.Sections("RFb").ReportObjects("txtWOutSerial").SetText IIf(lnTotlWOSerial = 0, "", Format(lnTotlWOSerial, "#,##0"))
    oReport.Sections("PF").ReportObjects("txtRptUser").SetText oApp.UserName
 
+    'REPRINT WATERMARKS
+    oReport.Sections("PHd").Suppress = oTrans.Master("cTranStat") < 1
+    
    Set loreport = New frmRepViewer
    Set loreport.ReportSource = oReport
    loreport.Show
@@ -1379,7 +1381,7 @@ endPoc:
    Set loreport = Nothing
    Set oReport = Nothing
    Set lrs = Nothing
-   Set loRS = Nothing
+   Set lors = Nothing
    Exit Function
 errProc:
    PrintTrans = False
@@ -1388,7 +1390,7 @@ End Function
 
 'she 2016-03-01 10:53 am
 Private Function PrintOrders() As Boolean
-   Dim loRS As Recordset
+   Dim lors As Recordset
    Dim lsSQL As String
    Dim lsLineStr As String
    Dim lsTransNox As String
@@ -1419,10 +1421,10 @@ Private Function PrintOrders() As Boolean
             " AND a.sTransNox = " & strParm(oTrans.StockReqSourceNo) & _
             " ORDER BY e.sBrandNme, d.sModelCde,d.sModelNme,f.sColorNme"
    
-   Set loRS = New Recordset
-   loRS.Open lsSQL, oApp.Connection, , , adCmdText
+   Set lors = New Recordset
+   lors.Open lsSQL, oApp.Connection, , , adCmdText
    
-   If loRS.EOF Then GoTo endProc
+   If lors.EOF Then GoTo endProc
    
    
    Set poPrinter = New clsPrintDirect
@@ -1433,7 +1435,7 @@ Private Function PrintOrders() As Boolean
       If Not .BegPrint() Then GoTo endProc
       
       If pnPrintRow = 65 Or pnPrintRow = 0 Then
-         If lsTransNox <> loRS("sTransNox") Then
+         If lsTransNox <> lors("sTransNox") Then
             lsLineStr = padRight("Brand", 15) & " " & _
                                  padRight("Code", 25) & " " & _
                                  padRight("Model", 25) & " " & _
@@ -1444,27 +1446,27 @@ Private Function PrintOrders() As Boolean
                .PrintText pnPrintRow, 2, lsLineStr
                pnPrintRow = pnPrintRow + 1
    
-               lsLineStr = padRight(loRS("sBranchNm"), 20) & " " & _
-                              Format(loRS("sTransNox"), "@@@@-@@-@@@@@@") & "   " & _
-                              Format(loRS("dTransact"), "MMM DD, YYYY")
+               lsLineStr = padRight(lors("sBranchNm"), 20) & " " & _
+                              Format(lors("sTransNox"), "@@@@-@@-@@@@@@") & "   " & _
+                              Format(lors("dTransact"), "MMM DD, YYYY")
                .PrintText pnPrintRow, 2, lsLineStr
                pnPrintRow = pnPrintRow + 2
          End If
       End If
       
-      Do Until loRS.EOF
-          lsLineStr = Left(padRight(Trim(loRS("sBrandNme") + "_______________"), 15), 15) & _
-                     Left(padRight(Trim(loRS("sModelCde") + "____________________"), 25), 25) & _
-                     Left(padRight(Trim(loRS("sModelNme") + "____________________"), 25), 25) & _
-                     Left(padRight(Trim(loRS("sColorNme") + "_______________"), 15), 15) & _
-                     Left(padRight(Trim(Format(loRS("nQtyOnHnd"), "#0") + "_______"), 7), 7) & _
-                     padRight(Trim(Format(loRS("nQuantity"), "#0")), 7)
+      Do Until lors.EOF
+          lsLineStr = Left(padRight(Trim(lors("sBrandNme") + "_______________"), 15), 15) & _
+                     Left(padRight(Trim(lors("sModelCde") + "____________________"), 25), 25) & _
+                     Left(padRight(Trim(lors("sModelNme") + "____________________"), 25), 25) & _
+                     Left(padRight(Trim(lors("sColorNme") + "_______________"), 15), 15) & _
+                     Left(padRight(Trim(Format(lors("nQtyOnHnd"), "#0") + "_______"), 7), 7) & _
+                     padRight(Trim(Format(lors("nQuantity"), "#0")), 7)
             
             .PrintText pnPrintRow, 2, lsLineStr
             pnPrintRow = pnPrintRow + 1
             
-            lsTransNox = loRS("sTransNox")
-      loRS.MoveNext
+            lsTransNox = lors("sTransNox")
+      lors.MoveNext
       Loop
       .EndPrint
    End With
@@ -1550,7 +1552,7 @@ End Function
 
 Private Function CPTransfer() As Boolean
    Dim lsSQL As String
-   Dim loRS As Recordset
+   Dim lors As Recordset
    Dim loTrans As clsCPStockIssue
    
    lsSQL = "SELECT c.sSerialNo" & _
@@ -1561,9 +1563,9 @@ Private Function CPTransfer() As Boolean
                " AND cTranStat = '2'" & _
                " AND dReceived = '2023-02-07'"
       
-   Set loRS = New Recordset
-   loRS.Open lsSQL, oApp.Connection, , , adCmdText
-   Set loRS.ActiveConnection = Nothing
+   Set lors = New Recordset
+   lors.Open lsSQL, oApp.Connection, , , adCmdText
+   Set lors.ActiveConnection = Nothing
    
    Set loTrans = New clsCPStockIssue
    Set loTrans.AppDriver = oApp
@@ -1578,12 +1580,12 @@ Private Function CPTransfer() As Boolean
       .Master("dTransact") = oApp.ServerDate
       .Master("sRemarksx") = "For Guanzon Festival"
       
-      Do Until loRS.EOF
+      Do Until lors.EOF
          '.Detail(.ItemCount - 1, "xrefernox") = loRS("sSerialNo")
-         If .searchDetail(.ItemCount - 1, "xrefernox", loRS("sSerialNo")) Then
-            If Not loRS.EOF Then .addDetail
+         If .searchDetail(.ItemCount - 1, "xrefernox", lors("sSerialNo")) Then
+            If Not lors.EOF Then .addDetail
          End If
-         loRS.MoveNext
+         lors.MoveNext
       Loop
       If .Detail(.ItemCount - 1, "sStockIDx") = "" Then
          .deleteDetail (.ItemCount - 1)

@@ -546,7 +546,7 @@ Private Sub cmdButton_Click(Index As Integer)
             Do While pnCtr < .Rows
                If Trim(.TextMatrix(pnCtr, 1)) = "" Then
                   .Row = pnCtr
-                  If oTrans.deleteDetail(.Row - 1) Then
+                  If oTrans.DeleteDetail(.Row - 1) Then
                      InitForm
                      LoadDetail
                   End If
@@ -559,7 +559,7 @@ Private Sub cmdButton_Click(Index As Integer)
             If .Rows > 27 Then .ColWidth(1) = 3200
          End If
 
-         If isEntryOk Then
+         If isEntryOK Then
             If oTrans.SaveTransaction = True Then
                MsgBox "Transaction Saved Successfully!!!", vbInformation, "Notice"
                Call InitForm
@@ -574,7 +574,7 @@ Private Sub cmdButton_Click(Index As Integer)
       Case 1 'Search
          If pbGridFocus Then
             If txtOthers(1).hwnd Then
-               If oTrans.searchDetail(.Row - 1, pnIndex, txtOthers(1)) Then
+               If oTrans.SearchDetail(.Row - 1, pnIndex, txtOthers(1)) Then
                   .Row = .Rows - 1
                   Call MSFlexGrid1_Click
                End If
@@ -588,7 +588,7 @@ Private Sub cmdButton_Click(Index As Integer)
          If .TextMatrix(.Rows - 1, 1) = "" Then Exit Sub
          If MsgBox("This Model will be Set to Inactive!!! Do you want to continue?", vbQuestion & vbYesNo, "Confirm") = vbYes Then
             If .Rows > 2 Then
-               If oTrans.deleteDetail(.Row - 1) Then
+               If oTrans.DeleteDetail(.Row - 1) Then
                   InitForm
                   LoadDetail
                End If
@@ -864,7 +864,7 @@ Private Sub ClearFields()
    InitForm
 End Sub
 
-Private Function isEntryOk() As Boolean
+Private Function isEntryOK() As Boolean
    If txtField(2).Text = "" Then
       MsgBox "Invalid Destination Detected!!!" & vbCrLf & _
              "Please Verify your Entry then Try Again!!!", vbCritical, "Warning"
@@ -882,10 +882,10 @@ Private Function isEntryOk() As Boolean
    End With
 
 EntryOK:
-   isEntryOk = True
+   isEntryOK = True
    Exit Function
 EntryNotOK:
-   isEntryOk = False
+   isEntryOK = False
 End Function
 
 Private Sub txtField_LostFocus(Index As Integer)
@@ -971,7 +971,7 @@ Private Sub txtOthers_KeyDown(Index As Integer, KeyCode As Integer, Shift As Int
    If KeyCode = vbKeyF3 Then
       With MSFlexGrid1
          If Index = 1 Then
-            If oTrans.searchDetail(.Row - 1, Index, txtOthers(Index)) Then txtOthers(4).SetFocus
+            If oTrans.SearchDetail(.Row - 1, Index, txtOthers(Index)) Then txtOthers(4).SetFocus
             .Refresh
          End If
       End With

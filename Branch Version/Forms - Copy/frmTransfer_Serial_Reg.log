@@ -1,0 +1,32 @@
+Line 17: Class xrControl.xrFrame of control xrframe1 was not a loaded control class.
+Line 28: Class xrControl.xrFrame of control xrframe1 was not a loaded control class.
+Line 69: Class xrControl.xrButton of control cmdButton was not a loaded control class.
+Line 91: Class xrControl.xrButton of control cmdButton was not a loaded control class.
+Line 114: Class xrControl.xrButton of control cmdButton was not a loaded control class.
+Line 136: Class MSComctlLib.ProgressBar of control ProgressBar1 was not a loaded control class.
+Line 148: Class xrControl.xrFrame of control xrframe1 was not a loaded control class.
+Line 24: The property name _ExtentX in xrframe1 is invalid.
+Line 25: The property name _ExtentY in xrframe1 is invalid.
+Line 35: The property name _ExtentX in xrframe1 is invalid.
+Line 36: The property name _ExtentY in xrframe1 is invalid.
+Line 76: The property name _ExtentX in cmdButton is invalid.
+Line 77: The property name _ExtentY in cmdButton is invalid.
+Line 78: The property name Caption in cmdButton is invalid.
+Line 79: The property name AccessKey in cmdButton is invalid.
+Line 69: Property Picture in cmdButton could not be set.
+Line 92: The property name Cancel in cmdButton is invalid.
+Line 99: The property name _ExtentX in cmdButton is invalid.
+Line 100: The property name _ExtentY in cmdButton is invalid.
+Line 101: The property name Caption in cmdButton is invalid.
+Line 102: The property name AccessKey in cmdButton is invalid.
+Line 113: Property Picture in cmdButton had an invalid file reference.
+Line 121: The property name _ExtentX in cmdButton is invalid.
+Line 122: The property name _ExtentY in cmdButton is invalid.
+Line 123: The property name Caption in cmdButton is invalid.
+Line 124: The property name AccessKey in cmdButton is invalid.
+Line 135: Property Picture in cmdButton had an invalid file reference.
+Line 143: The property name _ExtentX in ProgressBar1 is invalid.
+Line 144: The property name _ExtentY in ProgressBar1 is invalid.
+Line 145: The property name _Version in ProgressBar1 is invalid.
+Line 155: The property name _ExtentX in xrframe1 is invalid.
+Line 156: The property name _ExtentY in xrframe1 is invalid.

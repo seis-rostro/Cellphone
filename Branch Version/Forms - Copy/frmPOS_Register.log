@@ -1,0 +1,81 @@
+Line 27: Class xrControl.xrFrame of control xrFrame3 was not a loaded control class.
+Line 169: Class xrControl.xrFrame of control xrFrame2 was not a loaded control class.
+Line 179: Class MSFlexGridLib.MSFlexGrid of control MSFlexGrid1 was not a loaded control class.
+Line 197: Class xrControl.xrFrame of control xrFrame1 was not a loaded control class.
+Line 454: Class xrControl.xrButton of control cmdButton was not a loaded control class.
+Line 481: Class xrControl.xrButton of control cmdButton was not a loaded control class.
+Line 509: Class xrControl.xrButton of control cmdButton was not a loaded control class.
+Line 536: Class xrControl.xrButton of control cmdButton was not a loaded control class.
+Line 563: Class xrControl.xrButton of control cmdButton was not a loaded control class.
+Line 586: Class xrControl.xrButton of control cmdButton was not a loaded control class.
+Line 609: Class xrControl.xrButton of control cmdButton was not a loaded control class.
+Line 33: The property name _ExtentX in xrFrame3 is invalid.
+Line 34: The property name _ExtentY in xrFrame3 is invalid.
+Line 175: The property name _ExtentX in xrFrame2 is invalid.
+Line 176: The property name _ExtentY in xrFrame2 is invalid.
+Line 185: The property name _ExtentX in MSFlexGrid1 is invalid.
+Line 186: The property name _ExtentY in MSFlexGrid1 is invalid.
+Line 187: The property name _Version in MSFlexGrid1 is invalid.
+Line 190: The property name BackColorSel in MSFlexGrid1 is invalid.
+Line 191: The property name ForeColorSel in MSFlexGrid1 is invalid.
+Line 192: The property name FocusRect in MSFlexGrid1 is invalid.
+Line 193: The property name SelectionMode in MSFlexGrid1 is invalid.
+Line 204: The property name _ExtentX in xrFrame1 is invalid.
+Line 205: The property name _ExtentY in xrFrame1 is invalid.
+Line 461: The property name _ExtentX in cmdButton is invalid.
+Line 462: The property name _ExtentY in cmdButton is invalid.
+Line 463: The property name Caption in cmdButton is invalid.
+Line 464: The property name AccessKey in cmdButton is invalid.
+Line 475: The property name CaptionAlign in cmdButton is invalid.
+Line 477: The property name BackColorDown in cmdButton is invalid.
+Line 478: The property name BorderColorFocus in cmdButton is invalid.
+Line 479: The property name BorderColorHover in cmdButton is invalid.
+Line 454: Property Picture in cmdButton could not be set.
+Line 489: The property name _ExtentX in cmdButton is invalid.
+Line 490: The property name _ExtentY in cmdButton is invalid.
+Line 491: The property name Caption in cmdButton is invalid.
+Line 492: The property name AccessKey in cmdButton is invalid.
+Line 503: The property name CaptionAlign in cmdButton is invalid.
+Line 505: The property name BackColorDown in cmdButton is invalid.
+Line 506: The property name BorderColorFocus in cmdButton is invalid.
+Line 507: The property name BorderColorHover in cmdButton is invalid.
+Line 481: Property Picture in cmdButton could not be set.
+Line 516: The property name _ExtentX in cmdButton is invalid.
+Line 517: The property name _ExtentY in cmdButton is invalid.
+Line 518: The property name Caption in cmdButton is invalid.
+Line 519: The property name AccessKey in cmdButton is invalid.
+Line 530: The property name CaptionAlign in cmdButton is invalid.
+Line 532: The property name BackColorDown in cmdButton is invalid.
+Line 533: The property name BorderColorFocus in cmdButton is invalid.
+Line 534: The property name BorderColorHover in cmdButton is invalid.
+Line 509: Property Picture in cmdButton could not be set.
+Line 543: The property name _ExtentX in cmdButton is invalid.
+Line 544: The property name _ExtentY in cmdButton is invalid.
+Line 545: The property name Caption in cmdButton is invalid.
+Line 546: The property name AccessKey in cmdButton is invalid.
+Line 557: The property name CaptionAlign in cmdButton is invalid.
+Line 559: The property name BackColorDown in cmdButton is invalid.
+Line 560: The property name BorderColorFocus in cmdButton is invalid.
+Line 561: The property name BorderColorHover in cmdButton is invalid.
+Line 536: Property Picture in cmdButton could not be set.
+Line 570: The property name _ExtentX in cmdButton is invalid.
+Line 571: The property name _ExtentY in cmdButton is invalid.
+Line 572: The property name Caption in cmdButton is invalid.
+Line 573: The property name AccessKey in cmdButton is invalid.
+Line 584: The property name CaptionAlign in cmdButton is invalid.
+Line 563: Property Picture in cmdButton could not be set.
+Line 593: The property name _ExtentX in cmdButton is invalid.
+Line 594: The property name _ExtentY in cmdButton is invalid.
+Line 595: The property name Caption in cmdButton is invalid.
+Line 596: The property name AccessKey in cmdButton is invalid.
+Line 607: The property name CaptionAlign in cmdButton is invalid.
+Line 586: Property Picture in cmdButton could not be set.
+Line 617: The property name _ExtentX in cmdButton is invalid.
+Line 618: The property name _ExtentY in cmdButton is invalid.
+Line 619: The property name Caption in cmdButton is invalid.
+Line 620: The property name AccessKey in cmdButton is invalid.
+Line 631: The property name CaptionAlign in cmdButton is invalid.
+Line 633: The property name BackColorDown in cmdButton is invalid.
+Line 634: The property name BorderColorFocus in cmdButton is invalid.
+Line 635: The property name BorderColorHover in cmdButton is invalid.
+Line 609: Property Picture in cmdButton could not be set.

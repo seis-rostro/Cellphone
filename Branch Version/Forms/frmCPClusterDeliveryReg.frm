@@ -1317,9 +1317,12 @@ End Sub
 Private Sub gridTransfer_DblClick()
    With gridTransfer
       pnTransfer = .Row
-      
       Call setMCInfo
    End With
+End Sub
+
+Private Sub gridTransfer_DragDrop(Source As Control, x As Single, y As Single)
+
 End Sub
 
 Private Sub oTrans_LoadDelivery()
@@ -1500,9 +1503,9 @@ Private Function PrintTransaction() As Boolean
    oReport.Sections("RH").ReportObjects("sTransNox").SetText "CP" & "-" & Right(oTrans.Master("sTransNox"), 11)
    oReport.Sections("RH").ReportObjects("dTransact").SetText Format(oTrans.Master("dTransact"), "Mmm dd, yyyy")
    oReport.Sections("PH").ReportObjects("sRemarksx").SetText IFNull(oTrans.Master("sRemarksx"), "")
-   oReport.Sections("PH").ReportObjects("sDriverxx").SetText oTrans.Master("sDriverxx")
-   oReport.Sections("PH").ReportObjects("sHelper01").SetText oTrans.Master("sHelper01")
-   oReport.Sections("PH").ReportObjects("sHelper02").SetText IFNull(oTrans.Master("sHelper02"))
+   oReport.Sections("PH").ReportObjects("sDriverxx").SetText IFNull(oTrans.Master("sDriverxx"), "")
+   oReport.Sections("PH").ReportObjects("sHelper01").SetText IFNull(oTrans.Master("sHelper01"), "")
+   oReport.Sections("PH").ReportObjects("sHelper02").SetText IFNull(oTrans.Master("sHelper02"), "")
    oReport.Sections("PF").ReportObjects("sPrepared").SetText oApp.UserName
    oReport.Sections("PF").ReportObjects("PlateNo").SetText IFNull(oTrans.Master("sPlateNox"))
    
@@ -1595,6 +1598,11 @@ Private Function PrintTrans() As Boolean
    oReport.Sections("RFb").ReportObjects("txtWithSerial").SetText oTrans.Issuance.ItemCount
    oReport.Sections("RFb").ReportObjects("txtWOutSerial").SetText "0"
    oReport.Sections("PF").ReportObjects("txtRptUser").SetText oApp.UserName
+   
+   
+    'REPRINT WATERMARKS
+    oReport.Sections("PHd").Suppress = oTrans.Master("cTranStat") < 1
+    
    
    Set loreport = New frmRepViewer
    Set loreport.ReportSource = oReport

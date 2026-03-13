@@ -23,41 +23,41 @@ End Enum
 Dim psCriteria(3) As String
 
 Private Sub Main()
-'   Dim lsCommand As String
-'   Dim lasParam() As String
-'   Dim loSysMonitor As clsSysMonitor
-'
-'   On Error GoTo errProc
-'
-'   lsCommand = Command()
-'   lasParam = Split(lsCommand)
-'
-'   Set oApp = New clsAppDriver
-'
-'   If oApp.LoadEnv(lasParam(0), lasParam(1)) = False Then Exit Sub
-'
-'   Set oApp.mdiMain = mdiMain
-'   mdiMain.Caption = oApp.ProductName
-'   mdiMain.Show
-'
-'   If LCase(Mid(oApp.Config("sDBHostNm"), 1, 9)) <> LCase(Mid(oApp.ComputerName, 1, 9)) Or oApp.UserLevel = xeAudit Then Exit Sub
-'
-'   If oApp.isMainOffice = False Or oApp.IsWarehouse = False Then
-'      Set loSysMonitor = New clsSysMonitor
-'      Set loSysMonitor.AppDriver = oApp
-'      loSysMonitor.ProductID = oApp.ProductID
-'      loSysMonitor.InitMonitor
-'      If loSysMonitor.StartMonitor = False Then
-'         Unload mdiMain
-'         Exit Sub
-'      End If
-'   End If
-'
-'endProc:
-'   Exit Sub
-'errProc:
-'   MsgBox "Line No:" & Erl & vbCrLf & Err.Description, vbCritical, "Error"
-'   End
+   Dim lsCommand As String
+   Dim lasParam() As String
+   Dim loSysMonitor As clsSysMonitor
+
+   On Error GoTo errProc
+
+   lsCommand = Command()
+   lasParam = Split(lsCommand)
+
+   Set oApp = New clsAppDriver
+
+   If oApp.LoadEnv(lasParam(0), lasParam(1)) = False Then Exit Sub
+
+   Set oApp.mdiMain = mdiMain
+   mdiMain.Caption = oApp.ProductName
+   mdiMain.Show
+
+   If LCase(Mid(oApp.Config("sDBHostNm"), 1, 9)) <> LCase(Mid(oApp.ComputerName, 1, 9)) Or oApp.UserLevel = xeAudit Then Exit Sub
+
+   If oApp.isMainOffice = False Or oApp.IsWarehouse = False Then
+      Set loSysMonitor = New clsSysMonitor
+      Set loSysMonitor.AppDriver = oApp
+      loSysMonitor.ProductID = oApp.ProductID
+      loSysMonitor.InitMonitor
+      If loSysMonitor.StartMonitor = False Then
+         Unload mdiMain
+         Exit Sub
+      End If
+   End If
+
+endProc:
+   Exit Sub
+errProc:
+   MsgBox "Line No:" & Erl & vbCrLf & Err.Description, vbCritical, "Error"
+   End
 
    Set oApp = New clsAppDriver
    If oApp.LoadEnv("Telecom") = False Then
@@ -72,13 +72,13 @@ Private Sub Main()
    mdiMain.Caption = oApp.ProductName
    mdiMain.Show
 
-   If oApp.UserLevel = xeAudit Then
-      Exit Sub
-   Else
-      If oApp.BranchCode <> "M001" Then
-         If LCase(Mid(oApp.Config("sDBHostNm"), 1, 9)) <> LCase(Mid(oApp.ComputerName, 1, 9)) Then Exit Sub
-      End If
-   End If
+'   If oApp.UserLevel = xeAudit Then
+'      Exit Sub
+'   Else
+'      If oApp.BranchCode <> "M001" Then
+'         If LCase(Mid(oApp.Config("sDBHostNm"), 1, 9)) <> LCase(Mid(oApp.ComputerName, 1, 9)) Then Exit Sub
+'      End If
+'   End If
 
 '   Set loSysMonitor = New clsSysMonitor
 '   Set loSysMonitor.AppDriver = oApp
@@ -345,7 +345,7 @@ End Function
 
 Function WhoIs(ByVal fsID As String, Optional ByVal fbCypher As Boolean = False) As String
    Dim lsSQL As String
-   Dim loRS As Recordset
+   Dim lors As Recordset
 
    If fbCypher Then
       fsID = Decrypt(fsID)
@@ -354,18 +354,18 @@ Function WhoIs(ByVal fsID As String, Optional ByVal fbCypher As Boolean = False)
    lsSQL = "SELECT sUserName" & _
           " FROM xxxSysUser" & _
           " WHERE sUserIDxx = " & strParm(fsID)
-   Set loRS = oApp.Connection.Execute(lsSQL, , adCmdText)
+   Set lors = oApp.Connection.Execute(lsSQL, , adCmdText)
 
-   If loRS.EOF Then
+   If lors.EOF Then
       WhoIs = "N-O-N-E"
    Else
-      WhoIs = Decrypt(loRS("sUserName"), oApp.Machinex)
+      WhoIs = Decrypt(lors("sUserName"), oApp.Machinex)
    End If
 
-   Set loRS = Nothing
+   Set lors = Nothing
 End Function
 
-Public Function SaveOthers(ByVal loRS As Recordset _
+Public Function SaveOthers(ByVal lors As Recordset _
                            , ByVal lsTable As String _
                            , ByVal lbEditMode As xeEditMode _
                            , Optional lsFldReference As String) As Boolean
@@ -383,15 +383,15 @@ Public Function SaveOthers(ByVal loRS As Recordset _
    If Not (lbEditMode <> xeModeAddNew Or _
       lbEditMode <> xeModeUpdate) Then Exit Function
 
-   For lnCtr = 0 To loRS.Fields.Count - 1
-      If IsNull(loRS(lnCtr).OriginalValue) Or _
-         loRS(lnCtr).OriginalValue <> _
-         loRS(lnCtr) Then
-         If IsNull(loRS(lnCtr)) = False Then
+   For lnCtr = 0 To lors.Fields.Count - 1
+      If IsNull(lors(lnCtr).OriginalValue) Or _
+         lors(lnCtr).OriginalValue <> _
+         lors(lnCtr) Then
+         If IsNull(lors(lnCtr)) = False Then
             lsSQL = lsSQL & ", " & _
-                     loRS(lnCtr).Name & " = " & _
-                     FieldParam(loRS(lnCtr).Type, _
-                     loRS(lnCtr))
+                     lors(lnCtr).Name & " = " & _
+                     FieldParam(lors(lnCtr).Type, _
+                     lors(lnCtr))
          End If
       End If
    Next
@@ -415,12 +415,12 @@ Public Function SaveOthers(ByVal loRS As Recordset _
                   ", dModified = " & dateParm(oApp.ServerDate) & _
                " WHERE "
 
-      For lnRef = 0 To loRS.Fields.Count - 1
+      For lnRef = 0 To lors.Fields.Count - 1
          For lnCol = 0 To UBound(lnField)
-            If loRS(lnField(lnCol)).Name = loRS(lnRef).Name Then
+            If lors(lnField(lnCol)).Name = lors(lnRef).Name Then
                lsSQL = lsSQL & _
-                     loRS(lnRef).Name & " = " & _
-                     strParm(loRS(lnRef)) & _
+                     lors(lnRef).Name & " = " & _
+                     strParm(lors(lnRef)) & _
                      " AND "
             End If
          Next
@@ -442,7 +442,7 @@ Public Function SaveOthers(ByVal loRS As Recordset _
    SaveOthers = True
 
 endProc:
-   Set loRS = Nothing
+   Set lors = Nothing
    Exit Function
 errProc:
    ShowError lsOldProc & "( " & SaveOthers & " )", True
@@ -556,22 +556,22 @@ Public Function RatingStat(lsStat As String) As String
 End Function
 
 Public Function isDatePosted(ByVal fdTranDate As Date) As Boolean
-   Dim loRS As Recordset
+   Dim lors As Recordset
    Dim lsSQL As String
    
-   Set loRS = New Recordset
-   loRS.Open "SELECT dUnEncode FROM Branch_Others WHERE sBranchCd = " & strParm(oApp.BranchCode) _
+   Set lors = New Recordset
+   lors.Open "SELECT dUnEncode FROM Branch_Others WHERE sBranchCd = " & strParm(oApp.BranchCode) _
    , oApp.Connection, adOpenForwardOnly, adLockReadOnly, adCmdText
    
-   If loRS.EOF Then
+   If lors.EOF Then
       isDatePosted = False
       Exit Function
    Else
-      If IsNull(loRS("dUnEncode")) Then
+      If IsNull(lors("dUnEncode")) Then
          isDatePosted = False
          Exit Function
       Else
-         If Format(loRS("dUnEncode"), "YYYYMMDD") > Format(fdTranDate, "YYYYMMDD") Then
+         If Format(lors("dUnEncode"), "YYYYMMDD") > Format(fdTranDate, "YYYYMMDD") Then
             isDatePosted = False
             Exit Function
          End If
@@ -586,15 +586,15 @@ Public Function isDatePosted(ByVal fdTranDate As Date) As Boolean
             " ORDER BY sTranDate DESC" & _
             " LIMIT 1"
 
-   Set loRS = New Recordset
-   loRS.Open lsSQL, oApp.Connection, adOpenForwardOnly, adLockReadOnly, adCmdText
+   Set lors = New Recordset
+   lors.Open lsSQL, oApp.Connection, adOpenForwardOnly, adLockReadOnly, adCmdText
 
-   If loRS.EOF Then
+   If lors.EOF Then
       isDatePosted = False
       Exit Function
    End If
 
-   If CDate(loRS("sTranDate")) <= fdTranDate Then
+   If CDate(lors("sTranDate")) <= fdTranDate Then
       MsgBox "Trasaction Date is not valid!!!" & vbCrLf & _
                "Please verify your entry then try again!!!", vbCritical, "WARNING"
       isDatePosted = False
@@ -607,40 +607,40 @@ End Function
 Public Function isTransValid(ByVal fdTranDate As Date, _
                                  ByVal fsTranType As String, _
                                  ByVal fsReferNox As String, ByVal fsAmountxx As Double) As Boolean
-   Dim loRS As Recordset
+   Dim lors As Recordset
    Dim lsSQL As String
    
    isTransValid = True
    
-   Set loRS = New Recordset
-   loRS.Open "SELECT dUnEncode FROM Branch_Others WHERE sBranchCd = " & strParm(oApp.BranchCode) _
+   Set lors = New Recordset
+   lors.Open "SELECT dUnEncode FROM Branch_Others WHERE sBranchCd = " & strParm(oApp.BranchCode) _
    , oApp.Connection, adOpenForwardOnly, adLockReadOnly, adCmdText
    
-   If loRS.EOF Then Exit Function
+   If lors.EOF Then Exit Function
    
-   If IsNull(loRS("dUnEncode")) Then
+   If IsNull(lors("dUnEncode")) Then
       Exit Function
    Else
       'she 2019-12-12
       'recode the alidation of unencoded transaction
-      If DateDiff("d", loRS("dUnEncode"), fdTranDate) >= 0 Then
+      If DateDiff("d", lors("dUnEncode"), fdTranDate) >= 0 Then
          'check the DTR_Summary here here
          lsSQL = "SELECT cPostedxx FROM DTR_Summary WHERE sBranchCd = " & strParm(oApp.BranchCode) & _
                   " AND sTranDate = " & strParm(Format(fdTranDate, "YYYYMMDD"))
          Debug.Print lsSQL
-         Set loRS = New Recordset
-         loRS.Open lsSQL, oApp.Connection, adOpenForwardOnly, adLockReadOnly, adCmdText
+         Set lors = New Recordset
+         lors.Open lsSQL, oApp.Connection, adOpenForwardOnly, adLockReadOnly, adCmdText
       
-         If loRS.EOF Then
+         If lors.EOF Then
             isTransValid = True
          Else
             'if cPosted = 2, do not allow any transaction to encode
-            If loRS("cPostedxx") = xeStatePosted Then
+            If lors("cPostedxx") = xeStatePosted Then
                MsgBox "DTR Date was already posted!!!" & vbCrLf & _
                      "Please verify your entry then try again!!!", vbCritical, "WARNING"
                isTransValid = False
             'cposted = 1 then check referno to DTR_Summary_Detail
-            ElseIf loRS("cPostedxx") = xeStateClosed Then
+            ElseIf lors("cPostedxx") = xeStateClosed Then
                lsSQL = "SELECT b.cHasEntry, a.cPostedxx, b.nTranAmtx" & _
                   " FROM DTR_Summary a" & _
                   ", DTR_Summary_Detail b" & _
@@ -653,22 +653,22 @@ Public Function isTransValid(ByVal fdTranDate As Date, _
                   " AND b.nTranAmtx = " & fsAmountxx & _
                   " AND b.cHasEntry = " & strParm(xeNo)
                Debug.Print lsSQL
-               Set loRS = New Recordset
-               loRS.Open lsSQL, oApp.Connection, adOpenForwardOnly, adLockReadOnly, adCmdText
+               Set lors = New Recordset
+               lors.Open lsSQL, oApp.Connection, adOpenForwardOnly, adLockReadOnly, adCmdText
                
-               If loRS.EOF Then
+               If lors.EOF Then
                   MsgBox "No Reference no found from unencoded transaction!!" & vbCrLf & _
                          "OR Transaction Amount is not equal to the unposted amount!!" & vbCrLf & _
                          " Pls check your entry then try again!!!"
                   isTransValid = False
-               ElseIf loRS("cHasEntry") = xeStateClosed Then
+               ElseIf lors("cHasEntry") = xeStateClosed Then
                    MsgBox "Reference No was already posted!!!" & vbCrLf & _
                            " Pls check your entry then try again!!!"
                   isTransValid = False
                Else
                   isTransValid = True
                End If
-            ElseIf loRS("cPostedxx") = xeStateOpen Then
+            ElseIf lors("cPostedxx") = xeStateOpen Then
                isTransValid = True
             Else
                isTransValid = False
@@ -736,7 +736,7 @@ End Function
 Private Function chkUnencodedTrans(ByVal fsTranDate As String _
                                     , ByVal fsTranType As String _
                                     , ByVal fsReferNox As String) As Boolean
-   Dim loRS As Recordset
+   Dim lors As Recordset
    Dim loSrc As Recordset
    Dim lsProcName As String
    Dim lnRow As Long
@@ -745,7 +745,7 @@ Private Function chkUnencodedTrans(ByVal fsTranDate As String _
    lsProcName = "chkUnencodedTrans"
    On Error GoTo errProc
 
-   Set loRS = New Recordset
+   Set lors = New Recordset
    With oApp
       lsSQL = "SELECT *" & _
                   " FROM DTR_Summary_Detail" & _
@@ -755,30 +755,30 @@ Private Function chkUnencodedTrans(ByVal fsTranDate As String _
                   " AND sReferNox = " & strParm(fsReferNox) & _
                   " AND cHasEntry = '0'"
                   
-      loRS.Open lsSQL, .Connection, , , adCmdText
-      If loRS.EOF = False Then
+      lors.Open lsSQL, .Connection, , , adCmdText
+      If lors.EOF = False Then
          Do
-            Select Case loRS("sTranType")
+            Select Case lors("sTranType")
             Case "CPSl"
                lsSQL = "SELECT *" & _
                         " FROM CP_SO_Master" & _
                         " WHERE sTransNox LIKE " & strParm(oApp.BranchCode & "%") & _
-                           " AND DATE_FORMAT(dTransact,'%Y%m%d') = " & strParm(loRS("sTranDate")) & _
-                           " AND sSalesInv = " & strParm(loRS("sReferNox"))
+                           " AND DATE_FORMAT(dTransact,'%Y%m%d') = " & strParm(lors("sTranDate")) & _
+                           " AND sSalesInv = " & strParm(lors("sReferNox"))
             Case "MCSc"
                lsSQL = "SELECT *" & _
                         " FROM Receipt_Master" & _
                         " WHERE sTransNox LIKE " & strParm(oApp.BranchCode & "%") & _
                            " AND cTranType = '9'" & _
-                           " AND DATE_FORMAT(dTransact,'%Y%m%d') = " & strParm(loRS("sTranDate")) & _
-                           " AND sORNoxxxx = " & strParm(loRS("sReferNox"))
+                           " AND DATE_FORMAT(dTransact,'%Y%m%d') = " & strParm(lors("sTranDate")) & _
+                           " AND sORNoxxxx = " & strParm(lors("sReferNox"))
             Case "CPLd"
                lsSQL = "SELECT *" & _
                         " FROM CP_SO_Eload" & _
                         " WHERE sTransNox LIKE " & strParm(oApp.BranchCode & "%") & _
                            " AND cTranType = '9'" & _
-                           " AND DATE_FORMAT(dTransact,'%Y%m%d') = " & strParm(loRS("sTranDate")) & _
-                           " AND sORNoxxxx = " & strParm(loRS("sReferNox"))
+                           " AND DATE_FORMAT(dTransact,'%Y%m%d') = " & strParm(lors("sTranDate")) & _
+                           " AND sORNoxxxx = " & strParm(lors("sReferNox"))
             End Select
       
             Set loSrc = New Recordset
@@ -788,25 +788,25 @@ Private Function chkUnencodedTrans(ByVal fsTranDate As String _
                lsSQL = "UPDATE DTR_Summary_Detail SET" & _
                            " cHasEntry = '1'" & _
                         " WHERE sBranchCd = " & strParm(oApp.BranchCode) & _
-                           " AND sTranDate = " & strParm(loRS("sTranDate")) & _
-                           " AND sReferNox = " & strParm(loRS("sReferNox")) & _
-                           " AND sTranType = " & strParm(loRS("sTranType"))
+                           " AND sTranDate = " & strParm(lors("sTranDate")) & _
+                           " AND sReferNox = " & strParm(lors("sReferNox")) & _
+                           " AND sTranType = " & strParm(lors("sTranType"))
                If oApp.Execute(lsSQL, "DTR_Summary_Detail") <= 0 Then
                   GoTo endProc
                End If
             End If
             
-            loRS.MoveNext
-         Loop Until loRS.EOF
+            lors.MoveNext
+         Loop Until lors.EOF
       
       End If
-      loRS.Close
+      lors.Close
    End With
    
    chkUnencodedTrans = True
    
 endProc:
-   Set loRS = Nothing
+   Set lors = Nothing
    Exit Function
 errProc:
    ShowError lsProcName & "( " & " ) "

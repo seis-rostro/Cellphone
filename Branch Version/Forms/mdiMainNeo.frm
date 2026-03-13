@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomctl.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
 Begin VB.MDIForm mdiMain 
    BackColor       =   &H8000000C&
    Caption         =   "Guanzon Telecom Point-Of-Sale & Inventory System Branch Version"
@@ -198,9 +198,6 @@ Begin VB.MDIForm mdiMain
          Begin VB.Menu mnuModel 
             Caption         =   "Model"
          End
-         Begin VB.Menu mnuCard 
-            Caption         =   "Card"
-         End
          Begin VB.Menu mnuCardRate 
             Caption         =   "CP Card Rate"
          End
@@ -364,15 +361,6 @@ Begin VB.MDIForm mdiMain
       Begin VB.Menu mnuMCSOverride 
          Caption         =   "MCS Override"
       End
-      Begin VB.Menu mnuPayment 
-         Caption         =   "Payment"
-         Begin VB.Menu mnuARAdjustment 
-            Caption         =   "AR Adjustment"
-         End
-         Begin VB.Menu mnuARPayment 
-            Caption         =   "AR Payment"
-         End
-      End
       Begin VB.Menu mnuPosting 
          Caption         =   "Posting"
          Begin VB.Menu mnuReceiveTransfer 
@@ -411,9 +399,6 @@ Begin VB.MDIForm mdiMain
       End
       Begin VB.Menu mnuInvClassifyUnit 
          Caption         =   "Inventory Classification Unit"
-      End
-      Begin VB.Menu mnuInventoryCount 
-         Caption         =   "Inventory Count"
       End
       Begin VB.Menu mnuInvTypeTransfer 
          Caption         =   "Inventory Type Transfer"
@@ -464,9 +449,6 @@ Begin VB.MDIForm mdiMain
          End
          Begin VB.Menu mnuReplenishmentApprvl 
             Caption         =   "Replenishment Approval"
-         End
-         Begin VB.Menu mnuGASep01 
-            Caption         =   "-"
          End
       End
       Begin VB.Menu mnuCashDep 
@@ -609,12 +591,6 @@ Begin VB.MDIForm mdiMain
             Begin VB.Menu mnuPTManualLog 
                Caption         =   "Manual Log"
             End
-            Begin VB.Menu mnuPUExport 
-               Caption         =   "Export Attendance"
-            End
-         End
-         Begin VB.Menu mnuYearEndBunos 
-            Caption         =   "Year End Bonus Entry"
          End
       End
    End
@@ -874,9 +850,19 @@ Begin VB.MDIForm mdiMain
       End
       Begin VB.Menu mnuCPPriceUpdate 
          Caption         =   "CP Price Update"
+         Visible         =   0   'False
       End
       Begin VB.Menu mnuCloseDay2Day 
          Caption         =   "Close Day-To-Day Transaction"
+      End
+      Begin VB.Menu mnuRefundableEntry 
+         Caption         =   "Refundable Deposit Entry"
+      End
+      Begin VB.Menu mnuRefundableApp 
+         Caption         =   "Refundable Deposit Confirmation"
+      End
+      Begin VB.Menu mnuRefundableHist 
+         Caption         =   "Refundable Deposit History"
       End
    End
 End
@@ -932,13 +918,23 @@ Private Sub MDIForm_Load()
    lnGrayText = GetSysColor(17)
    setGrayText oApp.getColor("ET0")
    
-   mdiMain.mnuCPSerial.Visible = oApp.UserLevel = xeEngineer
-   mdiMain.mnuManagerRep.Visible = oApp.isMainOffice = True Or oApp.IsWarehouse = True
-   mdiMain.mnuWholeSale.Visible = oApp.isMainOffice = True Or oApp.IsWarehouse = True
-   mdiMain.mnuWholeSaleReturn.Visible = oApp.isMainOffice = True Or oApp.IsWarehouse = True
-   mdiMain.mnuChargeInvoice.Visible = oApp.isMainOffice = True Or oApp.IsWarehouse = True
-   mdiMain.mnuMarketingSupport.Visible = oApp.isMainOffice = True Or oApp.IsWarehouse = True
-   mdiMain.mnuPriceProtection.Visible = oApp.isMainOffice = True Or oApp.IsWarehouse = True
+   If oApp.IsWarehouse Then
+      mdiMain.mnuCPSerial.Visible = oApp.UserLevel = xeManager
+   Else
+      mdiMain.mnuCPSerial.Visible = oApp.UserLevel = xeEngineer
+   End If
+   
+   'she 2025-08-06
+   ' as requested by GMA. to tanya & arnold only
+   If oApp.EmployeeNo = "H00220000001" Or oApp.EmployeeNo = "M00109011793" Or oApp.EmployeeNo = "M00110017110" Then
+      mdiMain.mnuCPPriceUpdate.Visible = True
+   End If
+   mdiMain.mnuManagerRep.Visible = oApp.IsMainOffice = True Or oApp.IsWarehouse = True
+   mdiMain.mnuWholeSale.Visible = oApp.IsMainOffice = True Or oApp.IsWarehouse = True
+   mdiMain.mnuWholeSaleReturn.Visible = oApp.IsMainOffice = True Or oApp.IsWarehouse = True
+   mdiMain.mnuChargeInvoice.Visible = oApp.IsMainOffice = True Or oApp.IsWarehouse = True
+   mdiMain.mnuMarketingSupport.Visible = oApp.IsMainOffice = True Or oApp.IsWarehouse = True
+   mdiMain.mnuPriceProtection.Visible = oApp.IsMainOffice = True Or oApp.IsWarehouse = True
    mdiMain.mnuCPClustering.Visible = LCase(oApp.ProductID) = "telecom1" And oApp.IsWarehouse = True
    mdiMain.mnuDelSched.Visible = (oApp.UserLevel = xeManager Or oApp.UserLevel = xeSupervisor Or oApp.UserLevel = xeEngineer)
 '   mdiMain.mnuAppApproval.Visible = oApp.UserLevel = xeEngineer
@@ -985,6 +981,10 @@ End Sub
 Private Sub mnuARPayment_Click()
 '   frmPaymentAdjustment.Tag = "mnuARPayment"
 '   frmPaymentAdjustment.Show
+End Sub
+
+Private Sub mnuAppPricelist_Click()
+'   frmAppliancesCashPrice.Show
 End Sub
 
 Private Sub mnuAServiceCenter_Click()
@@ -1538,13 +1538,13 @@ Private Sub mnuPAUndertime_Click()
 End Sub
 
 Private Sub mnuPCCashAdvancApprvl_Click()
-   frmCashAdvanceApproval.Tag = "mnuPCCashAdvancApprvl"
-   frmCashAdvanceApproval.Show
+   'frmCashAdvanceApproval.Tag = "mnuPCCashAdvancApprvl"
+   'frmCashAdvanceApproval.Show
 End Sub
 
 Private Sub mnuPCCashAdvance_Click()
-   frmCashAdvanceEntry.Tag = "mnuPCCashAdvance"
-   frmCashAdvanceEntry.Show
+   'frmCashAdvanceEntry.Tag = "mnuPCCashAdvance"
+   'frmCashAdvanceEntry.Show
 End Sub
 
 Private Sub mnuPettyCash_Click()
@@ -1573,8 +1573,8 @@ Private Sub mnuPriceProtection_Click()
 End Sub
 
 Private Sub mnuPrintBarcodeLX310_Click()
-   frmBarrCodeLX310.Tag = "mnuPrintBarcodeLX31"
-   frmBarrCodeLX310.Show
+'   frmBarrCodeLX310.Tag = "mnuPrintBarcodeLX31"
+'   frmBarrCodeLX310.Show
 End Sub
 
 Private Sub mnuPRMovement_Click()
@@ -1751,6 +1751,21 @@ End Sub
 Private Sub mnuReceiveServicePhone_Click()
    frmServicePhonePosting.Tag = "mnuReceiveServicePhone"
    frmServicePhonePosting.Show
+End Sub
+
+Private Sub mnuRefundableApp_Click()
+   frmRefundableDepConfirm.Tag = "mnuRefundableApp"
+   frmRefundableDepConfirm.Show
+End Sub
+
+Private Sub mnuRefundableEntry_Click()
+   frmRefundableDep.Tag = "mnuRefundableEntry"
+   frmRefundableDep.Show
+End Sub
+
+Private Sub mnuRefundableHist_Click()
+   frmRefundableHist.Tag = "mnuRefundableHist"
+   frmRefundableHist.Show
 End Sub
 
 Private Sub mnuRegPurchaseReturn_Click()
@@ -2176,7 +2191,7 @@ End Sub
 
 Private Function getLastPeriod(ByVal fsEmployID As String) As Date
    Dim lsSQL As String
-   Dim loRS As Recordset
+   Dim lors As Recordset
    
    lsSQL = "SELECT" & _
                   " a.dCovergTo" & _
@@ -2184,12 +2199,12 @@ Private Function getLastPeriod(ByVal fsEmployID As String) As Date
               " LEFT JOIN Payroll_Summary b ON a.sPayPerID = b.sPayPerID" & _
           " WHERE b.sEmployID = " & strParm(fsEmployID) & _
           " ORDER BY a.dCovergTo DESC LIMIT 1"
-   Set loRS = oApp.Connection.Execute(lsSQL, , adCmdText)
+   Set lors = oApp.Connection.Execute(lsSQL, , adCmdText)
    
-   If loRS.EOF Then
+   If lors.EOF Then
       getLastPeriod = Format(oApp.ServerDate, "yyyy-mm-dd")
    Else
-      getLastPeriod = loRS("dCovergTo") + 1
+      getLastPeriod = lors("dCovergTo") + 1
    End If
 End Function
 
@@ -2234,7 +2249,7 @@ End Sub
 
 Private Sub tmeLog_Timer()
    Dim lsSQL As String
-   Dim loRS As Recordset
+   Dim lors As Recordset
    Dim loCls As clsEmployeeMovement
    Dim ldDateFrom As Date
    
@@ -2256,10 +2271,10 @@ Private Sub tmeLog_Timer()
          Exit Sub
       End If
       
-      Set loRS = oApp.Connection.Execute(lsSQL, , adCmdText)
+      Set lors = oApp.Connection.Execute(lsSQL, , adCmdText)
       DoEvents
       
-      If loRS.EOF Then Exit Sub
+      If lors.EOF Then Exit Sub
       
       Set loCls = New clsEmployeeMovement
       'Set loCls.AppDriver = oApp
@@ -2267,18 +2282,18 @@ Private Sub tmeLog_Timer()
       loCls.InitTransaction
 
       DoEvents
-      Do Until loRS.EOF
+      Do Until lors.EOF
          DoEvents
          If LCase(oApp.ProductID) = "petmgr" Then
             'Its from the main office so send updates to all branches...
-            If loCls.OpenTransaction(loRS("sTransNox")) Then
-               loCls.PostTransaction (loRS("sTransNox"))
+            If loCls.OpenTransaction(lors("sTransNox")) Then
+               loCls.PostTransaction (lors("sTransNox"))
             End If
          Else
             'if monitor is not from main office then just post the movement
             lsSQL = "UPDATE Employee_Movement" & _
                    " SET cTranStat = " & strParm(xeStatePosted) & _
-                   " WHERE sTransNox = " & strParm(loRS("sTransNox"))
+                   " WHERE sTransNox = " & strParm(lors("sTransNox"))
             oApp.Connection.Execute lsSQL, , adCmdText
          End If
 
@@ -2286,7 +2301,7 @@ Private Sub tmeLog_Timer()
          If IFNull(loCls.Master("sBranchCD")) <> "" _
             And loCls.Master("sBranchCD") <> oApp.BranchCode _
             And IFNull(loCls.Master("xBranchCD"), "") = oApp.BranchCode _
-            And InStr(1, "M001»M0W1", loRS("sBranchCD")) = 0 Then
+            And InStr(1, "M001»M0W1", lors("sBranchCD")) = 0 Then
 
             DoEvents
             ldDateFrom = getLastPeriod(loCls.Master("sEmployID"))
@@ -2314,7 +2329,7 @@ Private Sub tmeLog_Timer()
                                 loCls.Master("sBranchCD"))
          End If
 
-         loRS.MoveNext
+         lors.MoveNext
          DoEvents
       Loop
    End If

@@ -1,0 +1,26 @@
+Line 18: Class xrControl.xrButton of control cmdButton was not a loaded control class.
+Line 41: Class xrControl.xrButton of control cmdButton was not a loaded control class.
+Line 64: Class xrControl.xrFrame of control xrFrame1 was not a loaded control class.
+Line 90: Class xrControl.xrFrame of control xrFrame2 was not a loaded control class.
+Line 119: Class MSComCtl2.Animation of control Progress was not a loaded control class.
+Line 25: The property name _ExtentX in cmdButton is invalid.
+Line 26: The property name _ExtentY in cmdButton is invalid.
+Line 27: The property name Caption in cmdButton is invalid.
+Line 28: The property name AccessKey in cmdButton is invalid.
+Line 39: The property name PicturePos in cmdButton is invalid.
+Line 18: Property Picture in cmdButton could not be set.
+Line 48: The property name _ExtentX in cmdButton is invalid.
+Line 49: The property name _ExtentY in cmdButton is invalid.
+Line 50: The property name Caption in cmdButton is invalid.
+Line 51: The property name AccessKey in cmdButton is invalid.
+Line 62: The property name PicturePos in cmdButton is invalid.
+Line 41: Property Picture in cmdButton could not be set.
+Line 70: The property name _ExtentX in xrFrame1 is invalid.
+Line 71: The property name _ExtentY in xrFrame1 is invalid.
+Line 96: The property name _ExtentX in xrFrame2 is invalid.
+Line 97: The property name _ExtentY in xrFrame2 is invalid.
+Line 127: The property name _ExtentX in Progress is invalid.
+Line 128: The property name _ExtentY in Progress is invalid.
+Line 129: The property name _Version in Progress is invalid.
+Line 131: The property name FullWidth in Progress is invalid.
+Line 132: The property name FullHeight in Progress is invalid.

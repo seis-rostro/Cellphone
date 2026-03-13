@@ -674,7 +674,7 @@ Private Sub cmdButton_Click(Index As Integer)
                LoadMaster
                LoadDetail
             Else
-               If txtField(0).Text = "" Then ClearFields
+               If txtField(0).Text = "" Then clearFields
             End If
          
             initButton xeModeReady
@@ -688,7 +688,7 @@ Private Sub cmdButton_Click(Index As Integer)
             LoadMaster
             LoadDetail
          Else
-            If txtField(0).Text = "" Then ClearFields
+            If txtField(0).Text = "" Then clearFields
          End If
       Case 5
 '         If chkField.Value = 1 Then
@@ -796,7 +796,7 @@ Private Sub Form_Load()
    oSkin.ApplySkin xeFormTransMaintenance
    
    InitGrid
-   ClearFields
+   clearFields
    initButton xeModeReady
    
    txtField(3).MaxLength = oTrans.MasFldSize(3)
@@ -1173,6 +1173,11 @@ Private Function PrintTrans() As Boolean
    oReport.Sections("RFb").ReportObjects("txtWithSerial").SetText IIf(lnTotlWSerial = 0, "", Format(lnTotlWSerial, "#,##0"))
    oReport.Sections("RFb").ReportObjects("txtWOutSerial").SetText IIf(lnTotlWOSerial = 0, "", Format(lnTotlWOSerial, "#,##0"))
    oReport.Sections("PF").ReportObjects("txtRptUser").SetText oApp.UserName
+   
+   
+    'REPRINT WATERMARKS
+    oReport.Sections("PHd").Suppress = oTrans.Master("cTranStat") < 1
+    
 
    Set loreport = New frmRepViewer
    Set loreport.ReportSource = oReport
@@ -1181,11 +1186,11 @@ Private Function PrintTrans() As Boolean
    
    PrintTrans = True
 
-endPoc:
-
    If oTrans.Master("cTranStat") = xeStateOpen Then
       If oTrans.CloseTransaction(oTrans.Master(0)) Then pbClosedTrans = True
    End If
+
+endPoc:
 
    Set loreport = Nothing
    Set oReport = Nothing
@@ -1356,7 +1361,7 @@ errProc:
    ShowError lsOldProc & "( " & " )"
 End Function
 
-Private Sub ClearFields()
+Private Sub clearFields()
    For pnCtr = 0 To txtField.Count - 1
       Select Case pnCtr
       Case 1
@@ -1400,7 +1405,7 @@ Private Sub txtField_Validate(Index As Integer, Cancel As Boolean)
          .Text = Format(.Text, ">")
       Case 5, 6
          If .Text = "" Then
-            ClearFields
+            clearFields
             Exit Sub
          End If
          
@@ -1411,7 +1416,7 @@ Private Sub txtField_Validate(Index As Integer, Cancel As Boolean)
                LoadMaster
                LoadDetail
             Else
-               ClearFields
+               clearFields
                .SetFocus
             End If
          End If

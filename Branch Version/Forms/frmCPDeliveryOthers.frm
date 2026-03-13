@@ -846,7 +846,7 @@ Private Sub Form_Unload(Cancel As Integer)
    Set oTrans = Nothing
 End Sub
 
-Private Sub ClearFields()
+Private Sub clearFields()
    Dim loTxt As TextBox
 
    For Each loTxt In txtField
@@ -1293,7 +1293,7 @@ NopoRS:
 End Sub
 
 Private Sub InitTransaction()
-   Call ClearFields
+   Call clearFields
    Call InitGrid
    Call InitGrid2
 
@@ -1401,6 +1401,11 @@ Private Function PrintTrans() As Boolean
    oReport.Sections("RFb").ReportObjects("txtWithSerial").SetText IIf(lnTotlWSerial = 0, "", Format(lnTotlWSerial, "#,##0"))
    oReport.Sections("RFb").ReportObjects("txtWOutSerial").SetText IIf(lnTotlWOSerial = 0, "", Format(lnTotlWOSerial, "#,##0"))
    oReport.Sections("PF").ReportObjects("txtRptUser").SetText oApp.UserName
+   
+   
+    'REPRINT WATERMARKS
+    oReport.Sections("PHd").Suppress = oTrans.Master("cTranStat") < 1
+    
 
    Set loreport = New frmRepViewer
    Set loreport.ReportSource = oReport
