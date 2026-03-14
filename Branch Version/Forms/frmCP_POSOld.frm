@@ -1330,30 +1330,25 @@ Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
             End If
          End If
       Case vbKeyF6
-         'she 2025 to allow the srp if item is insurance as per instruction by sir rex
-         If oTrans.Detail(GridEditor1.Row - 1, "sCategID1") = "C001052" Or oTrans.Detail(GridEditor1.Row - 1, "sCategID1") = "C0W1026" Or _
-            oApp.BranchCode = "C0M2" Then 'mac 2026.02.26 added allow C0M2 for change price, Mobile Fiesta branch
+         'mac 2026.03.13
+         'removed restriction on price updates to UI, will handle this on transaction object
             
-            If oTrans.EditMode = xeModeAddNew Then
-               If oTrans.Detail(GridEditor1.Row - 1, "sStockIDx") = "" Then Exit Sub
-               With frmSOParts
-                  .StockID = oTrans.Detail(GridEditor1.Row - 1, "sStockIDx")
-                  .Show 1
-   
-                  If Not .Cancelled Then
-                     With GridEditor1
-                        oTrans.Detail(.Row - 1, "nUnitPrce") = frmSOParts.UnitPrice
-                        .TextMatrix(.Row, 4) = Format(oTrans.Detail(.Row - 1, "nUnitPrce"), "#,##0.00")
-                        .TextMatrix(.Row, 7) = Format(CDbl(.TextMatrix(.Row, 3)) * CDbl(.TextMatrix(.Row, 4)) * _
-                                          (100 - CDbl(Replace(.TextMatrix(.Row, 5), "%", ""))) / 100 - CDbl(.TextMatrix(.Row, 6)), "#,##0.00")
-                        Call GrandTotal
-                     End With
-                  End If
-               End With
-            End If
-         Else
-            lnRep = MsgBox("Updating of price was disallowed." & vbCrLf & _
-                        "Please input the price difference as disc rate or amount.", vbCritical, "Notice")
+         If oTrans.EditMode = xeModeAddNew Then
+            If oTrans.Detail(GridEditor1.Row - 1, "sStockIDx") = "" Then Exit Sub
+            With frmSOParts
+               .StockID = oTrans.Detail(GridEditor1.Row - 1, "sStockIDx")
+               .Show 1
+
+               If Not .Cancelled Then
+                  With GridEditor1
+                     oTrans.Detail(.Row - 1, "nUnitPrce") = frmSOParts.UnitPrice
+                     .TextMatrix(.Row, 4) = Format(oTrans.Detail(.Row - 1, "nUnitPrce"), "#,##0.00")
+                     .TextMatrix(.Row, 7) = Format(CDbl(.TextMatrix(.Row, 3)) * CDbl(.TextMatrix(.Row, 4)) * _
+                                       (100 - CDbl(Replace(.TextMatrix(.Row, 5), "%", ""))) / 100 - CDbl(.TextMatrix(.Row, 6)), "#,##0.00")
+                     Call GrandTotal
+                  End With
+               End If
+            End With
          End If
       Case vbKeyF7 'GConnect
         If oTrans.EditMode = xeModeAddNew Then
